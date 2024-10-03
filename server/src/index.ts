@@ -16,6 +16,8 @@ app.get("/api/users/:id", (req, res) => {
   console.log(req.params);
 });
 
+app.post("/api/users", (req, res) => {});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
