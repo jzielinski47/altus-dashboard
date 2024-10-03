@@ -9,6 +9,11 @@ app.get("/api/users", (req, res) => {
     { id: 1, username: "user", password: "user" },
     { id: 2, username: "guest", password: "guest" },
   ]);
+  console.log(req.query);
+});
+
+app.get("/api/users/:id", (req, res) => {
+  console.log(req.params);
 });
 
 app.listen(port, () => {
