@@ -1,9 +1,10 @@
-import express from "express";
+import express, { request } from "express";
 
 const app = express();
+app.use(express.json());
 const port: number = parseInt(process.env.PORT || "3000", 10);
 
-const usersData = [
+let usersData = [
   { id: 0, username: "admin", token: "0" },
   { id: 1, username: "user", token: "1" },
 ];
@@ -11,6 +12,9 @@ const usersData = [
 /*
   My first step is to make a simple log-in/register system working on GET/POST requests only with no web-sockets invloved.
 */
+
+// const resolveUserById = (req, res, next) => {};
+// app.use(resolveUserById);
 
 /*
 200 OK
@@ -36,9 +40,54 @@ app.get("/api/users/:id", (req, res) => {
   res.status(200).send(filteredUser);
 });
 
-app.post("/api/users", (req, res) => {
+app.post("/api/register", (req, res) => {
   console.log(req.body);
-  res.status(200);
+  const { body } = req;
+  const newUser = { id: usersData[usersData.length - 1].id + 1, ...body };
+  usersData.push(newUser);
+  res.status(201).send(newUser);
+});
+
+app.put("/api/users/:id", (req, res) => {
+  const {
+    body,
+    params: { id },
+  } = req;
+
+  const requestedId = parseInt(id);
+  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
+  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
+  findUserIndex === -1 ? res.sendStatus(404) : null;
+  usersData[findUserIndex] = { id: requestedId, ...body };
+  res.sendStatus(200);
+});
+
+app.patch("/api/users/:id", (req, res) => {
+  const {
+    body,
+    params: { id },
+  } = req;
+
+  const requestedId = parseInt(id);
+  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
+  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
+  findUserIndex === -1 ? res.sendStatus(404) : null;
+  usersData[findUserIndex] = { ...usersData[findUserIndex], ...body };
+  res.sendStatus(200);
+});
+
+app.delete("/api/users/:id", (req, res) => {
+  const {
+    params: { id },
+  } = req;
+
+  const requestedId = parseInt(id);
+  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
+  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
+  findUserIndex === -1 ? res.sendStatus(404) : null;
+
+  usersData = usersData.filter((user) => user.id !== requestedId);
+  res.send(200);
 });
 
 app.listen(port, () => {
