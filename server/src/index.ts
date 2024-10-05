@@ -31,7 +31,6 @@ const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
 
   next();
 };
-app.use(resolveUserById);
 
 /*
 200 OK
@@ -48,7 +47,7 @@ app.get("/api/users", (req, res) => {
   res.send(usersData);
 });
 
-app.get("/api/users/:id", (req, res) => {
+app.get("/api/users/:id", resolveUserById, (req, res) => {
   const { findUserIndex } = req;
   res.status(200).send(usersData[findUserIndex as number]);
 });
@@ -61,7 +60,7 @@ app.post("/api/register", (req, res) => {
   res.status(201).send(newUser);
 });
 
-app.put("/api/users/:id", (req, res) => {
+app.put("/api/users/:id", resolveUserById, (req, res) => {
   const { body, findUserIndex } = req;
 
   usersData[findUserIndex as number] = {
@@ -71,7 +70,7 @@ app.put("/api/users/:id", (req, res) => {
   res.sendStatus(200);
 });
 
-app.patch("/api/users/:id", (req, res) => {
+app.patch("/api/users/:id", resolveUserById, (req, res) => {
   const { body, findUserIndex } = req;
 
   usersData[findUserIndex as number] = {
@@ -81,7 +80,7 @@ app.patch("/api/users/:id", (req, res) => {
   res.sendStatus(200);
 });
 
-app.delete("/api/users/:id", (req, res) => {
+app.delete("/api/users/:id", resolveUserById, (req, res) => {
   const { findUserIndex } = req;
 
   usersData = usersData.filter(
