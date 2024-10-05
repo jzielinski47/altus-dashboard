@@ -1,5 +1,13 @@
 import express, { Request, Response, NextFunction } from "express";
 
+declare global {
+  namespace Express {
+    interface Request {
+      findUserIndex?: number;
+    }
+  }
+}
+
 const app = express();
 app.use(express.json());
 app.disable("x-powered-by");
@@ -40,7 +48,7 @@ app.get("/api/users", (req, res) => {
   res.send(usersData);
 });
 
-app.get("/api/users/:id", (req, res) => {  
+app.get("/api/users/:id", (req, res) => {
   const { findUserIndex } = req;
   res.status(200).send(usersData[findUserIndex as number]);
 });
