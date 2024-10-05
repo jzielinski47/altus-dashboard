@@ -1,5 +1,13 @@
 import express, { Request, Response, NextFunction } from "express";
 
+declare global {
+  namespace Express {
+    interface Request {
+      findUserIndex?: number;
+    }
+  }
+}
+
 const app = express();
 app.use(express.json());
 app.disable("x-powered-by");
@@ -9,10 +17,6 @@ let usersData = [
   { id: 0, username: "admin", token: "0" },
   { id: 1, username: "user", token: "1" },
 ];
-
-/*
-  My first step is to make a simple log-in/register system working on GET/POST requests only with no web-sockets invloved.
-*/
 
 const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
   const {
@@ -45,12 +49,8 @@ app.get("/api/users", (req, res) => {
 });
 
 app.get("/api/users/:id", (req, res) => {
-  console.log(req.params);
-  const requestedId = parseInt(req.params.id);
-  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
-  const filteredUser = usersData.find((user) => user.id === requestedId);
-  !filteredUser ? res.status(404).send({ msg: "No such user." }) : null;
-  res.status(200).send(filteredUser);
+  const { findUserIndex } = req;
+  res.status(200).send(usersData[findUserIndex as number]);
 });
 
 app.post("/api/register", (req, res) => {
