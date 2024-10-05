@@ -10,10 +10,6 @@ let usersData = [
   { id: 1, username: "user", token: "1" },
 ];
 
-/*
-  My first step is to make a simple log-in/register system working on GET/POST requests only with no web-sockets invloved.
-*/
-
 const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
   const {
     params: { id },
