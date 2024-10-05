@@ -1,12 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-
-declare global {
-  namespace Express {
-    interface Request {
-      findUserIndex?: number;
-    }
-  }
-}
+import { query, validationResult } from "express-validator";
 
 const app = express();
 app.use(express.json());
@@ -33,6 +26,7 @@ const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
 };
 
 /*
+
 200 OK
 201 Created
 202 Accepted
@@ -43,7 +37,7 @@ const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
 404 Not Found
 */
 
-app.get("/api/users", (req, res) => {
+app.get("/api/users", query("filter").isString().notEmpty(), (req, res) => {
   res.send(usersData);
 });
 
