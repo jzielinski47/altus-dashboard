@@ -40,13 +40,9 @@ app.get("/api/users", (req, res) => {
   res.send(usersData);
 });
 
-app.get("/api/users/:id", (req, res) => {
-  console.log(req.params);
-  const requestedId = parseInt(req.params.id);
-  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
-  const filteredUser = usersData.find((user) => user.id === requestedId);
-  !filteredUser ? res.status(404).send({ msg: "No such user." }) : null;
-  res.status(200).send(filteredUser);
+app.get("/api/users/:id", (req, res) => {  
+  const { findUserIndex } = req;
+  res.status(200).send(usersData[findUserIndex as number]);
 });
 
 app.post("/api/register", (req, res) => {
