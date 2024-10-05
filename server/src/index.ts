@@ -1,6 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
 import { query, validationResult } from "express-validator";
 
+declare global {
+  namespace Express {
+    interface Request {
+      findUserIndex?: number; // I am unable to move it to any other .dts file so the middleware works
+    }
+  }
+}
+
 const app = express();
 app.use(express.json());
 app.disable("x-powered-by");
