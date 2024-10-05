@@ -1,7 +1,8 @@
-import express, { request } from "express";
+import express, { Request, Response, NextFunction } from "express";
 
 const app = express();
 app.use(express.json());
+app.disable("x-powered-by");
 const port: number = parseInt(process.env.PORT || "3000", 10);
 
 let usersData = [
@@ -13,8 +14,20 @@ let usersData = [
   My first step is to make a simple log-in/register system working on GET/POST requests only with no web-sockets invloved.
 */
 
-// const resolveUserById = (req, res, next) => {};
-// app.use(resolveUserById);
+const resolveUserById = (req: Request, res: Response, next: NextFunction) => {
+  const {
+    params: { id },
+  } = req;
+
+  const requestedId = parseInt(id);
+  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
+  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
+  findUserIndex === -1 ? res.sendStatus(404) : null;
+  req.findUserIndex = findUserIndex;
+
+  next();
+};
+app.use(resolveUserById);
 
 /*
 200 OK
@@ -49,44 +62,31 @@ app.post("/api/register", (req, res) => {
 });
 
 app.put("/api/users/:id", (req, res) => {
-  const {
-    body,
-    params: { id },
-  } = req;
+  const { body, findUserIndex } = req;
 
-  const requestedId = parseInt(id);
-  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
-  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
-  findUserIndex === -1 ? res.sendStatus(404) : null;
-  usersData[findUserIndex] = { id: requestedId, ...body };
+  usersData[findUserIndex as number] = {
+    id: usersData[findUserIndex as number].id,
+    ...body,
+  };
   res.sendStatus(200);
 });
 
 app.patch("/api/users/:id", (req, res) => {
-  const {
-    body,
-    params: { id },
-  } = req;
+  const { body, findUserIndex } = req;
 
-  const requestedId = parseInt(id);
-  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
-  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
-  findUserIndex === -1 ? res.sendStatus(404) : null;
-  usersData[findUserIndex] = { ...usersData[findUserIndex], ...body };
+  usersData[findUserIndex as number] = {
+    ...usersData[findUserIndex as number],
+    ...body,
+  };
   res.sendStatus(200);
 });
 
 app.delete("/api/users/:id", (req, res) => {
-  const {
-    params: { id },
-  } = req;
+  const { findUserIndex } = req;
 
-  const requestedId = parseInt(id);
-  isNaN(requestedId) ? res.status(400).send({ msg: "Invalid id." }) : null;
-  const findUserIndex = usersData.findIndex((user) => user.id === requestedId);
-  findUserIndex === -1 ? res.sendStatus(404) : null;
-
-  usersData = usersData.filter((user) => user.id !== requestedId);
+  usersData = usersData.filter(
+    (user) => user.id !== usersData[findUserIndex as number].id
+  );
   res.send(200);
 });
 
