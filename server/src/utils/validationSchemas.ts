@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
 
-export const signupValidSchema = {
+export const signupValidationSchema = {
   username: {
+    errorMessage: "Invalid username",
     isLength: {
       options: {
         min: 5,
@@ -15,5 +16,10 @@ export const signupValidSchema = {
   email: {
     isEmail: true,
   },
-  password: {},
+  password: {
+    isLength: {
+      options: { min: 8 },
+      errorMessage: "Password should be at least 8 chars",
+    },
+  },
 };
