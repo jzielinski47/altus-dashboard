@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupValidationSchema } from "../utils/validationSchemas";
 import { usersCollection } from "../utils/constans";
+import { iUsersCollection } from "../utils/interfaces";
 
 const router = Router();
 
@@ -22,11 +23,11 @@ router.post(
       if (usernameExists) {
         res.status(401).send({ msg: "username is taken" });
       } else {
-        const newRecord = {
+        const newRecord: iUsersCollection = {
           id: usersCollection[usersCollection.length - 1].id + 1,
           username,
-          email,
           password,
+          email,
         };
         usersCollection.push(newRecord);
         res.send({ msg: "signup complete" });
