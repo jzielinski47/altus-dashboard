@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupValidationSchema } from "../utils/validationSchemas";
 import { usersCollection } from "../utils/constans";
+import { iUsersCollection } from "../utils/interfaces";
 
 const router = Router();
 
@@ -14,7 +15,8 @@ router.post(
     if (!result.isEmpty()) {
       res.status(400).send({ errors: result.array() });
     } else {
-      const { username, email, password } = matchedData(req);
+      const data = matchedData(req);
+      const { username, email, password } = data;
       // at this point make sure the password is cyphered
       const usernameExists = usersCollection.find(
         (user) => user.username === username
@@ -22,7 +24,7 @@ router.post(
       if (usernameExists) {
         res.status(401).send({ msg: "username is taken" });
       } else {
-        const newRecord = {
+        const newRecord: iUsersCollection = {
           id: usersCollection[usersCollection.length - 1].id + 1,
           username,
           email,
