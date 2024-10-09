@@ -22,8 +22,8 @@ router.post("/api/signup", (0, express_validator_1.checkSchema)(validationSchema
             const newRecord = {
                 id: constans_1.usersCollection[constans_1.usersCollection.length - 1].id + 1,
                 username,
-                email,
                 password,
+                email,
             };
             constans_1.usersCollection.push(newRecord);
             res.send({ msg: "signup complete" });
