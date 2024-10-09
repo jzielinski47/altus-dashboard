@@ -6,4 +6,13 @@ const router = (0, express_1.Router)();
 router.get("/api/users", (req, res) => {
     res.send(constans_1.usersCollection);
 });
+router.get("/api/admin", (req, res) => {
+    //@ts-ignore
+    if (req.session.user && req.session.user.username === "admin") {
+        res.send(constans_1.usersCollection);
+    }
+    else {
+        res.status(401).send({ msg: "You're unauthorized to access this route." });
+    }
+});
 exports.default = router;
