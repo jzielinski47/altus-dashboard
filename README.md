@@ -5,3 +5,4 @@ The idea for the project was to use the things I've learned over the last couple
 `/api/signup`
 `/api/auth/`
 `/api/auth/status`
+`/api/users`
