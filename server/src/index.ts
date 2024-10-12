@@ -1,6 +1,8 @@
 import express, { Request, Response, NextFunction } from "express";
 import router from "./routes/router";
 import session from "express-session";
+import passport from "passport";
+import "./strategies/local-strategy";
 
 const app = express();
 app.use(express.json());
@@ -16,18 +18,18 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(router);
 
 app.get("/", (req, res) => {
-  console.log(req.session);
-  console.log(req.session.id);
   //@ts-ignore
   req.session.visited = true;
   res.send({ msg: "welcome to /" });
 });
 
 const port: number = parseInt(process.env.PORT || "3000", 10);
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
