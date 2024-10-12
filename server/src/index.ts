@@ -19,15 +19,12 @@ app.use(
 app.use(router);
 
 app.get("/", (req, res) => {
-  console.log(req.session);
-  console.log(req.session.id);
   //@ts-ignore
   req.session.visited = true;
   res.send({ msg: "welcome to /" });
 });
 
 const port: number = parseInt(process.env.PORT || "3000", 10);
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
