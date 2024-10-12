@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupValidationSchema } from "../utils/validationSchemas";
 import { usersCollection } from "../utils/constans";
-import { iUsersCollection } from "../utils/interfaces";
+import { iUser } from "../utils/interfaces";
 import passport from "passport";
 
 const router = Router();
@@ -10,8 +10,8 @@ const router = Router();
 router.post(
   "/api/signup",
   checkSchema(signupValidationSchema),
-  async (req: Request, res: Response): Promise<void> => {
-    // Return type should be Promise<void>
+  //@ts-ignore
+  async (req: Request, res: Response) => {
     const result = validationResult(req);
 
     if (!result.isEmpty()) {
@@ -32,7 +32,7 @@ router.post(
 
     // At this point the password must be hashed
 
-    const newRecord: iUsersCollection = {
+    const newRecord: iUser = {
       id:
         usersCollection.length > 0
           ? usersCollection[usersCollection.length - 1].id + 1
@@ -57,7 +57,7 @@ router.post(
 //   } else if (findUser.password !== password) {
 //     res.status(401).send({ msg: "wrong password" });
 //   } else {
-//     // @ts-ignore
+//     //
 //     req.session.user = findUser;
 //     res.status(200).send(findUser);
 //   }
@@ -68,9 +68,9 @@ router.post("/api/auth", passport.authenticate("local"), (req, res) => {
 });
 
 router.get("/api/auth/status", (req, res) => {
-  //@ts-ignore
+  //
   req.session.user
-    ? //@ts-ignore
+    ? //
       res.status(200).send(req.session.user)
     : res.status(401).send({ msg: "user not authenticated" });
 });
