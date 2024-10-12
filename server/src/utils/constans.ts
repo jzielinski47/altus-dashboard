@@ -4,5 +4,6 @@ export const usersCollection = [
     username: "admin",
     email: "admin@localhost:3000",
     password: "admin",
+    role: "administrator",
   },
 ];
