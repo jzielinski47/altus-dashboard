@@ -3,6 +3,7 @@ import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupValidationSchema } from "../utils/validationSchemas";
 import { usersCollection } from "../utils/constans";
 import { iUsersCollection } from "../utils/interfaces";
+import passport from "passport";
 
 const router = Router();
 
@@ -48,18 +49,22 @@ router.post(
   }
 );
 
-router.post("/api/auth", async (req, res) => {
-  const { username, password } = req.body;
-  const findUser = usersCollection.find((user) => user.username === username);
-  if (!findUser) {
-    res.status(401).send({ msg: "wrong username" });
-  } else if (findUser.password !== password) {
-    res.status(401).send({ msg: "wrong password" });
-  } else {
-    // @ts-ignore
-    req.session.user = findUser;
-    res.status(200).send(findUser);
-  }
+// router.post("/api/auth", async (req, res) => {
+//   const { username, password } = req.body;
+//   const findUser = usersCollection.find((user) => user.username === username);
+//   if (!findUser) {
+//     res.status(401).send({ msg: "wrong username" });
+//   } else if (findUser.password !== password) {
+//     res.status(401).send({ msg: "wrong password" });
+//   } else {
+//     // @ts-ignore
+//     req.session.user = findUser;
+//     res.status(200).send(findUser);
+//   }
+// });
+
+router.post("/api/auth", passport.authenticate("local"), (req, res) => {
+  res.send("Authenticated successfully");
 });
 
 router.get("/api/auth/status", (req, res) => {

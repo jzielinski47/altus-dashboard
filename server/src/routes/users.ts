@@ -8,7 +8,11 @@ router.get("/api/users", (req, res) => {
   res.send(usersCollection);
 });
 
+// delete user account
 router.post("/api/users/delete/:id", authorizeAdmin, (req, res) => {});
+
+// grant role "user"/"administrator"
+router.post("/api/users/grant/:id", authorizeAdmin, (req, res) => {});
 
 router.get("/api/admin", authorizeAdmin, (req, res) => {
   res.send(usersCollection);

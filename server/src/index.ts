@@ -1,6 +1,8 @@
 import express, { Request, Response, NextFunction } from "express";
 import router from "./routes/router";
 import session from "express-session";
+import passport from "passport";
+import "./strategies/local-strategy";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +17,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(router);
 
