@@ -5,8 +5,8 @@ export const authorizeAdmin = (
   res: Response,
   next: NextFunction
 ) => {
-  //@ts-ignore
-  if (req.session.user && req.session.user.role === "administrator") {
+  
+  if (req.user && req.user.role === "administrator") {
     next();
   } else {
     res.status(401).send({ msg: "You're unauthorized to access this route." });
