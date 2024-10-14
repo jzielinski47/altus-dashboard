@@ -5,10 +5,10 @@ Avantgarde Project is a fully functional web application that blends usability w
 
 Current Features:
 
-POST /api/auth/signup: Register new users.
-POST /api/auth/: User authentication and login.
-GET /api/auth/status: Check the current authentication status of a user.
-GET /api/users: Retrieve user information.
-GET /api/admin: Admin-specific endpoints for managing user roles and permissions.
-This version emphasizes the project's vision and functionality, and highlights the balance between practicality and design.
+`POST /api/auth/signup`: Register new users.
+`POST /api/auth/`: User authentication and login.
+`GET /api/auth/status`: Check the current authentication status of a user.
+`GET /api/users`: Retrieve user information.
+`GET /api/admin`: Admin-specific endpoints for managing user roles and permissions.
+This version emphasizes the project's vision and functionality and highlights the balance between practicality and design.
 
