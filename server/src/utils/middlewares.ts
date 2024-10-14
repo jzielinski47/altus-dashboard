@@ -5,7 +5,7 @@ export const authorizeAdmin = (
   res: Response,
   next: NextFunction
 ) => {
-  
+  //@ts-ignore
   if (req.user && req.user.role === "administrator") {
     next();
   } else {

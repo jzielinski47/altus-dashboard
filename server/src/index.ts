@@ -31,6 +31,7 @@ app.use(passport.session());
 app.use(router);
 
 app.get("/", (req, res) => {
+  //@ts-ignore
   req.session.visited = true;
   res.send({ msg: "welcome to /" });
 });

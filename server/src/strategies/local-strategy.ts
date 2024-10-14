@@ -1,6 +1,6 @@
 import passport, { use } from "passport";
 import { Strategy } from "passport-local";
-import { usersCollection } from "../utils/constans";
+import { User } from "../mongodb/schemas/user";
 
 passport.serializeUser((user, done) => {
   //@ts-ignore
@@ -9,11 +9,11 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id: number, done) => {
+passport.deserializeUser(async (id: number, done) => {
   console.log(`deserialize user by id_${id}`);
 
   try {
-    const user = usersCollection.find((sUser) => sUser.id === id);
+    const user = await User.findById(id);
     if (!user) throw new Error("User not found");
     done(null, user);
   } catch (err) {
@@ -23,17 +23,17 @@ passport.deserializeUser((id: number, done) => {
 
 export default passport.use(
   //
-  new Strategy({ usernameField: "username" }, (username, password, done) => {
-    try {
-      const findUser = usersCollection.find(
-        (user) => user.username === username
-      );
-      if (!findUser) throw new Error("User not found");
-      if (findUser.password !== password) throw new Error("Wrong Password");
-
-      done(null, findUser);
-    } catch (err) {
-      done(err, undefined);
+  new Strategy(
+    { usernameField: "username" },
+    async (username, password, done) => {
+      try {
+        const findUser = await User.findOne({ username });
+        if (!findUser) throw new Error("User not found");
+        if (findUser.password !== password) throw new Error("Wrong password");
+        done(null, findUser);
+      } catch (err) {
+        done(err, undefined);
+      }
     }
-  })
+  )
 );
