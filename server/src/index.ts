@@ -2,9 +2,16 @@ import express, { Request, Response, NextFunction } from "express";
 import router from "./routes/router";
 import session from "express-session";
 import passport from "passport";
+import mongoose from "mongoose";
 import "./strategies/local-strategy";
 
 const app = express();
+
+mongoose
+  .connect("mongodb://localhost:27017/avantgarde_project")
+  .then(() => console.log("Connected to MongoDb Database"))
+  .catch((err) => console.log(err));
+
 app.use(express.json());
 app.disable("x-powered-by");
 app.use(
@@ -24,6 +31,7 @@ app.use(passport.session());
 app.use(router);
 
 app.get("/", (req, res) => {
+  //@ts-ignore
   req.session.visited = true;
   res.send({ msg: "welcome to /" });
 });
