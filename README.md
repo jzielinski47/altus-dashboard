@@ -12,3 +12,5 @@ Current Features:
 `GET /api/admin`: Admin-specific endpoints for managing user roles and permissions.
 This version emphasizes the project's vision and functionality and highlights the balance between practicality and design.
 
+Currently working on the supply chain planning. 
+
