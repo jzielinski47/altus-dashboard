@@ -13,4 +13,5 @@ REST API infrastructure:
 This version emphasizes the project's vision and functionality and highlights the balance between practicality and design.
 
 Currently working on the REST API. 
+As I finish working with the REST API, I'm about to develop a fully functional dashboard up to the end. 
 
