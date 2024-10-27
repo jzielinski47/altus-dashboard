@@ -52,18 +52,17 @@ router.patch("/api/users/grant/:username", authorizeAdmin, async (req, res) => {
       { role: "administrator" },
       { new: true }
     );
-    
+
     if (!updatedUser) {
       return res
         .status(404)
         .send({ msg: `User ${req.params.username} not found` });
     }
-    
+
     res.status(200).send({
       msg: `User ${req.params.username} has been granted administrator rights`,
       user: updatedUser,
     });
-    
   } catch (err) {
     console.error(err);
     res
