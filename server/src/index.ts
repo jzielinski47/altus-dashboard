@@ -17,7 +17,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 app.use(
   session({
-    secret: "test_key",
+    secret: "secret_cypher_key",
     saveUninitialized: false,
     resave: false,
     cookie: {
