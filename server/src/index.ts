@@ -3,6 +3,7 @@ import router from "./routes/router";
 import session from "express-session";
 import passport from "passport";
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(
     cookie: {
       maxAge: 60000 * 60 * 24,
     },
+    store: MongoStore.create({ client: mongoose.connection.getClient() }),
   })
 );
 
@@ -36,7 +38,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "welcome to /" });
 });
 
-const port: number = parseInt(process.env.PORT || "8000", 10);
+const port: number = parseInt(process.env.PORT || "4000", 10);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

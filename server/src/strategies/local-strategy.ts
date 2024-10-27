@@ -14,28 +14,31 @@ passport.deserializeUser(async (id: number, done) => {
   console.log(`deserialize user by id_${id}`);
 
   try {
+
     const user = await User.findById(id);
     if (!user) throw new Error("User not found");
     done(null, user);
-  } catch (err) {
+
+  } catch (err) {    
     done(err);
   }
 });
 
 export default passport.use(
-  //
+  
   new Strategy(
     { usernameField: "username" },
     async (username, password, done) => {
       try {
+
         const findUser = await User.findOne({ username });
         if (!findUser) throw new Error("User not found");
 
-        // console.log(findUser.username, findUser.password, password)
-        const authorized = verifyPassword(password, findUser.password);
-
-        if (!authorized) throw new Error("Wrong password");
+        const isAuthorized = verifyPassword(password, findUser.password);
+        if (!isAuthorized) throw new Error("Wrong password");        
+        
         done(null, findUser);
+
       } catch (err) {
         done(err, undefined);
       }

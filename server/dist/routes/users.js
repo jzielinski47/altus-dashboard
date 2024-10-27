@@ -1,17 +1,37 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const constans_1 = require("../utils/constans");
+const middlewares_1 = require("../utils/middlewares");
+const user_1 = require("../mongodb/schemas/user");
 const router = (0, express_1.Router)();
-router.get("/api/users", (req, res) => {
-  res.send(constans_1.usersCollection);
-});
-router.get("/api/admin", (req, res) => {
-  //
-  if (req.session.user && req.session.user.username === "admin") {
-    res.send(constans_1.usersCollection);
-  } else {
-    res.status(401).send({ msg: "You're unauthorized to access this route." });
-  }
-});
+router.get("/api/users", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_1.User.find();
+    req.sessionStore.get(req.session.id, (err, sessionData) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log("session store get request");
+    });
+    res.send(users);
+}));
+// delete user account
+//@ts-ignore
+router.post("/api/users/delete/:id", middlewares_1.authorizeAdmin, (req, res) => { });
+// grant role "user"/"administrator"
+//@ts-ignore
+router.post("/api/users/grant/:id", middlewares_1.authorizeAdmin, (req, res) => { });
+//@ts-ignore
+router.get("/api/admin", middlewares_1.authorizeAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield user_1.User.find();
+    res.send(users);
+}));
 exports.default = router;
