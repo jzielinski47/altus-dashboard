@@ -6,6 +6,16 @@ const router = Router();
 
 router.get("/api/users", async (req, res) => {
   const users = await User.find();
+
+  req.sessionStore.get(req.session.id, (err, sessionData) => {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    console.log("session store get request");
+    console.log(sessionData);
+  });
+
   res.send(users);
 });
 

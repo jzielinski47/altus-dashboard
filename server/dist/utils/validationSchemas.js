@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signupValidationSchema = void 0;
-exports.signupValidationSchema = {
+exports.signupDataValidationSchema = void 0;
+exports.signupDataValidationSchema = {
     username: {
         errorMessage: "Invalid username",
         isLength: {
