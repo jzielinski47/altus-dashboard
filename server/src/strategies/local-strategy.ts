@@ -31,7 +31,7 @@ export default passport.use(
         const findUser = await User.findOne({ username });
         if (!findUser) throw new Error("User not found");
 
-        console.log(findUser.username, findUser.password, password)
+        // console.log(findUser.username, findUser.password, password)
         const authorized = verifyPassword(password, findUser.password);
 
         if (!authorized) throw new Error("Wrong password");
