@@ -3,7 +3,7 @@ import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupDataValidationSchema } from "../utils/validationSchemas";
 import passport from "passport";
 import { User } from "../mongodb/schemas/user";
-import { hashPassword  } from "../utils/encryption";
+import { hashPassword } from "../utils/encryption";
 
 const router = Router();
 
@@ -17,8 +17,8 @@ router.post(
       return res.status(400).send({ errors: result.array() });
     }
     const { username, email, password } = matchedData(req);
-    const hashedPassword = hashPassword (password);
-    console.log("haslo", password, hashedPassword)
+    const hashedPassword = hashPassword(password);
+    console.log("haslo", password, hashedPassword);
     const newUserInstance = new User({
       username,
       email,
@@ -29,7 +29,7 @@ router.post(
       const savedUser = await newUserInstance.save();
       return res.status(201).send(savedUser);
     } catch (err) {
-      console.log(err)
+      console.log(err);
       return res.sendStatus(400);
     }
   }
