@@ -1,4 +1,4 @@
-export const signupValidationSchema = {
+export const signupDataValidationSchema = {
   username: {
     errorMessage: "Invalid username",
     isLength: {
