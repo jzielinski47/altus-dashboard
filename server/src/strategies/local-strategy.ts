@@ -1,6 +1,7 @@
 import passport, { use } from "passport";
 import { Strategy } from "passport-local";
 import { User } from "../mongodb/schemas/user";
+import { hashPassword , verifyPassword } from "../utils/encryption";
 
 passport.serializeUser((user, done) => {
   //@ts-ignore
@@ -29,7 +30,11 @@ export default passport.use(
       try {
         const findUser = await User.findOne({ username });
         if (!findUser) throw new Error("User not found");
-        if (findUser.password !== password) throw new Error("Wrong password");
+
+        console.log(findUser.username, findUser.password, password)
+        const authorized = verifyPassword(password, findUser.password);
+
+        if (!authorized) throw new Error("Wrong password");
         done(null, findUser);
       } catch (err) {
         done(err, undefined);
