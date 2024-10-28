@@ -8,7 +8,7 @@ Avantgarde Project is a fully functional web application that blends usability w
 
 **Client:** React, Redux, TailwindCSS
 
-**Server:** Node, Express, WebSockets
+**Server:** Node, Express, WebSockets, Sessions, Passport, MongoDB
 
 
 ## Authors
