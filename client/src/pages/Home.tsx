@@ -1,9 +1,13 @@
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center bg-neutral-900 text-white p-8">
-      <h1 className="text-4xl font-bold mb-4">Avantgarde App</h1>
-      <p className="text-xl mb-6 text-center">
-        Discover insights about your habits, productivity, and more.
+    <div className="w-full h-full display flex flex-col items-center justify-center g-y-10">
+      <h1 className="text-balance text-center tracking-tight text-5xl font-bold vollkorn-sc-regular sm:text-7xl">
+        Take control of your day
+      </h1>
+      <p className="text-balance text-center text-lg font-medium mt-4 text-neutral-400 max-w-prose sm:text-xl/8">
+        Streamline your tasks, track your progress, and keep your mind clear.
+        Start using avantgarde dashboard to achieve more with less stress. Your
+        most productive self awaits.
       </p>
       <div className="mt-10 flex items-center justify-center gap-x-6">
         <a
