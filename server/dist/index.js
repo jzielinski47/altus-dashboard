@@ -8,6 +8,7 @@ const router_1 = __importDefault(require("./routes/router"));
 const express_session_1 = __importDefault(require("express-session"));
 const passport_1 = __importDefault(require("passport"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const connect_mongo_1 = __importDefault(require("connect-mongo"));
 require("./strategies/local-strategy");
 const app = (0, express_1.default)();
 mongoose_1.default
@@ -17,12 +18,13 @@ mongoose_1.default
 app.use(express_1.default.json());
 app.disable("x-powered-by");
 app.use((0, express_session_1.default)({
-    secret: "test_key",
+    secret: "secret_cypher_key",
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: 60000 * 60 * 24,
+        maxAge: 1000 * 60 * 60 * 4, // 4 hours
     },
+    store: connect_mongo_1.default.create({ client: mongoose_1.default.connection.getClient() }),
 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
@@ -32,7 +34,7 @@ app.get("/", (req, res) => {
     req.session.visited = true;
     res.send({ msg: "welcome to /" });
 });
-const port = parseInt(process.env.PORT || "8000", 10);
+const port = parseInt(process.env.PORT || "4000", 10);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

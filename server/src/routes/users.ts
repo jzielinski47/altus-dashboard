@@ -1,23 +1,30 @@
 import { Router } from "express";
 import { authorizeAdmin } from "../utils/middlewares";
 import { User } from "../mongodb/schemas/user";
+import mongoose from "mongoose";
 
 const router = Router();
 
 router.get("/api/users", async (req, res) => {
   const users = await User.find();
-
-  req.sessionStore.get(req.session.id, (err, sessionData) => {
-    if (err) {
-      console.log(err);
-      throw err;
-    }
-    console.log("session store get request");
-    console.log(sessionData);
-  });
-
   res.send(users);
 });
+
+router.get("/api/users/count"),
+  //@ts-ignore
+  async (req, res) => {
+    try {
+      const client = mongoose.connection.getClient();
+      const activeUsersCount = await client
+        .db()
+        .collection("sessions")
+        .countDocuments();
+      res.json({ activeUsersCount });
+    } catch (error) {
+      console.error("Error fetching active users count:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
 
 //@ts-ignore
 router.post("/api/users/delete/:username", authorizeAdmin, async (req, res) => {
