@@ -8,7 +8,9 @@ Avantgarde Project is a fully functional web application that blends usability w
 
 **Client:** React, Redux, TailwindCSS
 
-**Server:** Node, Express, WebSockets, Sessions, Passport, MongoDB
+**Server:** Node, Express, WebSockets
+
+**Other:** Sessions, Passport, MongoDB, Password Hashing
 
 
 ## Authors
@@ -44,7 +46,7 @@ Avantgarde Project is a fully functional web application that blends usability w
 | :-------- | :------- | :-------------------------------- |
 | `username`      | `string` | **Required**. username of the user you're about to get rid of from the db |
 
-#### Delete user
+#### Promote user to an administrator
 
 ```http
   PATCH /api/users/grant/:username
