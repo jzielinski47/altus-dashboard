@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="w-full h-full display flex flex-col items-center justify-center g-y-10">
+    <div className="w-full h-full display flex flex-col items-center justify-center">
       <h1 className="text-balance text-center tracking-tight text-5xl font-bold vollkorn-sc-regular sm:text-7xl">
         Take control of your day
       </h1>
