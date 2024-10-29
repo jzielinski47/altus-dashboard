@@ -1,4 +1,4 @@
-# [Avantgarde Project/Altus Dashboard] - Production name
+# [Avantgarde Project/Altus Dashboard] - Production name (TBA)
 Avantgarde Project is a fully functional web application that blends usability with elegance. The primary goal is to bring together various innovative ideas into a single platform, prioritizing user experience over visual design in the initial stages. While the focus is currently on delivering a seamless and intuitive product, aesthetics are not neglected; my background as a graphic designer plays a significant role in shaping the app's overall look and feel. Ultimately, the aim is to develop a comprehensive and user-friendly dashboard that embodies my vision.
 
 
