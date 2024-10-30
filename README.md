@@ -1,9 +1,8 @@
 # Altus Dashboard
 Avantgarde Project is a fully functional web application that blends usability with elegance. The primary goal is to bring together various innovative ideas into a single platform, prioritizing user experience over visual design in the initial stages. While the focus is currently on delivering a seamless and intuitive product, aesthetics are not neglected; my background as a graphic designer plays a significant role in shaping the app's overall look and feel. Ultimately, the aim is to develop a comprehensive and user-friendly dashboard that embodies my vision.
 
-![image](https://github.com/user-attachments/assets/9575be8f-82ec-4d4c-8fa4-15493a5d6d85)
-Also designed by [@jzielinski47](https://www.github.com/jzielinski47)
-![image](https://github.com/user-attachments/assets/2d16e2eb-0e9a-4c2d-a19b-6514758fef66)
+![image](https://github.com/user-attachments/assets/8c69f614-d75f-411d-b4f6-bb99195052c6)
+
 
 ## Tech Stack
 
@@ -16,8 +15,9 @@ Also designed by [@jzielinski47](https://www.github.com/jzielinski47)
 
 ## Authors
 
-- [@jzielinski47](https://www.github.com/jzielinski47)
+- [@jzielinski47](https://www.github.com/jzielinski47) 
 
+I'm the only author of this project, and I've designed, developed and deployed everything you see in this repository. I'll let you know if anyone else is involved. 
 
 ## API Reference
 
