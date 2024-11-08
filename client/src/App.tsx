@@ -8,16 +8,18 @@ import About from "./pages/About";
 const App = () => {
   return (
     <div className="App bg-neutral-900">
-      <div className="w-screen h-screen flex flex-col items-center bg-neutral-900 text-white py-8 px-8 sm:px-16">
+      <div className="w-screen h-screen flex flex-col items-center bg-neutral-900 text-white ">
         <Header />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Login />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </Router>
+        <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/auth" element={<Login />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Router>
+        </div>
       </div>
     </div>
   );
