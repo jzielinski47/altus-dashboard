@@ -47,6 +47,11 @@
   }
 }
 
+.placeholder {
+  background: url("placeholder.jpg");
+  background-size: cover;
+}
+
 .level-0 {
 }
 

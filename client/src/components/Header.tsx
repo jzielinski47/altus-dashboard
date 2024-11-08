@@ -3,7 +3,7 @@ import { faCloud } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
-    <div className="w-full flex flex-row justify-center lg:place-content-between items-center bg-neutral-950 py-8 px-8 sm:px-16">
+    <div className="w-full flex flex-row justify-center lg:place-content-between items-center bg-neutral-950 py-8 px-8 sm:px-16 z-50">
       <a href="/" className="flex flex-row justify-center items-center gap-3">
         <FontAwesomeIcon icon={faCloud} bounce style={{ color: "#fff" }} />
         <h2 className="font-semibold text-xl">
