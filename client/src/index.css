@@ -13,6 +13,7 @@
   color: var(--text-white-87);
   background-color: var(--level-0);
 
+  --pure-black: #0d0d0d;
   --level-0: #121212;
   --level-1: #1e1e1e;
   --level-2: #242424;
@@ -44,6 +45,11 @@
   button {
     background-color: #f9f9f9;
   }
+}
+
+.placeholder {
+  background: url("placeholder.jpg");
+  background-size: cover;
 }
 
 .level-0 {
