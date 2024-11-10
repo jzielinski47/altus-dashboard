@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-type ButtonProps = {
+type NavButtonProps = {
   name: string;
   path: string;
   variant: 1 | 2;
@@ -14,7 +14,7 @@ const variants = {
   2: "text-neutral-400 hover:bg-neutral-200/20",
 } as const;
 
-const Button = ({ name, path, variant }: ButtonProps) => {
+const NavButton = ({ name, path, variant }: NavButtonProps) => {
   const nav = useNavigate();
 
   return (
@@ -50,4 +50,4 @@ const Button = ({ name, path, variant }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default NavButton;

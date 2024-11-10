@@ -11,6 +11,7 @@ const App = () => {
       <div className="w-screen h-screen flex flex-col items-center bg-neutral-900 text-white ">
         <Router>
           <Header />
+          {/* add gradient for gradient background - will see in the future */}
           <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16">
             <Routes>
               <Route path="/" element={<Home />} />

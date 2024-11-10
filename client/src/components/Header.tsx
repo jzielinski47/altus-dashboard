@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
-import Button from "./Button";
+import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
           </span>
         </h2>
       </a>
-      <Button name="Log in" path={"/auth"} variant={2} />
+      <NavButton name="Log in" path={"/auth"} variant={2} />
       {/* if user's a session id then there should be an avatar or sth that indicates the user logged in */}
     </div>
   );

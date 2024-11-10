@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import NavButton from "../components/NavButton";
 
 export default function Home() {
   return (
@@ -17,12 +17,12 @@ export default function Home() {
           connections with a community that’s ready to thrive together.
         </p>
         <div className="mt-10 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-          <Button name="Get started" path={"/auth"} variant={1} />
-          <Button name="Learn more" path={"/about"} variant={2} />
+          <NavButton name="Get started" path={"/auth"} variant={1} />
+          <NavButton name="Learn more" path={"/about"} variant={2} />
         </div>
       </div>
       <div className="flex-1 flex w-full h-full justify-center items-center">
-        <img className="placeholder rounded-2xl  max-h-full w-[60vw] aspect-[1/1] lg:aspect-[4/5] lg:w-[80%] sm:aspect-[1/1] sm:w-[60%]" />
+        <img className="border-0 placeholder rounded-2xl  max-h-full w-[60vw] aspect-[1/1] lg:aspect-[4/5] lg:w-[80%] sm:aspect-[1/1] sm:w-[60%]" />
       </div>
     </div>
   );
