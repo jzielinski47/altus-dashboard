@@ -1,11 +1,13 @@
+import Button from "../components/Button/Button";
+
 export default function Home() {
   return (
     <div
-      className="w-full h-full flex flex-col-reverse lg:flex-row items-center justify-center gap-16"
+      className="w-full h-full flex flex-col-reverse 2xl:flex-row items-center justify-center gap-16"
       style={{ maxWidth: "1680px" }}
     >
       <div className="flex-1 flex-col justify-left">
-        <h1 className="text-pretty text-left tracking-tight text-5xl font-bold sm:text-7xl">
+        <h1 className="text-balanced 2xl:text-pretty text-center 2xl:text-left tracking-tight text-5xl font-bold sm:text-7xl">
           Connect, Track, and Grow—All in One Place.
         </h1>
         <p className="text-pretty text-left text-lg font-medium mt-4 text-neutral-400 max-w-prose sm:text-xl/8">
@@ -15,6 +17,8 @@ export default function Home() {
           connections with a community that’s ready to thrive together.
         </p>
         <div className="mt-10 flex items-center justify-left gap-x-6">
+          <Button name="Get started" path={"/auth"} variant={1} />
+          <Button name="Get started" path={"/auth"} variant={2} />
           <a
             href="/auth"
             className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -31,7 +35,7 @@ export default function Home() {
       </div>
       <img
         className="flex-1 placeholder rounded-2xl"
-        style={{ width: "50vw", aspectRatio: "4 / 3" }}
+        style={{ width: "50vw", aspectRatio: "4 / 5" }}
       />
     </div>
   );
