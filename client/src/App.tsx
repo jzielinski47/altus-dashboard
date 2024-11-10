@@ -9,17 +9,17 @@ const App = () => {
   return (
     <div className="App bg-neutral-900">
       <div className="w-screen h-screen flex flex-col items-center bg-neutral-900 text-white ">
-        <Header />
-        <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16">
-          <Router>
+        <Router>
+          <Header />
+          <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/auth" element={<Login />} />
               <Route path="/about" element={<About />} />
               <Route path="*" element={<Error />} />
             </Routes>
-          </Router>
-        </div>
+          </div>
+        </Router>
       </div>
     </div>
   );
