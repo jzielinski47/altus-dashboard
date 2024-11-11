@@ -13,6 +13,8 @@
   color: var(--text-white-87);
   background-color: var(--level-0);
 
+  --primary: #a78bfa;
+
   --pure-black: #0d0d0d;
   --level-0: #121212;
   --level-1: #1e1e1e;

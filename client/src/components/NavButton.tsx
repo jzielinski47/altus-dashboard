@@ -7,11 +7,11 @@ type NavButtonProps = {
 };
 
 const baseStyles =
-  "inline-flex items-center px-8 py-3 text-sm font-medium transition-all focus:outline-none";
+  "inline-flex items-center px-8 py-3 text-lg font-medium transition-all focus:outline-none";
 
 const variants = {
-  1: "group relative overflow-hidden rounded bg-indigo-600 text-white focus:ring active:bg-indigo-500",
-  2: "text-neutral-400 hover:bg-neutral-200/20",
+  1: "group relative overflow-hidden rounded text-text-white-87 bg-primary focus:ring active:bg-secondary",
+  2: "text-text-white-87 hover:bg-level-0/50",
 } as const;
 
 const NavButton = ({ name, path, variant }: NavButtonProps) => {

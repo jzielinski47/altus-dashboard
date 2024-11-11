@@ -7,12 +7,11 @@ import About from "./pages/About";
 
 const App = () => {
   return (
-    <div className="App bg-neutral-900">
-      <div className="w-screen h-screen flex flex-col items-center bg-neutral-900 text-white ">
+    <div className="App">
+      <div className="w-screen h-screen flex flex-col items-center bg-level-1 text-text-white-87">
         <Router>
           <Header />
-          {/* add gradient for gradient background - will see in the future */}
-          <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16">
+          <div className="w-full h-full flex flex-col items-center py-8 px-8 sm:px-16s">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/auth" element={<Login />} />
