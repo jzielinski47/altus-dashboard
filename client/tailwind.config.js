@@ -5,9 +5,9 @@ export default {
     extend: {},
     colors: {
       transparent: "transparent",
-      primary: "#a78bfa",      
+      primary: "#a78bfa",
       secondary: "#DC4C64",
-      pure_black: "#0d0d0d",
+      pure: { black: "#0d0d0d", white: "#f5f5f7" },
       level: {
         0: "#121212",
         1: "#1e1e1e",

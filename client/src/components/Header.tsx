@@ -7,13 +7,13 @@ const Header = () => {
   const nav = useNavigate();
 
   return (
-    <div className="w-full flex flex-row lg:place-content-between items-center bg-pure_black py-8 px-8 sm:px-16 z-50">
+    <div className="w-full h-14 flex flex-row lg:place-content-between items-center bg-pure-black py-4 px-4 sm:px-8 z-50">
       <span
         className="flex flex-row justify-center items-center gap-3 cursor-pointer"
         onClick={() => nav("/")}
       >
-        <FontAwesomeIcon icon={faCloud} bounce className="text-text-white-87" />
-        <h2 className="text-xl font-semibold text-white-87">
+        <FontAwesomeIcon icon={faCloud} bounce className="text-pure-white" />
+        <h2 className="text-base font-semibold text-pure-white">
           {"Altus"} <span className="text-primary">Dashboard</span>
         </h2>
       </span>
