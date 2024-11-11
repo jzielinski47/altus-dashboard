@@ -6,7 +6,8 @@ export default {
     colors: {
       transparent: "transparent",
       primary: "#a78bfa",
-      primary2: "#706293",
+      primary_dark: "#4223A0",
+      primary_dark_hov: "#5435AF",
       secondary: "#fc7262",
       pure: { black: "#0d0d0d", white: "#f5f5f7" },
       level: {

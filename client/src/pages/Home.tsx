@@ -1,3 +1,4 @@
+import Badge from "../components/Badge";
 import NavButton from "../components/NavButton";
 import { gradientText } from "../tailwind-prefabs";
 import { motion } from "framer-motion";
@@ -6,17 +7,17 @@ export default function Home() {
   return (
     <>
       <section className="w-full h-full sm:h-[60%] bg-level-0 flex justify-center">
-        <div className="max-w-screen-xl flex flex-col-reverse xl:flex-row items-center justify-center gap-8 px-8 py-4">
+        <div className="max-w-screen-xl flex flex-col-reverse xl:flex-row items-center justify-center gap-16 px-8 py-4">
           <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
             <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-              <NavButton name="What's new" path={"/features"} variant={1} />
+              <Badge name="What's new" color="primary" />
               <NavButton
                 name="Just shipped v1.0"
                 path={"/features"}
                 variant={2}
               />
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-balanced xl:text-pretty text-center xl:text-left tracking-tight ">
+            <h1 className="text-4xl md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
               Connect, Track, and Grow—All in One Place.
             </h1>
             <motion.p
@@ -32,7 +33,7 @@ export default function Home() {
               together.
             </motion.p>
             <div className="mt-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-              <NavButton name="Get started" path={"/auth"} variant={1} />
+              <NavButton name="Get started" path={"/auth"} variant={3} />
               <NavButton name="Learn more" path={"/about"} variant={2} />
             </div>
           </div>
