@@ -32,7 +32,7 @@ export default function Hero() {
             together.
           </motion.p>
           <div className="mt-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-            <NavButton name="Get started" path={"/auth"} variant={3} />
+            <NavButton name="Get started" path={"/auth"} variant={1} />
             <NavButton name="Learn more" path={"/about"} variant={2} />
           </div>
         </div>

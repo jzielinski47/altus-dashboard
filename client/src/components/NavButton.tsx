@@ -11,7 +11,7 @@ type NavButtonProps = {
 const base: string = "inline-flex items-center gap-1 px-8 py-2 rounded-full";
 
 const variants = {
-  1: "bg-primary/[0.38] border-2 border-primary_dark hover:bg-primary_dark_hov text-text-white-60 font-bold ",
+  1: "bg-primary/[0.38] border-2 border-primary hover:bg-primary/60 text-text-white-60 ",
   2: "text-base font-medium transition-all focus:outline-none text-text-white-60 hover:text-primary",
   3: "bg-primary_dark hover:bg-primary_dark_hov text-pure-white/[0.87]",
   4: "bg-gradient-to-r from-primary to-secondary text-pure-black/[0.87]",
