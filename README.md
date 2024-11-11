@@ -3,7 +3,8 @@ Altus Project is a fully functional web application that blends usability with e
 
 
 ![Landing Page](https://github.com/user-attachments/assets/cadb4eeb-84ed-4aad-a66f-49c0e6714b9f)
-
+![image](https://github.com/user-attachments/assets/c57eda89-81ca-4013-96b1-b688a2830184)
+1.0 layout
 
 ## Tech Stack
 
