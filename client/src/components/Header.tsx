@@ -1,25 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
+import NavButton from "./NavButton";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const nav = useNavigate();
+
   return (
-    <div className="w-full fixed flex flex-row justify-center lg:place-content-between items-center bg-neutral-950 py-8 px-8 sm:px-16 z-50">
-      <a href="/" className="flex flex-row justify-center items-center gap-3">
-        <FontAwesomeIcon icon={faCloud} bounce style={{ color: "#fff" }} />
-        <h2 className="font-semibold text-xl">
-          {"Altus"}{" "}
-          <span style={{ color: "#a78bfa" }} className="black">
-            Dashboard
-          </span>
-        </h2>
-      </a>
-      <a
-        href="/auth"
-        className="text-sm font-semibold leading-6 text-neutral-400 hidden lg:block"
+    <div className="w-full h-14 flex flex-row lg:place-content-between items-center bg-pure-black py-4 px-4 sm:px-8 z-50">
+      <span
+        className="flex flex-row justify-center items-center gap-3 cursor-pointer"
+        onClick={() => nav("/")}
       >
-        Log in <span aria-hidden="true">&rarr;</span>
-        {/* if user's a session id then there should be an avatar or sth that indicates the user logged in */}
-      </a>
+        <FontAwesomeIcon icon={faCloud} bounce className="text-pure-white" />
+        <h2 className="text-base font-semibold text-pure-white">
+          {"Altus"} <span className="text-primary">Dashboard</span>
+        </h2>
+      </span>
+      <NavButton name="Log in" path={"/auth"} variant={2} />
+      {/* if user's a session id then there should be an avatar or sth that indicates the user logged in */}
     </div>
   );
 };
