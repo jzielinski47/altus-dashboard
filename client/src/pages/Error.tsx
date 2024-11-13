@@ -7,7 +7,7 @@ const Error = () => {
         <h1 className="uppercase tracking-widest text-text-white-60">
           404 | Not Found
         </h1>
-        <NavButton name="Go back home" path={"/"} variant={1} />
+        <NavButton name="Go back home" path={"/"} type={1} />
       </div>
     </>
   );
