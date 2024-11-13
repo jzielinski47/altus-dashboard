@@ -5,8 +5,8 @@ import { gradientText } from "../../tailwind-prefabs";
 
 export default function Hero() {
   return (
-    <section className="w-full h-full sm:h-[60%] bg-level-0 flex justify-center">
-      <div className="max-w-screen-xl flex flex-col-reverse xl:flex-row items-center justify-center gap-16 px-8 py-4">
+    <section className="w-full h-fit bg-level-0 flex justify-center py-8">
+      <div className="max-w-screen-xl flex flex-col-reverse xl:flex-row items-center justify-center gap-16 px-8 py-8">
         <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
           <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
             <Badge name="What's new" color="primary" />
@@ -32,7 +32,7 @@ export default function Hero() {
             together.
           </motion.p>
           <div className="mt-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-            <NavButton name="Get started" path={"/auth"} variant={3} />
+            <NavButton name="Get started" path={"/auth"} variant={1} />
             <NavButton name="Learn more" path={"/about"} variant={2} />
           </div>
         </div>

@@ -7,7 +7,7 @@ export default function Badge({
 }) {
   return (
     <span
-      className={`whitespace-nowrap rounded-full text-base border border-${color} px-2.5 py-0.5 text-sm text-${color} cursor-pointer`}
+      className={`whitespace-nowrap rounded-full text-base border border-${color} px-2.5 py-0.5 text-sm text-${color} hover:bg-${color} hover:text-black cursor-pointer transition duration-700 ease-in-out`}
     >
       {name}
     </span>
