@@ -2,24 +2,16 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      animation: {
-        border: "background ease infinite",
-      },
-      keyframes: {
-        background: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-      },
-    },
+    extend: {},
     colors: {
+
       transparent: "transparent",
-      primary: "#a78bfa",
-      primary_dark: "#2673DD",
-      primary_dark_hov: "#517BE7",
+
+      primary: "#a78bfa",    
       secondary: "#fc7262",
-      pure: { black: "#0d0d0d", white: "#f5f5f7" },
+      black: "#0d0d0d",
+      white: "#f5f5f7",
+
       level: {
         0: "#121212",
         1: "#1e1e1e",
