@@ -7,6 +7,13 @@ import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
 
 const app = express();
+const cors = require('cors');
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your frontend URL
+  })
+);
 
 mongoose
   .connect("mongodb://localhost:27017/avantgarde_project")
