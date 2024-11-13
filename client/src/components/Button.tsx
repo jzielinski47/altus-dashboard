@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
+import { buttonStyles } from "./buttonStyles";
 
 interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
-  variant?: "primary" | "secondary" | "text";
+  variant?: 1 | 2;
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
 }
@@ -13,21 +14,10 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className = "",
-  variant = "primary",
+  variant = 1,
   size = "md",
   disabled = false,
 }) => {
-  const baseClasses =
-    "inline-block rounded px-8 py-3 text-sm font-medium transition focus:outline-none focus:ring";
-
-  const variantClasses = {
-    primary:
-      "bg-indigo-600 text-white hover:scale-110 hover:shadow-xl active:bg-indigo-500",
-    secondary:
-      "bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-600 hover:text-white",
-    text: "text-indigo-600 hover:text-indigo-500",
-  };
-
   const sizeClasses = {
     sm: "text-sm py-2 px-6",
     md: "text-sm py-3 px-8",
@@ -36,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${
+      className={`${buttonStyles["base"]} ${buttonStyles[variant]} ${
         sizeClasses[size]
       } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
       onClick={onClick}

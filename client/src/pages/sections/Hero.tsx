@@ -10,7 +10,11 @@ export default function Hero() {
         <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
           <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
             <Badge name="What's new" color="primary" />
-            <NavButton name="Just shipped v1.0" path={"/features"} type={2} />
+            <NavButton
+              name="Just shipped v1.0"
+              path={"/features"}
+              variant={2}
+            />
           </div>
           <h1 className="text-4xl max-w-[1000px] md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
             Connect, Track, and Grow—All in One Place.
@@ -28,8 +32,8 @@ export default function Hero() {
             together.
           </motion.p>
           <div className="mt-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-            <NavButton name="Get started" path={"/auth"} type={1} />
-            <NavButton name="Learn more" path={"/about"} type={2} />
+            <NavButton name="Get started" path={"/auth"} variant={1} />
+            <NavButton name="Learn more" path={"/about"} variant={2} />
           </div>
         </div>
         <div className="hidden xl:flex-1 w-full h-full justify-center items-center xl:flex">

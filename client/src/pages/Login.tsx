@@ -1,9 +1,10 @@
+import { Button } from "@headlessui/react";
 import InputField from "../components/InputField";
 
 const Login = () => {
   return (
     <div className="w-screen h-full flex justify-center items-center">
-      <div className="panel flex flex-col gap-y-6">
+      <div className="flex flex-col gap-y-6 min-w-[400px]">
         <InputField type="email" placeholder="Enter email" />
         <InputField type="password" placeholder="Enter password" />
         <InputField placeholder="Enter text" />
@@ -16,12 +17,9 @@ const Login = () => {
             </a>
           </p>
 
-          <button
-            type="submit"
-            className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-          >
+          <Button className="inline-block rounded-lg bg-primary py-2 px-4 text-sm text-white font-medium data-[hover]:bg-secondary data-[active]:bg-secondary">
             Sign in
-          </button>
+          </Button>
         </div>
       </div>
     </div>
