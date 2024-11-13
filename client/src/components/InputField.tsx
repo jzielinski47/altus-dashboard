@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import { EmailIcon } from "./icons/EmailIcon";
 import { EyeIcon } from "./icons/EyeIcon";
 import { EyeOffIcon } from "./icons/EyeOffIcon";
@@ -7,12 +7,14 @@ interface InputFieldProps {
   type?: "text" | "email" | "password";
   placeholder?: string;
   className?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
   type = "text",
   placeholder,
   className = "",
+  onChange,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,6 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
         type={type === "password" ? (showPassword ? "text" : "password") : type}
         className={`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ${className}`}
         placeholder={placeholder}
+        onChange={onChange}
       />
 
       {type === "password" && (
