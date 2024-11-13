@@ -1,36 +1,40 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Arrow from "./Arrow";
 import { motion } from "framer-motion";
+import Arrow from "./icons/Arrow";
+import { buttonStyles } from "./buttonStyles";
 
-type NavButtonProps = {
+interface NavButtonProps {
   name: string;
   path: string;
-  variant: 1 | 2 | 3 | 4;
-};
+  variant?: 1 | 2;
+  className?: string;
+}
 
-const base: string =
-  "inline-flex items-center gap-1 px-8 py-2 rounded-full transition duration-300 ease-in-out";
+const NavButton: React.FC<NavButtonProps> = ({
+  name,
+  path,
+  variant = 1,
+  className = "",
+}) => {
+  const navigate = useNavigate();
 
-const variants = {
-  1: "bg-primary/[0.38] border-2 border-primary hover:bg-primary hover:text-black text-text-white-60",
-  2: "text-base font-medium transition-all focus:outline-none text-text-white-60 hover:text-primary",
-  3: "bg-primary_dark hover:bg-primary_dark_hov text-white/[0.87]",
-  4: "bg-gradient-to-r from-primary to-secondary text-black/[0.87]",
-} as const;
+  const handleClick = () => {
+    navigate(path);
+  };
 
-const NavButton = ({ name, path, variant }: NavButtonProps) => {
-  const nav = useNavigate();
+  const variantClasses = `${buttonStyles["base"]} ${buttonStyles[variant]}`;
 
   return (
     <motion.button
-      className={`${base} ${variants[variant]}`}
-      onClick={() => nav(path)}
+      className={`${variantClasses} ${className}`}
+      onClick={handleClick}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       {name}
-      {variant == 2 ? <Arrow /> : null}
+      {variant === 2 && <Arrow />}
     </motion.button>
   );
 };

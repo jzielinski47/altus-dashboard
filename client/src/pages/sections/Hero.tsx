@@ -16,7 +16,7 @@ export default function Hero() {
               variant={2}
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
+          <h1 className="text-4xl max-w-[1000px] md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
             Connect, Track, and Grow—All in One Place.
           </h1>
           <motion.p
