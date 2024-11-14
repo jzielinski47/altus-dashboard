@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <section>{"Placeholder for some section that depicts theuses"}</section>
+      <section>{"Placeholder for some section"}</section>
     </>
   );
 }

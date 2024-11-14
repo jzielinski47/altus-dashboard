@@ -36,7 +36,7 @@ router.post(
 );
 
 router.post("/api/auth", passport.authenticate("local"), (req, res) => {
-  res.send("Authenticated successfully");
+  res.status(200).send({ msg: "Authenticated successfully" });
 });
 
 router.post("/api/auth/logout", (req, res) => {

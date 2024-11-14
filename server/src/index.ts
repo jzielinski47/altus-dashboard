@@ -7,11 +7,12 @@ import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
 
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your frontend URL
+    origin: "http://localhost:5173",
+    credentials: true,
   })
 );
 
@@ -29,6 +30,9 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 4, // 4 hours
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
     },
     store: MongoStore.create({ client: mongoose.connection.getClient() }),
   })

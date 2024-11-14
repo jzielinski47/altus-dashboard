@@ -3,8 +3,12 @@ import InputField from "../components/InputField";
 import { useState } from "react";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
   const [email, setEMail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setUsername(e.target.value);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setEMail(e.target.value);
@@ -13,19 +17,42 @@ const Login = () => {
     setPassword(e.target.value);
 
   const sendCredentials = () => {
-    console.log(email, password);
+    console.log(username, email, password);
 
-    fetch("http://localhost:4000/api/users")
-      .then((res) => res.json())
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, email, password }),
+      credentials: "include",
+    };
+
+    fetch("http://localhost:4000/api/auth", options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            console.error("Login error:", data.msg);
+            throw new Error(data.msg);
+          });
+        }
+      })
       .then((data) => {
-        console.log("aaa");
-        console.log(data);
-      });
+        console.log("Login successful: ", data);
+      })
+      .catch((err) => console.error("123 an error: " + err));
   };
 
   return (
     <div className="w-screen h-full flex justify-center items-center">
       <div className="flex flex-col gap-y-6 min-w-[400px]">
+        <InputField
+          placeholder="Enter username"
+          onChange={handleUsernameChange}
+        />
+
         <InputField
           type="email"
           placeholder="Enter email"
