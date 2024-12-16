@@ -8,6 +8,9 @@ The goal for now is to deliver MVP by the end of 2024.
 
 `1.0 layout` 
 ![image](https://github.com/user-attachments/assets/cbb66753-9079-4549-92c0-23a73ab34872)
+![Untitled-1](https://github.com/user-attachments/assets/bd77db2a-30e3-4ae4-b04d-6353ad8acf06)
+
+
 
 ## Tech Stack
 
