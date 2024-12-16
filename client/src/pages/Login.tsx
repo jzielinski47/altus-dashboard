@@ -30,38 +30,44 @@ const Login = () => {
       credentials: "include",
     };
 
-    if (isRegistration) {
-      fetch("http://localhost:4000/api/auth/signup", options)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            return res.json().then((data) => {
-              console.error("Login error:", data.msg);
-              throw new Error(data.msg);
-            });
-          }
-        })
-        .then((data) => {
-          console.log("Login successful: ", data);
-        })
-        .catch((err) => console.error("123 an error: " + err));
+    if (email.length > 0 && password.length > 0) {
+      if (isRegistration) {
+        fetch("http://localhost:4000/api/auth/signup", options)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              return res.json().then((data) => {
+                console.error("Login error:", data.msg);
+                throw new Error(data.msg);
+              });
+            }
+          })
+          .then((data) => {
+            console.log("Login successful: ", data);
+          })
+          .catch((err) => console.error("123 an error: " + err));
+      } else {
+        fetch("http://localhost:4000/api/auth", options)
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              return res.json().then((data) => {
+                console.error("Login error:", data.msg);
+                setErrMessage(data.msg);
+                throw new Error(data.msg);
+              });
+            }
+          })
+          .then((data) => {
+            console.log("Login successful: ", data);
+            setErrMessage(data.msg);
+          })
+          .catch((err) => console.error("123 an error: " + err));
+      }
     } else {
-      fetch("http://localhost:4000/api/auth", options)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            return res.json().then((data) => {
-              console.error("Login error:", data.msg);
-              throw new Error(data.msg);
-            });
-          }
-        })
-        .then((data) => {
-          console.log("Login successful: ", data);
-        })
-        .catch((err) => console.error("123 an error: " + err));
+      setErrMessage("Please fill all the fields in order to proceed.");
     }
   };
 
@@ -99,10 +105,10 @@ const Login = () => {
           onChange={handlePasswordChange}
         />
 
-        <span className="text-error ">{errMessage}</span>
+        <span className="text-error text-base">{errMessage}</span>
 
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-text-white-60">
             {"No account? "}
             <a
               className="underline cursor-pointer"

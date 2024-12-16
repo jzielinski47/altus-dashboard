@@ -10,7 +10,7 @@ export default {
       secondary: "#fc7262",
       black: "#0d0d0d",
       white: "#f5f5f7",
-      error: "#ff6633.",
+      error: "#ff6633",
 
       level: {
         0: "#121212",
