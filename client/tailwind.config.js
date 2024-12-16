@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {},
     colors: {
-
       transparent: "transparent",
 
-      primary: "#a78bfa",    
+      primary: "#a78bfa",
       secondary: "#fc7262",
       black: "#0d0d0d",
       white: "#f5f5f7",
+      error: "#ff6633.",
 
       level: {
         0: "#121212",

@@ -1,9 +1,9 @@
 export interface iUser {
-  id: number;
+  id?: number;
   username: string;
   email: string;
   password: string;
-  role: string;
+  role?: string;
 }
 
 declare module "express-session" {
@@ -18,4 +18,8 @@ declare module "express" {
   interface Request {
     user?: iUser;
   }
+}
+
+export interface AuthInfo {
+  message?: string;
 }
