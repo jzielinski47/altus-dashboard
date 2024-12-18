@@ -1,7 +1,5 @@
 # Altus Dashboard
-Altus Project is a fully functional web application that blends usability with elegance. The primary goal is to bring together various innovative ideas into a single platform, prioritizing user experience over visual design in the initial stages. While the focus is currently on delivering a seamless and intuitive product, aesthetics are not neglected; my background as a graphic designer plays a significant role in shaping the app's overall look and feel. Ultimately, the aim is to develop a comprehensive and user-friendly dashboard that embodies my vision.
-
-The goal for now is to deliver MVP by the end of 2024. 
+Altus Project is a fully functional web application currently delivered as a minimum viable product. The primary goal was to to develop a comprehensive and user-friendly dashboard that embodies my vision.
 
 `early design`
 ![Landing Page](https://github.com/user-attachments/assets/cadb4eeb-84ed-4aad-a66f-49c0e6714b9f)
@@ -10,9 +8,7 @@ The goal for now is to deliver MVP by the end of 2024.
 ![image](https://github.com/user-attachments/assets/cbb66753-9079-4549-92c0-23a73ab34872)
 ![Untitled-1](https://github.com/user-attachments/assets/bd77db2a-30e3-4ae4-b04d-6353ad8acf06)
 
-
-
-## Tech Stack
+## Technologies used
 
 **Client:** React, Redux, TailwindCSS
 
