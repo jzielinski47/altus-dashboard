@@ -44,8 +44,21 @@ router.post("/api/auth/signup", (0, express_validator_1.checkSchema)(validationS
         return res.sendStatus(400);
     }
 }));
-router.post("/api/auth", passport_1.default.authenticate("local"), (req, res) => {
-    res.send("Authenticated successfully");
+// router.post("/api/auth", passport.authenticate("local"), (req, res) => {
+//   res.status(200).send({ msg: "Authenticated successfully" });
+// });
+router.post("/api/auth", (req, res, next) => {
+    passport_1.default.authenticate("local", (err, user, info) => {
+        if (err) {
+            return res.status(400).json({ msg: err.message });
+        }
+        req.logIn(user, (loginErr) => {
+            if (loginErr) {
+                return next(loginErr);
+            }
+            return res.status(200).send({ msg: "Authenticated successfully" });
+        });
+    })(req, res, next);
 });
 router.post("/api/auth/logout", (req, res) => {
     if (!req.user)
@@ -55,10 +68,9 @@ router.post("/api/auth/logout", (req, res) => {
     });
 });
 router.get("/api/auth/status", (req, res) => {
-    //@ts-ignore
-    req.session.user
-        ? //@ts-ignore
-            res.status(200).send(req.session.user)
+    const client = req.session.user;
+    client
+        ? res.status(200).send(client)
         : res.status(401).send({ msg: "user not authenticated" });
 });
 exports.default = router;

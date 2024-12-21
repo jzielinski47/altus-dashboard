@@ -17,10 +17,9 @@ const passport_local_1 = require("passport-local");
 const user_1 = require("../mongodb/schemas/user");
 const encryption_1 = require("../utils/encryption");
 passport_1.default.serializeUser((user, done) => {
-    //@ts-ignore
-    console.log(`serialize user by id_${user.id}`);
-    //@ts-ignore
-    done(null, user.id);
+    const client = user;
+    console.log(`serialize user by id_${client}`);
+    done(null, client.id);
 });
 passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`deserialize user by id_${id}`);
@@ -34,9 +33,9 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
         done(err);
     }
 }));
-exports.default = passport_1.default.use(new passport_local_1.Strategy({ usernameField: "username" }, (username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
+exports.default = passport_1.default.use(new passport_local_1.Strategy({ usernameField: "email" }, (email, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const findUser = yield user_1.User.findOne({ username });
+        const findUser = yield user_1.User.findOne({ email });
         if (!findUser)
             throw new Error("User not found");
         const isAuthorized = (0, encryption_1.verifyPassword)(password, findUser.password);

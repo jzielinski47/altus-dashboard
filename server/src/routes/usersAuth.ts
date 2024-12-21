@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Request, Response, Router } from "express";
 import { checkSchema, matchedData, validationResult } from "express-validator";
 import { signupDataValidationSchema } from "../utils/validationSchemas";
 import passport from "passport";
 import { User } from "../mongodb/schemas/user";
 import { hashPassword } from "../utils/encryption";
-import { AuthInfo, iUser } from "../utils/interfaces";
+import { iUser } from "../utils/interfaces";
 
 const router = Router();
 
@@ -41,20 +41,17 @@ router.post(
 // });
 
 router.post("/api/auth", (req, res, next) => {
-  passport.authenticate(
-    "local",
-    (err: { message: any }, user: iUser, info: { message: any }) => {
-      if (err) {
-        return res.status(400).json({ msg: err.message });
-      }
-      req.logIn(user, (loginErr) => {
-        if (loginErr) {
-          return next(loginErr);
-        }
-        return res.status(200).send({ msg: "Authenticated successfully" });
-      });
+  passport.authenticate("local", (err: { message: any }, user: iUser) => {
+    if (err) {
+      return res.status(400).json({ msg: err.message });
     }
-  )(req, res, next);
+    req.logIn(user, (loginErr) => {
+      if (loginErr) {
+        return next(loginErr);
+      }
+      return res.status(200).send({ msg: "Authenticated successfully" });
+    });
+  })(req, res, next);
 });
 
 router.post("/api/auth/logout", (req, res) => {
@@ -65,10 +62,10 @@ router.post("/api/auth/logout", (req, res) => {
 });
 
 router.get("/api/auth/status", (req, res) => {
-  //@ts-ignore
-  req.session.user
-    ? //@ts-ignore
-      res.status(200).send(req.session.user)
+  const client = req.session.user as iUser;
+
+  client
+    ? res.status(200).send(client)
     : res.status(401).send({ msg: "user not authenticated" });
 });
 

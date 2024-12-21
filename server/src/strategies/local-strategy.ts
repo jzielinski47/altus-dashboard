@@ -2,12 +2,12 @@ import passport, { use } from "passport";
 import { Strategy } from "passport-local";
 import { User } from "../mongodb/schemas/user";
 import { verifyPassword } from "../utils/encryption";
+import { iUser } from "../utils/interfaces";
 
 passport.serializeUser((user, done) => {
-  //@ts-ignore
-  console.log(`serialize user by id_${user.id}`);
-  //@ts-ignore
-  done(null, user.id);
+  const client = user as iUser;
+  console.log(`serialize user by id_${client}`);
+  done(null, client.id);
 });
 
 passport.deserializeUser(async (id: number, done) => {

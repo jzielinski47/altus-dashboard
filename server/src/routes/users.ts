@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { authorizeAdmin } from "../utils/middlewares";
+import { Request, Response, Router } from "express";
+import { isAuthorized } from "../utils/middlewares";
 import { User } from "../mongodb/schemas/user";
 import mongoose from "mongoose";
 
@@ -11,8 +11,7 @@ router.get("/api/users", async (req, res) => {
 });
 
 router.get("/api/users/count"),
-  //@ts-ignore
-  async (req, res) => {
+  async (req: Request, res: Response) => {
     try {
       const client = mongoose.connection.getClient();
       const activeUsersCount = await client
@@ -27,11 +26,11 @@ router.get("/api/users/count"),
   };
 
 //@ts-ignore
-router.post("/api/users/delete/:username", authorizeAdmin, async (req, res) => {
+router.post("/api/users/delete/:username", isAuthorized, (req, res) => {
   const { username } = req.params;
 
   try {
-    const deletedUser = await User.findOneAndDelete({
+    const deletedUser = User.findOneAndDelete({
       username,
     });
 
@@ -52,9 +51,9 @@ router.post("/api/users/delete/:username", authorizeAdmin, async (req, res) => {
 
 // grant role "user"/"administrator"
 //@ts-ignore
-router.patch("/api/users/grant/:username", authorizeAdmin, async (req, res) => {
+router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
   try {
-    const updatedUser = await User.findOneAndUpdate(
+    const updatedUser = User.findOneAndUpdate(
       { username: req.params.username },
       { role: "administrator" },
       { new: true }
@@ -79,7 +78,7 @@ router.patch("/api/users/grant/:username", authorizeAdmin, async (req, res) => {
 });
 
 //@ts-ignore
-router.get("/api/admin", authorizeAdmin, async (req, res) => {
+router.get("/api/admin", isAuthorized, async (req, res) => {
   const users = await User.find();
   res.send(users);
 });
