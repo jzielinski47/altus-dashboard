@@ -27,7 +27,3 @@ declare module "express" {
     user?: iUser;
   }
 }
-
-export interface AuthInfo {
-  message?: string;
-}

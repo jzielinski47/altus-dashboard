@@ -26,11 +26,11 @@ router.get("/api/users/count"),
   };
 
 //@ts-ignore
-router.post("/api/users/delete/:username", isAuthorized, async (req, res) => {
+router.post("/api/users/delete/:username", isAuthorized, (req, res) => {
   const { username } = req.params;
 
   try {
-    const deletedUser = await User.findOneAndDelete({
+    const deletedUser = User.findOneAndDelete({
       username,
     });
 
@@ -51,9 +51,9 @@ router.post("/api/users/delete/:username", isAuthorized, async (req, res) => {
 
 // grant role "user"/"administrator"
 //@ts-ignore
-router.patch("/api/users/grant/:username", isAuthorized, async (req, res) => {
+router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
   try {
-    const updatedUser = await User.findOneAndUpdate(
+    const updatedUser = User.findOneAndUpdate(
       { username: req.params.username },
       { role: "administrator" },
       { new: true }
