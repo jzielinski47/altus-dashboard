@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response } from "express";
+
 export interface iUser {
   id?: number;
   username: string;
@@ -5,6 +7,12 @@ export interface iUser {
   password: string;
   role?: string;
 }
+
+export type Middleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => void;
 
 declare module "express-session" {
   interface SessionData {

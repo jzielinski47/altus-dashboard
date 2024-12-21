@@ -34,9 +34,9 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
         done(err);
     }
 }));
-exports.default = passport_1.default.use(new passport_local_1.Strategy({ usernameField: "username" }, (username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
+exports.default = passport_1.default.use(new passport_local_1.Strategy({ usernameField: "email" }, (email, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const findUser = yield user_1.User.findOne({ username });
+        const findUser = yield user_1.User.findOne({ email });
         if (!findUser)
             throw new Error("User not found");
         const isAuthorized = (0, encryption_1.verifyPassword)(password, findUser.password);

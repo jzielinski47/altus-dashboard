@@ -38,7 +38,7 @@ router.get("/api/users/count"),
         }
     });
 //@ts-ignore
-router.post("/api/users/delete/:username", middlewares_1.authorizeAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/api/users/delete/:username", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username } = req.params;
     try {
         const deletedUser = yield user_1.User.findOneAndDelete({
@@ -60,7 +60,7 @@ router.post("/api/users/delete/:username", middlewares_1.authorizeAdmin, (req, r
 }));
 // grant role "user"/"administrator"
 //@ts-ignore
-router.patch("/api/users/grant/:username", middlewares_1.authorizeAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch("/api/users/grant/:username", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const updatedUser = yield user_1.User.findOneAndUpdate({ username: req.params.username }, { role: "administrator" }, { new: true });
         if (!updatedUser) {
@@ -81,7 +81,7 @@ router.patch("/api/users/grant/:username", middlewares_1.authorizeAdmin, (req, r
     }
 }));
 //@ts-ignore
-router.get("/api/admin", middlewares_1.authorizeAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/api/admin", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_1.User.find();
     res.send(users);
 }));

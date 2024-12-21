@@ -11,6 +11,11 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const connect_mongo_1 = __importDefault(require("connect-mongo"));
 require("./strategies/local-strategy");
 const app = (0, express_1.default)();
+const cors = require("cors");
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 mongoose_1.default
     .connect("mongodb://localhost:27017/avantgarde_project")
     .then(() => console.log("Connected to MongoDb Database"))
@@ -23,6 +28,9 @@ app.use((0, express_session_1.default)({
     resave: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 4, // 4 hours
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
     },
     store: connect_mongo_1.default.create({ client: mongoose_1.default.connection.getClient() }),
 }));
