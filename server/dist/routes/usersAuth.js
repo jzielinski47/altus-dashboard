@@ -68,10 +68,9 @@ router.post("/api/auth/logout", (req, res) => {
     });
 });
 router.get("/api/auth/status", (req, res) => {
-    //@ts-ignore
-    req.session.user
-        ? //@ts-ignore
-            res.status(200).send(req.session.user)
+    const client = req.session.user;
+    client
+        ? res.status(200).send(client)
         : res.status(401).send({ msg: "user not authenticated" });
 });
 exports.default = router;

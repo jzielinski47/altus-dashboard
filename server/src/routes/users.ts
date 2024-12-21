@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { isAuthorized } from "../utils/middlewares";
 import { User } from "../mongodb/schemas/user";
 import mongoose from "mongoose";
@@ -11,8 +11,7 @@ router.get("/api/users", async (req, res) => {
 });
 
 router.get("/api/users/count"),
-  //@ts-ignore
-  async (req, res) => {
+  async (req: Request, res: Response) => {
     try {
       const client = mongoose.connection.getClient();
       const activeUsersCount = await client

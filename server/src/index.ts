@@ -9,9 +9,11 @@ import "./strategies/local-strategy";
 const app = express();
 const cors = require("cors");
 
+const frontendURL: string = "http://localhost:5173";
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: frontendURL,
     credentials: true,
   })
 );
@@ -44,7 +46,6 @@ app.use(passport.session());
 app.use(router);
 
 app.get("/", (req, res) => {
-  //@ts-ignore
   req.session.visited = true;
   res.send({ msg: "welcome to /" });
 });

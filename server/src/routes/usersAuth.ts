@@ -4,7 +4,7 @@ import { signupDataValidationSchema } from "../utils/validationSchemas";
 import passport from "passport";
 import { User } from "../mongodb/schemas/user";
 import { hashPassword } from "../utils/encryption";
-import { AuthInfo, iUser } from "../utils/interfaces";
+import { iUser } from "../utils/interfaces";
 
 const router = Router();
 
@@ -65,10 +65,10 @@ router.post("/api/auth/logout", (req, res) => {
 });
 
 router.get("/api/auth/status", (req, res) => {
-  //@ts-ignore
-  req.session.user
-    ? //@ts-ignore
-      res.status(200).send(req.session.user)
+  const client = req.session.user as iUser;
+
+  client
+    ? res.status(200).send(client)
     : res.status(401).send({ msg: "user not authenticated" });
 });
 

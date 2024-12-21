@@ -12,8 +12,9 @@ const connect_mongo_1 = __importDefault(require("connect-mongo"));
 require("./strategies/local-strategy");
 const app = (0, express_1.default)();
 const cors = require("cors");
+const frontendURL = "http://localhost:5173";
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: frontendURL,
     credentials: true,
 }));
 mongoose_1.default
@@ -38,7 +39,6 @@ app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(router_1.default);
 app.get("/", (req, res) => {
-    //@ts-ignore
     req.session.visited = true;
     res.send({ msg: "welcome to /" });
 });

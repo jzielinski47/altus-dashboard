@@ -17,10 +17,9 @@ const passport_local_1 = require("passport-local");
 const user_1 = require("../mongodb/schemas/user");
 const encryption_1 = require("../utils/encryption");
 passport_1.default.serializeUser((user, done) => {
-    //@ts-ignore
-    console.log(`serialize user by id_${user.id}`);
-    //@ts-ignore
-    done(null, user.id);
+    const client = user;
+    console.log(`serialize user by id_${client}`);
+    done(null, client.id);
 });
 passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`deserialize user by id_${id}`);
