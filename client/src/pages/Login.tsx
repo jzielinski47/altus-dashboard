@@ -1,8 +1,11 @@
 import { Button } from "@headlessui/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const nav = useNavigate();
+
   const [isRegistration, setIsRegistration] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEMail] = useState("");
@@ -63,6 +66,7 @@ const Login = () => {
           .then((data) => {
             console.log("Login successful: ", data);
             setErrMessage(data.msg);
+            nav("/dashboard");
           })
           .catch((err) => console.error("123 an error: " + err));
       }
@@ -114,7 +118,7 @@ const Login = () => {
               className="underline cursor-pointer"
               onClick={toggleRegistration}
             >
-              Sign up
+              {isRegistration ? "Sign in" : "Sign up"}
             </a>
           </p>
           <Button

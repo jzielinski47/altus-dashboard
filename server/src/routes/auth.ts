@@ -8,37 +8,38 @@ import { iUser } from "../utils/interfaces";
 
 const router = Router();
 
-router.post(
-  "/api/auth/signup",
-  checkSchema(signupDataValidationSchema),
-  //@ts-ignore
-  async (req: Request, res: Response) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      return res.status(400).send({ errors: result.array() });
+router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(400).json({ error: "Validation failed", details: errors.array() });
+    return;
+  }
+
+  const { username, email, password } = matchedData(req);
+  const hashedPassword = hashPassword(password);
+
+  try {
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    if (existingUser) {
+      res.status(400).json({ error: "Email or username already exists" });
+      return;
     }
-    const { username, email, password } = matchedData(req);
-    const hashedPassword = hashPassword(password);
-    console.log("haslo", password, hashedPassword);
+
     const newUserInstance = new User({
       username,
       email,
       password: hashedPassword,
       role: "user",
     });
-    try {
-      const savedUser = await newUserInstance.save();
-      return res.status(201).send(savedUser);
-    } catch (err) {
-      console.log(err);
-      return res.sendStatus(400);
-    }
-  }
-);
 
-// router.post("/api/auth", passport.authenticate("local"), (req, res) => {
-//   res.status(200).send({ msg: "Authenticated successfully" });
-// });
+    const savedUser = await newUserInstance.save();
+    res.status(201).json({ message: "User created successfully", user: savedUser });
+  } catch (err) {
+    console.error("Error creating user:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 router.post("/api/auth", (req, res, next) => {
   passport.authenticate("local", (err: { message: any }, user: iUser) => {
@@ -63,10 +64,9 @@ router.post("/api/auth/logout", (req, res) => {
 
 router.get("/api/auth/status", (req, res) => {
   const client = req.session.user as iUser;
-
   client
-    ? res.status(200).send(client)
-    : res.status(401).send({ msg: "user not authenticated" });
+    ? res.status(200).send({ msg: "User authenticated" })
+    : res.status(401).send({ msg: "User not authenticated" });
 });
 
 export default router;
