@@ -3,6 +3,8 @@ import { isAuthenticated } from "../utils/middlewares";
 
 const router = Router();
 
-router.get("/api/dashboard", isAuthenticated, (req: Request, res: Response) => {})
+router.get("/api/dashboard", isAuthenticated, (req: Request, res: Response) => {
+  res.send({ msg: "dashboard" });
+});
 
 export default router;

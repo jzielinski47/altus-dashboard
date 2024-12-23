@@ -1,7 +1,8 @@
 import { Request, Response, Router } from "express";
-import { isAuthorized } from "../utils/middlewares";
+import { isAuthenticated, isAuthorized } from "../utils/middlewares";
 import { User } from "../mongodb/schemas/user";
 import mongoose from "mongoose";
+import { iUser } from "../utils/interfaces";
 
 const router = Router();
 
@@ -14,10 +15,7 @@ router.get("/api/users/count"),
   async (req: Request, res: Response) => {
     try {
       const client = mongoose.connection.getClient();
-      const activeUsersCount = await client
-        .db()
-        .collection("sessions")
-        .countDocuments();
+      const activeUsersCount = await client.db().collection("sessions").countDocuments();
       res.json({ activeUsersCount });
     } catch (error) {
       console.error("Error fetching active users count:", error);
@@ -25,8 +23,7 @@ router.get("/api/users/count"),
     }
   };
 
-//@ts-ignore
-router.post("/api/users/delete/:username", isAuthorized, (req, res) => {
+router.post("/api/users/delete/:username", isAuthorized, (req: Request, res: Response) => {
   const { username } = req.params;
 
   try {
@@ -35,14 +32,10 @@ router.post("/api/users/delete/:username", isAuthorized, (req, res) => {
     });
 
     if (!deletedUser) {
-      return res
-        .status(404)
-        .send({ msg: `User ${req.params.username} not found` });
+      res.status(404).send({ msg: `User ${req.params.username} not found` });
     }
 
-    res
-      .status(200)
-      .send({ msg: `User ${req.params.username} has been deleted` });
+    res.status(200).send({ msg: `User ${req.params.username} has been deleted` });
   } catch (err) {
     console.error(err);
     res.status(500).send({ msg: "An error occurred while deleting the user" });
@@ -50,7 +43,6 @@ router.post("/api/users/delete/:username", isAuthorized, (req, res) => {
 });
 
 // grant role "user"/"administrator"
-//@ts-ignore
 router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
   try {
     const updatedUser = User.findOneAndUpdate(
@@ -60,9 +52,7 @@ router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
     );
 
     if (!updatedUser) {
-      return res
-        .status(404)
-        .send({ msg: `User ${req.params.username} not found` });
+      res.status(404).send({ msg: `User ${req.params.username} not found` });
     }
 
     res.status(200).send({
@@ -71,16 +61,18 @@ router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .send({ msg: "An error occurred while updating the user role" });
+    res.status(500).send({ msg: "An error occurred while updating the user role" });
   }
 });
 
-//@ts-ignore
 router.get("/api/admin", isAuthorized, async (req, res) => {
   const users = await User.find();
   res.send(users);
+});
+
+router.get("/api/users/me", isAuthenticated, async (req, res) => {
+  const client = req.session.user as iUser;
+  client ? res.status(200).send(client) : res.status(401).send({ msg: "User not authenticated" });
 });
 
 export default router;
