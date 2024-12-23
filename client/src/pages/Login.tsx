@@ -2,6 +2,9 @@ import { Button } from "@headlessui/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { iError } from "../interfaces";
+import { login, signup } from "../api/auth";
+import { serverIP, serverPort } from "../api/setup";
 
 const Login = () => {
   const nav = useNavigate();
@@ -12,71 +15,28 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
-    setUsername(e.target.value);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => setUsername(e.target.value);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
-    setEMail(e.target.value);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => setEMail(e.target.value);
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
-    setPassword(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => setPassword(e.target.value);
 
-  const sendCredentials = () => {
-    console.log(username, email, password);
+  const toggleRegistration = () => setIsRegistration(!isRegistration);
 
-    const options: RequestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, email, password }),
-      credentials: "include",
-    };
+  const sendCredentials = async () => {
+    await setErrMessage("");
 
-    if (email.length > 0 && password.length > 0) {
-      if (isRegistration) {
-        fetch("http://localhost:4000/api/auth/signup", options)
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              return res.json().then((data) => {
-                console.error("Login error:", data.msg);
-                throw new Error(data.msg);
-              });
-            }
-          })
-          .then((data) => {
-            console.log("Login successful: ", data);
-          })
-          .catch((err) => console.error("123 an error: " + err));
-      } else {
-        fetch("http://localhost:4000/api/auth", options)
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-              return res.json().then((data) => {
-                console.error("Login error:", data.msg);
-                setErrMessage(data.msg);
-                throw new Error(data.msg);
-              });
-            }
-          })
-          .then((data) => {
-            console.log("Login successful: ", data);
-            setErrMessage(data.msg);
-            nav("/dashboard");
-          })
-          .catch((err) => console.error("123 an error: " + err));
-      }
-    } else {
-      setErrMessage("Please fill all the fields in order to proceed.");
+    if (!email || !password || isRegistration ? !username : false) {
+      await setErrMessage("Please, fill all the fields.");
+      return;
     }
-  };
 
-  const toggleRegistration = () => {
-    setIsRegistration(!isRegistration);
+    try {
+      const res = isRegistration ? await signup({ username, email, password }) : await login({ email, password });
+      console.log(res.msg);
+    } catch (err: iError | any) {
+      setErrMessage(err.message || "Something went wrong.");
+    }
   };
 
   return (
@@ -91,33 +51,17 @@ const Login = () => {
           </p>
         </div>
 
-        {isRegistration ? (
-          <InputField
-            placeholder="Enter username"
-            onChange={handleUsernameChange}
-          />
-        ) : null}
+        {isRegistration ? <InputField placeholder="Enter username" onChange={handleUsernameChange} /> : null}
 
-        <InputField
-          type="email"
-          placeholder="Enter email"
-          onChange={handleEmailChange}
-        />
-        <InputField
-          type="password"
-          placeholder="Enter password"
-          onChange={handlePasswordChange}
-        />
+        <InputField type="email" placeholder="Enter email" onChange={handleEmailChange} />
+        <InputField type="password" placeholder="Enter password" onChange={handlePasswordChange} />
 
         <span className="text-error text-base">{errMessage}</span>
 
         <div className="flex items-center justify-between">
           <p className="text-sm text-text-white-60">
             {"No account? "}
-            <a
-              className="underline cursor-pointer"
-              onClick={toggleRegistration}
-            >
+            <a className="underline cursor-pointer" onClick={toggleRegistration}>
               {isRegistration ? "Sign in" : "Sign up"}
             </a>
           </p>

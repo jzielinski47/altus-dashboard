@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "welcome to /" });
 });
 
-const port: number = parseInt(process.env.PORT || "4000", 10);
+const port: number = parseInt(process.env.PORT || "7000", 10);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

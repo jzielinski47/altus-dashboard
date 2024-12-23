@@ -9,7 +9,7 @@ import { iUser } from "../utils/interfaces";
 const router = Router();
 
 router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (req: Request, res: Response) => {
-  const errors = validationResult(req);
+  const errors = validationResult(req);  
 
   if (!errors.isEmpty()) {
     res.status(400).json({ error: "Validation failed", details: errors.array() });
@@ -34,7 +34,7 @@ router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (
     });
 
     const savedUser = await newUserInstance.save();
-    res.status(201).json({ message: "User created successfully", user: savedUser });
+    res.status(201).json({ msg: "User created successfully", user: savedUser });
   } catch (err) {
     console.error("Error creating user:", err);
     res.status(500).json({ error: "Internal server error" });
@@ -44,7 +44,7 @@ router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (
 router.post("/api/auth", (req, res, next) => {
   passport.authenticate("local", (err: { message: any }, user: iUser) => {
     if (err) {
-      return res.status(400).json({ msg: err.message });
+      return res.status(400).json({ error: err.message });
     }
     req.logIn(user, (loginErr) => {
       if (loginErr) {

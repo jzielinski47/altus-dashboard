@@ -1,7 +1,8 @@
 import { Request, Response, Router } from "express";
-import { isAuthorized } from "../utils/middlewares";
+import { isAuthenticated, isAuthorized } from "../utils/middlewares";
 import { User } from "../mongodb/schemas/user";
 import mongoose from "mongoose";
+import { iUser } from "../utils/interfaces";
 
 const router = Router();
 
@@ -44,7 +45,11 @@ router.post("/api/users/delete/:username", isAuthorized, (req: Request, res: Res
 // grant role "user"/"administrator"
 router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
   try {
-    const updatedUser = User.findOneAndUpdate({ username: req.params.username }, { role: "administrator" }, { new: true });
+    const updatedUser = User.findOneAndUpdate(
+      { username: req.params.username },
+      { role: "administrator" },
+      { new: true }
+    );
 
     if (!updatedUser) {
       res.status(404).send({ msg: `User ${req.params.username} not found` });
@@ -63,6 +68,11 @@ router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
 router.get("/api/admin", isAuthorized, async (req, res) => {
   const users = await User.find();
   res.send(users);
+});
+
+router.get("/api/users/me", isAuthenticated, async (req, res) => {
+  const client = req.session.user as iUser;
+  client ? res.status(200).send(client) : res.status(401).send({ msg: "User not authenticated" });
 });
 
 export default router;
