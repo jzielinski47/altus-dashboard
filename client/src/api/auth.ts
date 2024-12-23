@@ -22,6 +22,8 @@ export const signup = async (credentials: iSignupData) => {
       if (err.details) {
         err.details.forEach((error: any) => console.error(error.msg));
         throw new Error(err.details[0].msg);
+      } else {
+        throw new Error(err.error);
       }
     }
   } catch (err: iError | any) {

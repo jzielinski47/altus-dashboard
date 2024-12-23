@@ -34,6 +34,12 @@ const Login = () => {
     try {
       const res = isRegistration ? await signup({ username, email, password }) : await login({ email, password });
       console.log(res.msg);
+
+      if (isRegistration) {
+        setIsRegistration(false);
+      } else {
+        nav("/dashboard");
+      }
     } catch (err: iError | any) {
       setErrMessage(err.message || "Something went wrong.");
     }
