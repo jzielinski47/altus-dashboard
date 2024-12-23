@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
 import { login, signup } from "../api/auth";
-import { serverIP, serverPort } from "../api/setup";
 
 const Login = () => {
   const nav = useNavigate();
@@ -36,6 +35,7 @@ const Login = () => {
       console.log(res.msg);
 
       if (isRegistration) {
+        setErrMessage(res.msg);
         setIsRegistration(false);
       } else {
         nav("/dashboard");
