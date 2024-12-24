@@ -14,7 +14,7 @@ Altus Project is a fully functional web application currently delivered as a min
 
 **Server:** Node, Express, WebSockets
 
-**Other:** Sessions, Passport, MongoDB, Password Hashing
+**Other:** Session Management, Passport JS, MongoDB, Password Hashing
 
 
 ## Authors
