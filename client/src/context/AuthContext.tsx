@@ -19,7 +19,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     fetchUser();
-    console.log("dupa", user);
   }, []);
 
   const logout = () => {

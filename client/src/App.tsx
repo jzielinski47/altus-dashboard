@@ -6,15 +6,29 @@ import Header from "./components/Header";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useAuth } from "./context/AuthContext";
 
 const App = () => {
+  const { user } = useAuth();
+
   return (
     <div className="App w-screen h-screen flex flex-col items-center bg-level-1 text-text-white-87">
       <Router>
         <Header />
         <main className="main w-full h-full flex flex-col items-center">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                user ? (
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                ) : (
+                  <Home />
+                )
+              }
+            />
             <Route path="/auth" element={<Login />} />
             <Route path="/about" element={<About />} />
             <Route
