@@ -2,13 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
-import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const nav = useNavigate();
   const { user } = useAuth();
+
+  const getAvatarName = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
+  };
 
   return (
     <div className="w-full h-14 flex flex-row place-content-between bg-black py-4 px-4 sm:px-8 z-50">
@@ -29,10 +33,6 @@ const Header = () => {
       )}
     </div>
   );
-};
-
-const getAvatarName = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
 };
 
 export default Header;
