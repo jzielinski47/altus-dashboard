@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useAuth();
+  console.log(user);
 
   if (!user) return <Navigate to="/auth" replace />;
 
