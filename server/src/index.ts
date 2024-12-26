@@ -46,6 +46,7 @@ app.use(router);
 
 app.get("/", (req, res) => {
   req.session.visited = true;
+
   res.send({ msg: "welcome to /" });
 });
 

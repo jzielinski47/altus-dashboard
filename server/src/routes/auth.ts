@@ -63,9 +63,7 @@ router.post("/api/auth/logout", (req, res) => {
 });
 
 router.get("/api/auth/status", (req, res) => {
-  const client = req.session.user as iUser;
-  console.log("dupa", client);
-
+  const client = req.user as iUser;
   client
     ? res.status(200).json({ msg: "User authenticated", user: client })
     : res.status(401).json({ msg: "User not authenticated" });
