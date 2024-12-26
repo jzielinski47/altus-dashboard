@@ -6,13 +6,10 @@ export interface iUser {
   email: string;
   password: string;
   role?: string;
+  avatarUrl?: string;
 }
 
-export type Middleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => void;
+export type Middleware = (req: Request, res: Response, next: NextFunction) => void;
 
 declare module "express-session" {
   interface SessionData {
