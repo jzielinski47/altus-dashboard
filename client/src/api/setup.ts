@@ -1,2 +1,2 @@
 export const serverIP: string = "http://localhost";
-export const serverPort: number = 7000;
+export const serverPort: number = 4000;

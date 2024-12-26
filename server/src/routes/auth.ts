@@ -9,7 +9,7 @@ import { iUser } from "../utils/interfaces";
 const router = Router();
 
 router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (req: Request, res: Response) => {
-  const errors = validationResult(req);  
+  const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     res.status(400).json({ error: "Validation failed", details: errors.array() });
@@ -63,10 +63,10 @@ router.post("/api/auth/logout", (req, res) => {
 });
 
 router.get("/api/auth/status", (req, res) => {
-  const client = req.session.user as iUser;
+  const client = req.user as iUser;
   client
-    ? res.status(200).send({ msg: "User authenticated" })
-    : res.status(401).send({ msg: "User not authenticated" });
+    ? res.status(200).json({ msg: "User authenticated", user: client })
+    : res.status(401).json({ msg: "User not authenticated" });
 });
 
 export default router;

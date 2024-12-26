@@ -17,3 +17,18 @@ export interface ApiResponse<T> {
   data?: T;
   error?: string;
 }
+
+export interface iUser {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+  avatarUrl: string;
+}
+
+export interface AuthContextType {
+  user: iUser | null;
+  setUser: React.Dispatch<React.SetStateAction<iUser | null>>;
+  logout: () => void;
+}
