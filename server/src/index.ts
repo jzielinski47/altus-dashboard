@@ -5,21 +5,20 @@ import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
+import { setup } from "./setup";
 
 const app = express();
 const cors = require("cors");
 
-const frontendURL: string = "http://localhost:5173";
-
 app.use(
   cors({
-    origin: frontendURL,
+    origin: `${setup.client.url}:${setup.client.port}`,
     credentials: true,
   })
 );
 
 mongoose
-  .connect("mongodb://localhost:27017/avantgarde_project")
+  .connect(setup.db.url)
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
@@ -50,7 +49,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "welcome to /" });
 });
 
-const port: number = parseInt(process.env.PORT || "7000", 10);
+const port: number = parseInt(process.env.PORT || setup.server.port.toString(), 10);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

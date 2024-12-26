@@ -5,9 +5,9 @@ import Error from "./pages/Error";
 import Header from "./components/Header";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const App = () => {  
-
+const App = () => {
   return (
     <div className="App w-screen h-screen flex flex-col items-center bg-level-1 text-text-white-87">
       <Router>
@@ -17,7 +17,14 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Login />} />
             <Route path="/about" element={<About />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
