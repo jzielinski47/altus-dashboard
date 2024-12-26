@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full h-14 flex flex-row place-content-between bg-black py-4 px-4 sm:px-8 z-50">
+    <div className="w-full min-h-14 flex flex-row place-content-between bg-black py-4 px-4 sm:px-8 z-50">
       <span
         className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
         onClick={() => nav(user ? "/dashboard" : "/")}
