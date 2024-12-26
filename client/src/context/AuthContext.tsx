@@ -11,9 +11,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const fetchUser = async () => {
       try {
         const res = await fetch(`${serverIP}:${serverPort}/api/auth/status`, { credentials: "include" });
-        console.log("1", res);
         const data = await res.json();
-        console.log("d", data);
         if (res.ok && data.user) setUser(data.user);
       } catch (err: iError | any) {
         console.warn(err.message);
