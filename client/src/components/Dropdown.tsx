@@ -11,8 +11,11 @@ import {
 import { Avatar } from "@mui/material";
 import React, { useState } from "react";
 import { SettingsIcon } from "./icons/SettingsIcon";
+import { useAuth } from "../context/AuthContext";
 
 export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
+  const { logout } = useAuth();
+
   return (
     <div className="text-right">
       <Menu>
@@ -46,7 +49,10 @@ export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
             </button>
           </MenuItem>
           <MenuItem>
-            <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+            <button
+              className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
+              onClick={logout}
+            >
               <ArrowLeftEndOnRectangleIcon className="size-4 fill-white/30" />
               Log out
               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">⌘D</kbd>
