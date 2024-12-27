@@ -4,6 +4,8 @@ import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
+import { Dropdown } from "./Dropdown";
+import { useState } from "react";
 
 const Header = () => {
   const nav = useNavigate();
@@ -26,12 +28,12 @@ const Header = () => {
       </span>
 
       {user ? (
-        <Avatar className="hover:bg-primary" alt={user.username} src={user.avatarUrl} />
+        <Dropdown>
+          <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
+        </Dropdown>
       ) : (
         <NavButton name="Log in" path={"/auth"} variant={2} />
       )}
-
-      
     </div>
   );
 };

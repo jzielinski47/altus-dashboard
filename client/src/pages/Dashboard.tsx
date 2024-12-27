@@ -1,6 +1,4 @@
-import { Paper, MenuList, MenuItem } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
-import { Dropdown } from "../components/Dropdown";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -12,7 +10,6 @@ const Dashboard = () => {
           ? " able to do anything you want."
           : " just a peasant. Your priviliges are limited for now."}
       </h2>
-      <Dropdown />
     </div>
   );
 };
