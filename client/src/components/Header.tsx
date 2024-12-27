@@ -4,7 +4,6 @@ import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
-import { deepOrange } from "@mui/material/colors";
 
 const Header = () => {
   const nav = useNavigate();
@@ -15,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full min-h-14 flex flex-row place-content-between bg-black py-4 px-4 sm:px-8 z-50">
+    <div className="relative w-full min-h-14 h-20 flex flex-row place-content-between justify-centers bg-black py-4 px-4 sm:px-8 z-50">
       <span
         className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
         onClick={() => nav(user ? "/dashboard" : "/")}
@@ -26,13 +25,13 @@ const Header = () => {
         </h2>
       </span>
 
-      {/* if user's a session id then there should be an avatar or sth that indicates the user logged in */}
-
       {user ? (
-        <Avatar alt={user.username} src={user.avatarUrl} />
+        <Avatar className="hover:bg-primary" alt={user.username} src={user.avatarUrl} />
       ) : (
         <NavButton name="Log in" path={"/auth"} variant={2} />
       )}
+
+      
     </div>
   );
 };
