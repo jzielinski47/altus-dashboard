@@ -29,8 +29,7 @@ const Header = () => {
       {/* if user's a session id then there should be an avatar or sth that indicates the user logged in */}
 
       {user ? (
-        // user.avatarURL ? :
-        <Avatar sx={{ bgcolor: deepOrange[500] }}>{getAvatarName(user.username)}</Avatar>
+        <Avatar alt={user.username} src={user.avatarUrl} />
       ) : (
         <NavButton name="Log in" path={"/auth"} variant={2} />
       )}

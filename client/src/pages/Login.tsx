@@ -1,9 +1,10 @@
 import { Button } from "@headlessui/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
 import { login, signup } from "../api/auth";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const nav = useNavigate();
@@ -13,6 +14,8 @@ const Login = () => {
   const [email, setEMail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
+
+  const { setUser } = useAuth();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => setUsername(e.target.value);
 
@@ -38,7 +41,8 @@ const Login = () => {
         setErrMessage(res.msg);
         setIsRegistration(false);
       } else {
-        nav("/dashboard");
+        if (res.user) setUser(res.user);
+        nav("/dashboard", { replace: true });
       }
     } catch (err: iError | any) {
       setErrMessage(err.message || "Something went wrong.");
