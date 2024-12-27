@@ -50,7 +50,7 @@ router.post("/api/auth", (req, res, next) => {
       if (loginErr) {
         return next(loginErr);
       }
-      return res.status(200).send({ msg: "Authenticated successfully" });
+      return res.status(200).send({ msg: "Authenticated successfully", user: req.user });
     });
   })(req, res, next);
 });
