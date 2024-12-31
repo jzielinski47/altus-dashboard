@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
-import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
 import { Dropdown } from "./Dropdown";
+import ArrowButton from "./ArrowButton";
 
 const Header = () => {
   const nav = useNavigate();
@@ -32,7 +32,7 @@ const Header = () => {
             <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
           </Dropdown>
         ) : (
-          <NavButton name="Log in" path={"/auth"} variant={2} />
+          <ArrowButton content="Log in" onClick={() => nav("/auth")} />
         )}
       </div>
     </header>

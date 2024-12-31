@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react";
 import { Button } from "@headlessui/react";
 
-interface iHuiButton {
+export interface iHuiButton {
   content: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }
