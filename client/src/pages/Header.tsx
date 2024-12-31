@@ -3,8 +3,8 @@ import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
-import { Dropdown } from "./Dropdown";
-import ArrowButton from "./ArrowButton";
+import { Dropdown } from "../components/Dropdown";
+import ArrowButton from "../components/Buttons/ArrowButton";
 
 const Header = () => {
   const nav = useNavigate();

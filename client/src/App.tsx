@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import Header from "./components/Header";
+import Header from "./pages/Header";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 
 const App = () => {

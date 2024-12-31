@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Badge from "../../components/Badge";
 import NavButton from "../../components/NavButton";
 import { gradientText } from "../../tailwind-prefabs";
-import HUIButton from "../../components/Button";
+import HUIButton from "../../components/Buttons/Button";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@headlessui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
