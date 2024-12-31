@@ -3,8 +3,10 @@ import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
-import { Dropdown } from "../Dropdown";
+import { Dropdown } from "../Dropdown/Dropdown";
 import ArrowButton from "../Buttons/ArrowButton";
+import { motion } from "framer-motion";
+import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 
 const Header = () => {
   const nav = useNavigate();
@@ -12,7 +14,12 @@ const Header = () => {
 
   return (
     <header className="relative px-4 sm:px-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between py-6 px-2">
+      <motion.div
+        initial={{ width: "80rem" }}
+        animate={{ width: user ? "100%" : "80rem" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className={`mx-auto flex items-center justify-between py-6 px-2`}
+      >
         <span
           className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
           onClick={() => nav(user ? "/dashboard" : "/")}
@@ -23,14 +30,24 @@ const Header = () => {
           </h2>
         </span>
 
-        {user ? (
-          <Dropdown>
-            <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
-          </Dropdown>
-        ) : (
-          <ArrowButton content="Log in" onClick={() => nav("/auth")} />
-        )}
-      </div>
+        <div className="flex flex-row gap-3 items-center justify-center">
+          {user ? (
+            <>
+              <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
+
+              <div className="hidden sm:block flex flex-col gap-0.5">
+                <h2 className="text-sm font-semibold">{user.username}</h2>
+                <p className="text-sm text-text-white-60">{user.email}</p>
+              </div>
+              <Dropdown>
+                <EllipsisVerticalIcon className="size-5 text-text-white-60" />
+              </Dropdown>
+            </>
+          ) : (
+            <ArrowButton content="Log in" onClick={() => nav("/auth")} />
+          )}
+        </div>
+      </motion.div>
     </header>
   );
 };

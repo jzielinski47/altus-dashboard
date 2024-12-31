@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import Badge from "../../components/Badge";
-import NavButton from "../../components/NavButton";
-import { gradientText } from "../../tailwind-prefabs";
-import HUIButton from "../../components/Buttons/Button";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@headlessui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HUIButton from "../../../components/Buttons/Button";
+import ArrowButton from "../../../components/Buttons/ArrowButton";
+import Badge from "../../../components/Badge";
+import { gradientText } from "../../../tailwind-prefabs";
 
 export default function Hero() {
   const nav = useNavigate();
@@ -17,7 +18,7 @@ export default function Hero() {
         <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
           <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
             <Badge name="What's new" color="primary" />
-            <NavButton name="Just shipped v1.0" path={"/features"} variant={2} />
+            <ArrowButton content="Just shipped v1.0" onClick={() => nav("/versions")} />
           </div>
           <h1 className="text-4xl max-w-[1000px] md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
             Connect, Track, and Grow—All in One Place.
