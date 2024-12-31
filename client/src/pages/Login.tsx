@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-full my-auto flex justify-center items-center">
+    <div className="flex flex-grow justify-center items-center">
       <div className="flex flex-col gap-y-6 min-w-[400px]">
         <div className="flex flex-col gap-y-[0.5rem]">
           <h2 className="text-xl text-center font-extrabold text-text-white-87 md:text-3xl">
