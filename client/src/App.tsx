@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/HomePage/Home";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import Header from "./pages/Header";
+import Header from "./components/Layout/Header";
+import Footer from "./components/Layout/Footer";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
@@ -41,9 +42,7 @@ const App = () => {
             />
             <Route path="*" element={<Error />} />
           </Routes>
-          <footer className="mt-auto w-full py-4 text-center bg-gray-900 text-text-white-38">
-            Copyright Jakub Zieliński 2024-2025
-          </footer>
+          <Footer />
         </main>
       </Router>
     </div>

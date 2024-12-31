@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/16/solid";
 import { Avatar } from "@mui/material";
 import React, { useState } from "react";
-import { SettingsIcon } from "./icons/SettingsIcon";
+import { SettingsIcon } from "./Icons/SettingsIcon";
 import { useAuth } from "../context/AuthContext";
 
 export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
