@@ -1,40 +1,20 @@
-import React, { ReactNode } from "react";
-import { buttonStyles } from "./buttonStyles";
+import { MouseEventHandler } from "react";
+import { Button } from "@headlessui/react";
 
-interface ButtonProps {
-  children: ReactNode;
-  onClick?: () => void;
-  className?: string;
-  variant?: 1 | 2;
-  size?: "sm" | "md" | "lg";
-  disabled?: boolean;
+interface iHuiButton {
+  content: string;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className = "",
-  variant = 1,
-  size = "md",
-  disabled = false,
-}) => {
-  const sizeClasses = {
-    sm: "text-sm py-2 px-6",
-    md: "text-sm py-3 px-8",
-    lg: "text-base py-4 px-10",
-  };
-
+const HUIButton = ({ content, onClick }: iHuiButton) => {
   return (
-    <button
-      className={`${buttonStyles["base"]} ${buttonStyles[variant]} ${
-        sizeClasses[size]
-      } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
+    <Button
       onClick={onClick}
-      disabled={disabled}
+      className="inline-flex items-center gap-2 rounded-lg bg-level-4 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-level-5 data-[open]:bg-level-4 data-[focus]:outline-1 data-[focus]:outline-white  transition duration-700 ease-in-out"
     >
-      {children}
-    </button>
+      {content}
+    </Button>
   );
 };
 
-export default Button;
+export default HUIButton;

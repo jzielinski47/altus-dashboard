@@ -12,10 +12,10 @@ const App = () => {
   const { user } = useAuth();
 
   return (
-    <div className="App w-screen h-screen flex flex-col items-center bg-level-1 text-text-white-87">
+    <div className="app min-h-screen flex flex-col">
       <Router>
         <Header />
-        <main className="main w-full h-full flex flex-col items-center">
+        <main className="flex-grow w-full flex flex-col items-center">
           <Routes>
             <Route
               path="/"
