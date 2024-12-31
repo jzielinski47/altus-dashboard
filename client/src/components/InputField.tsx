@@ -10,12 +10,7 @@ interface InputFieldProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
-  type = "text",
-  placeholder,
-  className = "",
-  onChange,
-}) => {
+const InputField: React.FC<InputFieldProps> = ({ type = "text", placeholder, className = "", onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
@@ -26,7 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({
     <div className="relative">
       <input
         type={type === "password" ? (showPassword ? "text" : "password") : type}
-        className={`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ${className}`}
+        className={`w-full rounded-lg border-border-black bg-black p-4 pe-12 text-sm shadow-sm ${className}`}
         placeholder={placeholder}
         onChange={onChange}
       />

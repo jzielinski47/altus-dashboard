@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const logout = () => {
-    fetch(`${serverIP}:${serverPort}/api/auth/logout`, { credentials: "include" })
+    fetch(`${serverIP}:${serverPort}/api/auth/logout`, { method: "POST", credentials: "include" })
       .then(() => setUser(null))
       .catch((err) => console.error("Logout error:", err));
   };

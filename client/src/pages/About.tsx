@@ -1,5 +1,5 @@
 const About = () => {
-  return <>Copyright Jakub Zielincki C2024</>;
+  return <>about</>;
 };
 
 export default About;

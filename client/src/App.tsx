@@ -12,10 +12,10 @@ const App = () => {
   const { user } = useAuth();
 
   return (
-    <div className="App w-screen h-screen flex flex-col items-center bg-level-1 text-text-white-87">
+    <div className="app min-h-screen flex flex-col">
       <Router>
         <Header />
-        <main className="main w-full h-full flex flex-col items-center">
+        <main className="flex-grow w-full flex flex-col items-center">
           <Routes>
             <Route
               path="/"
@@ -41,6 +41,9 @@ const App = () => {
             />
             <Route path="*" element={<Error />} />
           </Routes>
+          <footer className="mt-auto w-full py-4 text-center bg-gray-900 text-text-white-38">
+            Copyright Jakub Zieliński 2024-2025
+          </footer>
         </main>
       </Router>
     </div>

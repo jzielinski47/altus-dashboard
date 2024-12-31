@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
-import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
 import { Dropdown } from "./Dropdown";
-import { useState } from "react";
+import ArrowButton from "./ArrowButton";
 
 const Header = () => {
   const nav = useNavigate();
@@ -16,25 +15,27 @@ const Header = () => {
   };
 
   return (
-    <div className="relative w-full min-h-14 h-20 flex flex-row place-content-between justify-centers bg-black py-4 px-4 sm:px-8 z-50">
-      <span
-        className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
-        onClick={() => nav(user ? "/dashboard" : "/")}
-      >
-        <FontAwesomeIcon icon={faCloud} bounce className="text-white" />
-        <h2 className="text-base font-semibold text-white">
-          {"Altus"} <span className="text-primary">Dashboard</span>
-        </h2>
-      </span>
+    <header className="relative px-4 sm:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between py-6 px-2">
+        <span
+          className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
+          onClick={() => nav(user ? "/dashboard" : "/")}
+        >
+          <FontAwesomeIcon icon={faCloud} bounce className="size-6 text-white" />
+          <h2 className="text-base font-semibold text-white">
+            {"Altus"} <span className="text-primary">Dashboard</span>
+          </h2>
+        </span>
 
-      {user ? (
-        <Dropdown>
-          <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
-        </Dropdown>
-      ) : (
-        <NavButton name="Log in" path={"/auth"} variant={2} />
-      )}
-    </div>
+        {user ? (
+          <Dropdown>
+            <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
+          </Dropdown>
+        ) : (
+          <ArrowButton content="Log in" onClick={() => nav("/auth")} />
+        )}
+      </div>
+    </header>
   );
 };
 
