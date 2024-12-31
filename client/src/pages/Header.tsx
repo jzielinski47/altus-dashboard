@@ -10,10 +10,6 @@ const Header = () => {
   const nav = useNavigate();
   const { user } = useAuth();
 
-  const getAvatarName = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.charAt(1).toLowerCase();
-  };
-
   return (
     <header className="relative px-4 sm:px-6">
       <div className="mx-auto flex max-w-7xl items-center justify-between py-6 px-2">
