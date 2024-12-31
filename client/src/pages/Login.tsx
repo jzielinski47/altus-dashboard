@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
 import { login, signup } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
+import HUIButton from "../components/Button";
 
 const Login = () => {
   const nav = useNavigate();
@@ -75,12 +76,7 @@ const Login = () => {
               {isRegistration ? "Sign in" : "Sign up"}
             </a>
           </p>
-          <Button
-            onClick={sendCredentials}
-            className="inline-block rounded-lg bg-primary py-2 px-4 text-sm text-white font-medium data-[hover]:bg-secondary data-[active]:bg-secondary"
-          >
-            {isRegistration ? "Sign up" : "Sign in"}
-          </Button>
+          <HUIButton onClick={sendCredentials} content={isRegistration ? "Sign up" : "Sign in"} />
         </div>
       </div>
     </div>
