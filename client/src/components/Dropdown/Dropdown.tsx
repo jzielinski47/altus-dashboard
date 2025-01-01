@@ -21,7 +21,7 @@ export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
         <MenuItems
           transition
           anchor="bottom end"
-          className="mt-5 z-50 w-52 rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+          className="mt-5 z-50 w-52 rounded-xl border border-white/5 bg-level-5/95 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
         >
           <DropdownButton icon={<PencilIcon className="size-4 fill-white/30" />} label="Edit profile" shortcut="⌘E" />
           <DropdownButton icon={<Cog6ToothIcon className="size-4 fill-white/30" />} label="Settings" shortcut="⌘S" />

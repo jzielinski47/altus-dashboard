@@ -54,10 +54,10 @@ const Login = () => {
     <div className="flex flex-grow justify-center items-center">
       <div className="flex flex-col gap-y-6 min-w-[400px]">
         <div className="flex flex-col gap-y-[0.5rem]">
-          <h2 className="text-xl text-center font-extrabold text-text-white-87 md:text-3xl">
+          <h2 className="text-xl text-center font-extrabold text-white/87 md:text-3xl">
             {isRegistration ? "Sign up" : "Sign in"}
           </h2>
-          <p className="text-sm text-text-white-60 text-center text-gray-500 md:text-base">
+          <p className="text-sm text-white/60 text-center text-gray-500 md:text-base">
             Fill all the fields in order to perform your desired action.
           </p>
         </div>
@@ -70,7 +70,7 @@ const Login = () => {
         <span className="text-error text-base">{errMessage}</span>
 
         <div className="flex items-center justify-between">
-          <p className="text-sm text-text-white-60">
+          <p className="text-sm text-white/60">
             {"No account? "}
             <a className="underline cursor-pointer" onClick={toggleRegistration}>
               {isRegistration ? "Sign in" : "Sign up"}

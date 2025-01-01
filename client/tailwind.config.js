@@ -7,10 +7,12 @@ export default {
       transparent: "transparent",
 
       primary: "#a78bfa",
-      secondary: "#fc7262",
+      secondary: "#00EDFF",
       black: "#0d0d0d",
       white: "#f5f5f7",
-      error: "#ff6633",
+      success: "#80F242",
+      // error: "#ff6633",
+      error: "#F24242",
 
       level: {
         0: "#121212",
@@ -19,11 +21,6 @@ export default {
         3: "#222222",
         4: "#2c2c2c",
         5: "#323232",
-      },
-      text: {
-        "white-87": "rgba(255, 255, 255, 0.87)",
-        "white-60": "rgba(255, 255, 255, 0.6)",
-        "white-38": "rgba(255, 255, 255, 0.38)",
       },
       border: {
         black: "rgba(255, 255, 255, 0.09)",

@@ -37,10 +37,10 @@ const Header = () => {
 
               <div className="hidden sm:block flex flex-col gap-0.5">
                 <h2 className="text-sm font-semibold">{user.username}</h2>
-                <p className="text-sm text-text-white-60">{user.email}</p>
+                <p className="text-sm text-white/60">{user.email}</p>
               </div>
               <Dropdown>
-                <EllipsisVerticalIcon className="size-5 text-text-white-60" />
+                <EllipsisVerticalIcon className="size-5 text-white/60" />
               </Dropdown>
             </>
           ) : (
