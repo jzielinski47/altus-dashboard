@@ -31,4 +31,6 @@ export interface AuthContextType {
   user: iUser | null;
   setUser: React.Dispatch<React.SetStateAction<iUser | null>>;
   logout: () => void;
+  isCookiesSet: boolean;
+  setIsCookiesSet: React.Dispatch<React.SetStateAction<boolean>>;
 }

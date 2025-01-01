@@ -1,10 +1,12 @@
-import { Dialog, DialogPanel, DialogTitle, Button } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import HUIButton from "./Buttons/Button";
 import { motion } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const { setIsCookiesSet } = useAuth();
 
   return (
     <Dialog open={isOpen} as="div" className="relative z-999 focus:outline-none" onClose={() => null}>
@@ -22,7 +24,13 @@ const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con 
               you agree to our Privacy Policy and Terms of Service.
             </p>
             <div className="mt-4">
-              <HUIButton content="Accept" onClick={() => setIsOpen(false)} />
+              <HUIButton
+                content="Accept"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsCookiesSet(true);
+                }}
+              />
             </div>
           </DialogPanel>
         </div>

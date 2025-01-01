@@ -12,12 +12,13 @@ import CookieDialog from "./components/CookieDialog";
 import { useRef } from "react";
 
 const App = () => {
-  const { user } = useAuth();
+  const { isCookiesSet, user } = useAuth();
+
   const constraintsRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="app min-h-screen flex flex-col" ref={constraintsRef}>
-      <CookieDialog con={constraintsRef} />
+      {!isCookiesSet ? <CookieDialog con={constraintsRef} /> : null}
       <Router>
         <Header />
         <main className="flex-grow w-full flex flex-col items-center">
