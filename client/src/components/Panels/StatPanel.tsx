@@ -1,4 +1,3 @@
-import React from "react";
 import PanelWrapper from "./PanelWrapper";
 import { ArrowTrendingDownIcon, ArrowTrendingUpIcon } from "@heroicons/react/16/solid";
 
@@ -11,7 +10,7 @@ const StatPanel = () => {
         <div>
           <p className="text-sm text-white/60">Profit</p>
 
-          <p className="text-2xl font-medium text-white/87">${mockedData.profit}</p>
+          <p className="text-2xl font-medium text-white/[87%]">${mockedData.profit}</p>
         </div>
 
         <div className={`mt-1 flex gap-1 text-${mockedData.percent > 0 ? "success" : "error"}`}>

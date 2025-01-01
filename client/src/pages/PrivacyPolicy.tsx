@@ -1,8 +1,8 @@
-const About = () => {
+const PrivacyPolicy = () => {
   return (
     <div className="relative flex flex-grow h-full w-full justify-center items-center flex-col max-w-7xl">
       <h2 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-white/[87%] md:text-2xl dark:text-white">
-        Altus Dashboard is my personal approach to dashboard websites combining all my skills in one app
+        Privacy Policy
       </h2>
       <p className="text-justify text-white/60">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque, nibh id hendrerit ultricies, leo
@@ -16,4 +16,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default PrivacyPolicy;

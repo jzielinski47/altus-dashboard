@@ -7,12 +7,17 @@ import Footer from "./components/Layout/Footer";
 import About from "./pages/About";
 import { useAuth } from "./context/AuthContext";
 import DashboardRoute from "./components/DashboardWrapper";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookieDialog from "./components/CookieDialog";
+import { useRef } from "react";
 
 const App = () => {
   const { user } = useAuth();
+  const constraintsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="app min-h-screen flex flex-col">
+    <div className="app min-h-screen flex flex-col" ref={constraintsRef}>
+      <CookieDialog con={constraintsRef} />
       <Router>
         <Header />
         <main className="flex-grow w-full flex flex-col items-center">
@@ -21,6 +26,7 @@ const App = () => {
             <Route path="/auth" element={user ? <DashboardRoute /> : <Login />} />
             <Route path="/about" element={<About />} />
             <Route path="/dashboard" element={<DashboardRoute />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
