@@ -6,6 +6,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<iUser | null>(null);
+  const [isCookiesSet, setIsCookiesSet] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,7 +28,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       .catch((err) => console.error("Logout error:", err));
   };
 
-  return <AuthContext.Provider value={{ user, setUser, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser, logout, isCookiesSet, setIsCookiesSet }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = (): AuthContextType => {

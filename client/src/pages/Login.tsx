@@ -54,7 +54,7 @@ const Login = () => {
     <div className="flex flex-grow justify-center items-center">
       <div className="flex flex-col gap-y-6 min-w-[400px]">
         <div className="flex flex-col gap-y-[0.5rem]">
-          <h2 className="text-xl text-center font-extrabold text-white/87 md:text-3xl">
+          <h2 className="text-xl text-center font-extrabold text-white/[87%] md:text-3xl">
             {isRegistration ? "Sign up" : "Sign in"}
           </h2>
           <p className="text-sm text-white/60 text-center text-gray-500 md:text-base">

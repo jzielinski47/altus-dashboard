@@ -1,6 +1,5 @@
-import React from "react";
-import ProtectedRoute from "./Routes/ProtectedRoute";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../../../pages/Dashboard";
+import ProtectedRoute from "../ProtectedRoute";
 
 const DashboardRoute = () => {
   return (

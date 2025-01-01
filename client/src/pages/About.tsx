@@ -1,10 +1,10 @@
 const About = () => {
   return (
     <div className="relative flex flex-grow h-full w-full justify-center items-center flex-col max-w-7xl">
-      <h2 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl dark:text-white">
+      <h2 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-white/[87%] md:text-2xl dark:text-white">
         Altus Dashboard is my personal approach to dashboard websites combining all my skills in one app
       </h2>
-      <p className="text-justify">
+      <p className="text-justify text-white/60">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque, nibh id hendrerit ultricies, leo
         ipsum bibendum sapien, a bibendum lacus nibh in eros. Donec pulvinar ante id tempus sodales. Nulla aliquam erat
         eget felis rhoncus, eu maximus nunc volutpat. Cras molestie aliquet risus. Nullam magna arcu, posuere eleifend
