@@ -7,11 +7,18 @@ export default {
       transparent: "transparent",
 
       primary: "#a78bfa",
-      secondary: "#00EDFF",
+      primary: {
+        a0: "#a78bfa",
+        a10: "#b297fb",
+        a20: "#bca4fc",
+        a30: "#c6b1fd",
+        a40: "#d0befd",
+        a50: "#dacafe",
+      },
+      secondary: "#0071E3",
       black: "#0d0d0d",
       white: "#f5f5f7",
       success: "#80F242",
-      // error: "#ff6633",
       error: "#F24242",
 
       level: {
