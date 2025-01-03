@@ -17,7 +17,7 @@ const UserProfile = () => {
   const changeUsername = async () => {
     await setIsUsernameEditable(!isUsernameEditable);
     console.log(isUsernameEditable);
-    if (user && isUsernameEditable) {
+    if (user && isUsernameEditable && username.length > 0 && username.length < 32) {
       await updateUsername(user?.username, username);
       location.reload();
     }
@@ -82,7 +82,18 @@ const UserProfile = () => {
           </PanelWrapper>
         </div>
         <div className="h-full flex flex-col gap-4">
-          <img src={user?.avatarUrl} alt={user?.username} className="min-w-64 w-full size-full rounded-lg" />
+          {user?.avatarUrl ? (
+            <img src={user?.avatarUrl} alt={user?.username} className="min-w-64 w-full size-full rounded-lg" />
+          ) : (
+            <img
+              src={
+                "https://api.dicebear.com/9.x/avataaars/svg?seed=Adrian&flip=true&backgroundColor=65c9ff,transparent"
+              }
+              alt={user?.username}
+              className="min-w-64 w-full size-full rounded-lg"
+            />
+          )}
+
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
         </div>
       </div>
