@@ -1,7 +1,6 @@
-import { Button } from "@headlessui/react";
 import InputField from "../components/InputField";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
 import { login, signup } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
