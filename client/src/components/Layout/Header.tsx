@@ -26,14 +26,14 @@ const Header = () => {
         >
           <FontAwesomeIcon icon={faCloud} bounce className="size-6 text-white" />
           <h2 className="text-base font-semibold text-white">
-            {"Altus"} <span className="text-primary">Dashboard</span>
+            {"Altus"} <span className="text-primary-a0">Dashboard</span>
           </h2>
         </span>
 
         <div className="flex flex-row gap-3 items-center justify-center">
           {user ? (
             <>
-              <Avatar className="hover:bg-primary cursor-pointer" alt={user.username} src={user.avatarUrl} />
+              <Avatar className="hover:bg-primary-a30 cursor-pointer" alt={user.username} src={user.avatarUrl} />
 
               <div className="hidden sm:block flex flex-col gap-0.5">
                 <h2 className="text-sm font-semibold">{user.username}</h2>

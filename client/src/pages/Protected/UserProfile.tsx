@@ -83,14 +83,18 @@ const UserProfile = () => {
         </div>
         <div className="h-full flex flex-col gap-4">
           {user?.avatarUrl ? (
-            <img src={user?.avatarUrl} alt={user?.username} className="min-w-64 w-full size-full rounded-lg" />
+            <img
+              src={user?.avatarUrl}
+              alt={user?.username}
+              className="min-w-64 w-full size-full rounded-lg transition duration-700 ease-in-out hover:opacity-40 cursor-pointer"
+            />
           ) : (
             <img
               src={
                 "https://api.dicebear.com/9.x/avataaars/svg?seed=Adrian&flip=true&backgroundColor=65c9ff,transparent"
               }
               alt={user?.username}
-              className="min-w-64 w-full size-full rounded-lg"
+              className="min-w-64 w-full size-full rounded-lg transition duration-700 ease-in-out hover:opacity-40 cursor-pointer"
             />
           )}
 
