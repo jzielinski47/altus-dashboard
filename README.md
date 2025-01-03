@@ -1,3 +1,3 @@
 # Altus Dashboard 
 
-readme must be rewritten
+readme must be rewritten.
