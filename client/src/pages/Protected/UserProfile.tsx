@@ -5,6 +5,7 @@ import HUICButton from "../../components/Buttons/HUICButton";
 import { useState } from "react";
 import { Input } from "@headlessui/react";
 import clsx from "clsx";
+import { updateUsername } from "../../api/users";
 
 const UserProfile = () => {
   const { user } = useAuth();
@@ -13,11 +14,12 @@ const UserProfile = () => {
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => setUsername(e.target.value);
 
-  const changeUsername = () => {
-    setIsUsernameEditable(!isUsernameEditable);
+  const changeUsername = async () => {
+    await setIsUsernameEditable(!isUsernameEditable);
     console.log(isUsernameEditable);
-    if (isUsernameEditable) {
-      
+    if (user && isUsernameEditable) {
+      await updateUsername(user?.username, username);
+      location.reload();
     }
   };
 

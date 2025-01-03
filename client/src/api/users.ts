@@ -9,10 +9,10 @@ const patchOptions: RequestInit = {
   credentials: "include",
 };
 
-export const updateUsername = async (username: string) => {
+export const updateUsername = async (username: string, patchedUsername: string) => {
   try {
-    patchOptions.body = JSON.stringify({ username });
-    const res = await fetch(`${serverIP}:${serverPort}/api/auth`, patchOptions);
+    patchOptions.body = JSON.stringify({ username: patchedUsername });
+    const res = await fetch(`${serverIP}:${serverPort}/api/users/patch/${username}`, patchOptions);
     if (res.ok) {
       return res.json();
     } else {
