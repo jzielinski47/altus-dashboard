@@ -42,10 +42,38 @@ router.post("/api/users/delete/:username", isAuthorized, (req: Request, res: Res
   }
 });
 
-// grant role "user"/"administrator"
-router.patch("/api/users/grant/:username", isAuthorized, (req, res) => {
+router.patch("/api/users/patch/:username", async (req, res) => {
+  console.log(req.params.username, "aaa", req.body.username);
+
   try {
-    const updatedUser = User.findOneAndUpdate(
+    const existingUser = await User.findOne({ username: req.body.username });
+
+    if (existingUser) res.status(404).send({ msg: `User ${req.body.username} already exists.` });
+
+    const updatedUser = await User.findOneAndUpdate(
+      { username: req.params.username },
+      { username: req.body.username },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      res.status(404).send({ msg: `User ${req.params.username} not found` });
+    }
+
+    res.status(200).send({
+      msg: `User ${req.params.username} has changed username to ${req.body.username}`,
+      user: updatedUser,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ msg: "An error occurred while updating the username" });
+  }
+});
+
+// grant role "user"/"administrator"
+router.patch("/api/users/grant/:username", isAuthorized, async (req, res) => {
+  try {
+    const updatedUser = await User.findOneAndUpdate(
       { username: req.params.username },
       { role: "administrator" },
       { new: true }
