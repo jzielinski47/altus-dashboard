@@ -58,7 +58,7 @@ router.post("/api/auth", (req, res, next) => {
         const currentLoginTime = Date.now();
 
         await User.updateOne({ _id: user.id }, { $set: { lastLogin: currentLoginTime } });
-
+        if (req.user) req.user.lastLogin = currentLoginTime;
         return res.status(200).send({
           msg: "Authenticated successfully",
           user: req.user,

@@ -1,5 +1,6 @@
 import PlanSelectionPanel from "../components/Panels/PlanSelectionPanel";
 import StatPanel from "../components/Panels/StatPanel";
+import SessionTimerPanel from "../components/Panels/SessionTimer";
 
 const Dashboard = () => {
   return (
@@ -7,7 +8,7 @@ const Dashboard = () => {
       <div className="hidden sm:block">side panel placeholder</div>
       <div className="flex-grow flex flex-col gap-8">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-4 lg:gap-8">
-          <PlanSelectionPanel />
+          <SessionTimerPanel />
           <StatPanel />
           <PlanSelectionPanel />
           <PlanSelectionPanel />
