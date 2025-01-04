@@ -1,4 +1,4 @@
-export const EmailIcon: React.FC = () => (
+const EmailIcon: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -14,3 +14,5 @@ export const EmailIcon: React.FC = () => (
     />
   </svg>
 );
+
+export default EmailIcon;

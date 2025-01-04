@@ -1,4 +1,4 @@
-export const EyeIcon: React.FC = () => (
+const EyeIcon: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -6,12 +6,7 @@ export const EyeIcon: React.FC = () => (
     stroke="currentColor"
     className="size-4 text-gray-400"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -20,3 +15,5 @@ export const EyeIcon: React.FC = () => (
     />
   </svg>
 );
+
+export default EyeIcon;
