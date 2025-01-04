@@ -19,12 +19,12 @@ const AdminPanel = () => {
 
   return (
     <div>
-      {/* {" "}
+      {" "}
       {users.length > 0 ? (
         users.map((user, index) => <div key={index}>{JSON.stringify(user)}</div>)
       ) : (
         <p>Loading users...</p>
-      )} */}
+      )}
     </div>
   );
 };

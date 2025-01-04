@@ -22,14 +22,10 @@ router.get("/api/users", (req, res) => __awaiter(void 0, void 0, void 0, functio
     res.send(users);
 }));
 router.get("/api/users/count"),
-    //@ts-ignore
     (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const client = mongoose_1.default.connection.getClient();
-            const activeUsersCount = yield client
-                .db()
-                .collection("sessions")
-                .countDocuments();
+            const activeUsersCount = yield client.db().collection("sessions").countDocuments();
             res.json({ activeUsersCount });
         }
         catch (error) {
@@ -37,36 +33,48 @@ router.get("/api/users/count"),
             res.status(500).json({ error: "Internal server error" });
         }
     });
-//@ts-ignore
-router.post("/api/users/delete/:username", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/api/users/delete/:username", middlewares_1.isAuthorized, (req, res) => {
     const { username } = req.params;
     try {
-        const deletedUser = yield user_1.User.findOneAndDelete({
+        const deletedUser = user_1.User.findOneAndDelete({
             username,
         });
         if (!deletedUser) {
-            return res
-                .status(404)
-                .send({ msg: `User ${req.params.username} not found` });
+            res.status(404).send({ msg: `User ${req.params.username} not found` });
         }
-        res
-            .status(200)
-            .send({ msg: `User ${req.params.username} has been deleted` });
+        res.status(200).send({ msg: `User ${req.params.username} has been deleted` });
     }
     catch (err) {
         console.error(err);
         res.status(500).send({ msg: "An error occurred while deleting the user" });
     }
+});
+router.patch("/api/users/patch/:username", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.params.username, "aaa", req.body.username);
+    try {
+        const existingUser = yield user_1.User.findOne({ username: req.body.username });
+        if (existingUser)
+            res.status(404).send({ msg: `User ${req.body.username} already exists.` });
+        const updatedUser = yield user_1.User.findOneAndUpdate({ username: req.params.username }, { username: req.body.username }, { new: true });
+        if (!updatedUser) {
+            res.status(404).send({ msg: `User ${req.params.username} not found` });
+        }
+        res.status(200).send({
+            msg: `User ${req.params.username} has changed username to ${req.body.username}`,
+            user: updatedUser,
+        });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).send({ msg: "An error occurred while updating the username" });
+    }
 }));
 // grant role "user"/"administrator"
-//@ts-ignore
 router.patch("/api/users/grant/:username", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const updatedUser = yield user_1.User.findOneAndUpdate({ username: req.params.username }, { role: "administrator" }, { new: true });
         if (!updatedUser) {
-            return res
-                .status(404)
-                .send({ msg: `User ${req.params.username} not found` });
+            res.status(404).send({ msg: `User ${req.params.username} not found` });
         }
         res.status(200).send({
             msg: `User ${req.params.username} has been granted administrator rights`,
@@ -75,14 +83,15 @@ router.patch("/api/users/grant/:username", middlewares_1.isAuthorized, (req, res
     }
     catch (err) {
         console.error(err);
-        res
-            .status(500)
-            .send({ msg: "An error occurred while updating the user role" });
+        res.status(500).send({ msg: "An error occurred while updating the user role" });
     }
 }));
-//@ts-ignore
 router.get("/api/admin", middlewares_1.isAuthorized, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_1.User.find();
     res.send(users);
+}));
+router.get("/api/users/me", middlewares_1.isAuthenticated, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const client = req.session.user;
+    client ? res.status(200).send(client) : res.status(401).send({ msg: "User not authenticated" });
 }));
 exports.default = router;

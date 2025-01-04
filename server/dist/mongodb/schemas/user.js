@@ -13,6 +13,11 @@ const UserSchema = new mongoose_1.default.Schema({
     },
     email: { type: mongoose_1.default.Schema.Types.String, required: true, unique: true },
     password: { type: mongoose_1.default.Schema.Types.String, required: true },
-    role: { type: mongoose_1.default.Schema.Types.String, required: true },
+    role: { type: mongoose_1.default.Schema.Types.String, required: true, default: "user" },
+    avatarUrl: { type: String, default: "" },
+    creationDate: { type: Number, default: Date.now },
+    lastLogin: { type: Number, default: null },
+    gender: { type: String, default: "" },
+    disabled: { type: Boolean, default: false },
 });
 exports.User = mongoose_1.default.model("User", UserSchema);
