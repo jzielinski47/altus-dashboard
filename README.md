@@ -1,8 +1,6 @@
 # Altus Dashboard
 Altus is a fully functional dashboard that embodies my long-standing vision of a clean and intuitive web application. For several years, I aspired to create such a project but lacked the time while working as a barista at Krakow International Airport. By the last quarter of 2024, I successfully delivered it in its Minimum Viable Product (MVP) state. The app steadily progressed as I developed it alongside my primary university tasks, working on it in my spare time, driven by a passion to create something unique and truly my own in a field I was deeply passionate about. Inspired by the quote Non omnis moriar, Altus stands as a reflection of my journey and growth as a web developer.
 
-
-
 ## Tech Stack
 
 **Frontend:** React, TailwindCSS (TypeScript)
