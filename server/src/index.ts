@@ -22,7 +22,7 @@ console.log("Frontend URI (env):", process.env.FRONTEND_URI || "Not set");
 console.log("Frontend URI:", process.env);
 
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  .connect(process.env.MONGO_PUBLIC_URL as string)
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
