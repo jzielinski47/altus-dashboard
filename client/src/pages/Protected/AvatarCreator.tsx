@@ -29,4 +29,5 @@ const avatar = createAvatar(lorelei, {
   backgroundColor: ["c0aede"],
 });
 
+console.log(seeds);
 export const svg = avatar.toString();

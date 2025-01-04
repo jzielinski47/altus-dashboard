@@ -1,4 +1,3 @@
-import React from "react";
 import { svg } from "../pages/Protected/AvatarCreator";
 
 const AvatarRenderer = () => {

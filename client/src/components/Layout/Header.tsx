@@ -7,7 +7,6 @@ import { Dropdown } from "../Dropdown/Dropdown";
 import ArrowButton from "../Buttons/ArrowButton";
 import { motion } from "framer-motion";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
-import { useEffect } from "react";
 
 const Header = () => {
   const nav = useNavigate();

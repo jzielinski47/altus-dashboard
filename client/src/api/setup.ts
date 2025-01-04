@@ -1,2 +1,2 @@
-export const serverIP: string = "http://localhost";
-export const serverPort: number = 4000;
+export const serverIP: string = "altus-dashboard-production.up.railway.app";
+export const serverPort: number = 8080;
