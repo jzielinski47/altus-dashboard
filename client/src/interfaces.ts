@@ -19,12 +19,16 @@ export interface ApiResponse<T> {
 }
 
 export interface iUser {
-  id: number;
+  id?: number;
   username: string;
   email: string;
   password: string;
-  role: string;
-  avatarUrl: string;
+  role?: string;
+  avatarUrl?: string;
+  creationDate?: number;
+  lastLogin?: number;
+  gender?: string;
+  disabled?: boolean;
 }
 
 export interface AuthContextType {
@@ -33,4 +37,5 @@ export interface AuthContextType {
   logout: () => void;
   isCookiesSet: boolean;
   setIsCookiesSet: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
 }

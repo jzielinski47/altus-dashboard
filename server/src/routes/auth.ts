@@ -31,6 +31,9 @@ router.post("/api/auth/signup", checkSchema(signupDataValidationSchema), async (
       email,
       password: hashedPassword,
       role: "user",
+      avatarUrl: "",
+      creationDate: Date.now(),
+      disabled: false,
     });
 
     const savedUser = await newUserInstance.save();
@@ -46,11 +49,26 @@ router.post("/api/auth", (req, res, next) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
-    req.logIn(user, (loginErr) => {
+    req.logIn(user, async (loginErr) => {
       if (loginErr) {
         return next(loginErr);
       }
-      return res.status(200).send({ msg: "Authenticated successfully", user: req.user });
+
+      try {
+        const currentLoginTime = Date.now();
+
+        await User.updateOne({ _id: user.id }, { $set: { lastLogin: currentLoginTime } });
+        if (req.user) req.user.lastLogin = currentLoginTime;
+        return res.status(200).send({
+          msg: "Authenticated successfully",
+          user: req.user,
+        });
+      } catch (updateErr) {
+        console.error("Error updating lastLogin:", updateErr);
+        return res.status(500).json({ error: "Failed to update lastLogin" });
+      }
+
+      // return res.status(200).send({ msg: "Authenticated successfully", user: req.user });
     });
   })(req, res, next);
 });

@@ -7,6 +7,10 @@ export interface iUser {
   password: string;
   role?: string;
   avatarUrl?: string;
+  creationDate?: number;
+  lastLogin?: number;
+  gender?: string;
+  disabled?: boolean;
 }
 
 export type Middleware = (req: Request, res: Response, next: NextFunction) => void;

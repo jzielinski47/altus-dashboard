@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="max-w-screen-xl flex flex-col-reverse xl:flex-row items-center justify-center gap-16 px-8 py-8">
         <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
           <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
-            <Badge name="What's new" color="primary" />
+            <Badge name="What's new" color="primary-a0" />
             <ArrowButton content="Just shipped v1.0" onClick={() => nav("/versions")} />
           </div>
           <h1 className="text-4xl max-w-[1000px] md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
