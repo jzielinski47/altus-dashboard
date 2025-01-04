@@ -17,6 +17,10 @@ app.use(
   })
 );
 
+console.log("Mongo URI:", process.env.MONGO_URI);
+console.log("Frontend URI:", process.env.FRONTEND_URI);
+console.log("Frontend URI:", process.env);
+
 mongoose
   .connect(process.env.MONGO_URI || setup.db.url)
   .then(() => console.log("Connected to MongoDb Database"))
