@@ -1,5 +1,5 @@
 import { iLoginData, iSignupData } from "../interfaces";
-import { serverIP, serverPort } from "./setup";
+import { serverIP } from "./setup";
 import { iError } from "../interfaces";
 
 const options: RequestInit = {
@@ -13,7 +13,7 @@ const options: RequestInit = {
 export const signup = async (credentials: iSignupData) => {
   try {
     options.body = JSON.stringify(credentials);
-    const res = await fetch(`${serverIP}:${serverPort}/api/auth/signup`, options);
+    const res = await fetch(`${serverIP}/api/auth/signup`, options);
     if (res.ok) {
       return res.json();
     } else {
@@ -34,7 +34,7 @@ export const signup = async (credentials: iSignupData) => {
 export const login = async (credentials: iLoginData) => {
   try {
     options.body = JSON.stringify(credentials);
-    const res = await fetch(`${serverIP}:${serverPort}/api/auth`, options);
+    const res = await fetch(`${serverIP}/api/auth`, options);
     if (res.ok) {
       return res.json();
     } else {

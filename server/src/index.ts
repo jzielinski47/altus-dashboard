@@ -16,8 +16,15 @@ app.use(
   })
 );
 
+console.log("Mongo URI (env):", process.env.MONGO_URI || "Not set");
+console.log("Frontend URI (env):", process.env.FRONTEND_URI || "Not set");
+console.log("Frontend URI:", process.env);
+
+console.log("MONGO_PUBLIC_URL:", process.env.MONGO_PUBLIC_URL);
+console.log("MONGO_URL:", process.env.MONGO_URL);
+
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  .connect(process.env.MONGO_PUBLIC_URL || (process.env.MONGO_URL as string))
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
@@ -48,6 +55,7 @@ app.get("/", (req, res) => {
 
   res.send({ msg: "welcome to /" });
 });
+
 
 const port: number = parseInt(process.env.PORT as string);
 app.listen(port, () => {

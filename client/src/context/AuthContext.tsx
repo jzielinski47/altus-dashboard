@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const logout = async () => {
-    await fetch(`${serverIP}:${serverPort}/api/auth/logout`, { method: "POST", credentials: "include" })
+    await fetch(`${serverIP}/api/auth/logout`, { method: "POST", credentials: "include" })
       .then(() => setUser(null))
       .catch((err) => console.error("Logout error:", err));
   };
