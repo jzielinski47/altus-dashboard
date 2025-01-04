@@ -1,6 +1,6 @@
 export const signupDataValidationSchema = {
   username: {
-    errorMessage: "Invalid username",
+    errorMessage: "Username should be at least 5 characters",
     isLength: {
       options: {
         min: 5,
@@ -12,11 +12,12 @@ export const signupDataValidationSchema = {
   },
   email: {
     isEmail: true,
+    errorMessage: "Invalid email",
   },
   password: {
     isLength: {
       options: { min: 8 },
-      errorMessage: "Password should be at least 8 chars",
+      errorMessage: "Password should be at least 8 characters",
     },
   },
 };

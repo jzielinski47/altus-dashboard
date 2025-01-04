@@ -1,73 +1,122 @@
 # Altus Dashboard
-Altus Project is a fully functional web application that blends usability with elegance. The primary goal is to bring together various innovative ideas into a single platform, prioritizing user experience over visual design in the initial stages. While the focus is currently on delivering a seamless and intuitive product, aesthetics are not neglected; my background as a graphic designer plays a significant role in shaping the app's overall look and feel. Ultimately, the aim is to develop a comprehensive and user-friendly dashboard that embodies my vision.
-
-The goal for now is to deliver MVP by the end of 2024. 
-
-`early design`
-![Landing Page](https://github.com/user-attachments/assets/cadb4eeb-84ed-4aad-a66f-49c0e6714b9f)
-
-`1.0 layout` 
-![image](https://github.com/user-attachments/assets/cbb66753-9079-4549-92c0-23a73ab34872)
+Altus is a fully functional dashboard that embodies my long-standing vision of a clean and intuitive web application. For several years, I aspired to create such a project but lacked the time while working as a barista at Krakow International Airport. By the last quarter of 2024, I successfully delivered it in its Minimum Viable Product (MVP) state. The app steadily progressed as I developed it alongside my primary university tasks, working on it in my spare time, driven by a passion to create something unique and truly my own in a field I was deeply passionate about. Inspired by the quote Non omnis moriar, Altus stands as a reflection of my journey and growth as a web developer.
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Frontend:** React, TailwindCSS (TypeScript)
 
-**Server:** Node, Express, WebSockets
+**Backend:** Node JS, Express JS, Passport JS (TypeScript)
 
-**Other:** Sessions, Passport, MongoDB, Password Hashing
+**Database:** MongoDB
+
+**Other features:** Session-based authentication with RBAC, Rest API
 
 
 ## Authors
 
-- [@jzielinski47](https://www.github.com/jzielinski47) 
-
-I'm the only author of this project, and I've designed, developed and deployed everything you see in this repository. I'll let you know if anyone else is involved. 
+- [@jzielinski47](https://www.github.com/jzielinski47)
 
 ## API Reference
 
-#### Get all users
+### Authentication Endpoints
 
+#### Sign Up a User
 ```http
-  GET /api/users
+POST /api/auth/signup
 ```
+Creates a new user account.
+| Parameter	 | Type | Description |
+| -----------| ----| -------- |
+| username |	string	| Required. Username of the user|
+| email |	string |	Required. Email of the user |
+| password	|string	| Required. Password for the user |
 
-#### Get active users count
-
+#### Log In a User
 ```http
-  GET /api/users/count
+POST /api/auth
 ```
+Authenticates a user.
+| Parameter	 | Type | Description |
+| -----------| ----| -------- |
+| username	|string	|Required. Username of the user|
+| password	|string	|Required. Password of the user|
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### Delete user
-
+#### Log Out a User
 ```http
-  POST /api/users/delete/:username
+POST /api/auth/logout
 ```
-`administrator rights required to perform this action`
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `username`      | `string` | **Required**. username of the user you're about to get rid of from the db |
+Logs out the currently authenticated user.
 
-#### Promote user to an administrator
-
+#### Check Authentication Status
 ```http
-  PATCH /api/users/grant/:username
+GET /api/auth/status
 ```
-`administrator rights required to perform this action`
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `username`      | `string` | **Required**. username of the user you're about to promote |
+Returns the authentication status of the current user.
 
+### User Management Endpoints
 
-#### Get all user data
-
+#### Get All Users
 ```http
-  GET /api/admin
+GET /api/users
 ```
-`administrator rights required to perform this action`
+Returns a list of all users.
 
-2024
+#### Get Active Users Count
+```http
+GET /api/users/count
+```
+Returns the count of currently active users.
+
+#### Delete a User
+```http
+POST /api/users/delete/:username
+```
+Deletes a user. Administrator rights required.
+
+| Parameter |	Type	| Description |
+| ---- | --- | --|
+|username	| string |	Required. Username of the user to delete|
+
+#### Update a User's Username
+```http
+PATCH /api/users/patch/:username
+```
+Updates the username of an existing user.
+
+| Parameter |	Type	| Description |
+| ---- | --- | --|
+| username	| string |	Required. Current username of the user | 
+| newUsername |	string |	Required. New username to update to |
+
+#### Grant Administrator Rights
+```http
+PATCH /api/users/grant/:username
+```
+Grants administrator rights to a user. Administrator rights required.
+
+| Parameter |	Type	| Description |
+| ---- | --- | --|
+| username	| string |	Required. Username of the user to promote | 
+
+#### Get User Details (Current User)
+```http
+GET /api/users/me
+```
+Returns the details of the authenticated user.
+
+#### Get All User Data (Admin Only)
+```http
+GET /api/admin
+```
+Returns detailed data for all users. Administrator rights required.
+
+## Key Functionalities:
+- Complex user authentication system (Sessions)
+- Role-based access control (RBAC) with security measures
+- Modern and clean UI design
+- Various features, including:
+  - Session timer
+  - Admin panel
+  - User remembered settings
+  - User statistics collection
+  - User profile customization

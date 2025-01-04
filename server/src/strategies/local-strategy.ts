@@ -2,12 +2,12 @@ import passport, { use } from "passport";
 import { Strategy } from "passport-local";
 import { User } from "../mongodb/schemas/user";
 import { verifyPassword } from "../utils/encryption";
+import { iUser } from "../utils/interfaces";
 
 passport.serializeUser((user, done) => {
-  //@ts-ignore
-  console.log(`serialize user by id_${user.id}`);
-  //@ts-ignore
-  done(null, user.id);
+  const client = user as iUser;
+  console.log(`serialize user by id_${client}`);
+  done(null, client.id);
 });
 
 passport.deserializeUser(async (id: number, done) => {
@@ -23,20 +23,17 @@ passport.deserializeUser(async (id: number, done) => {
 });
 
 export default passport.use(
-  new Strategy(
-    { usernameField: "username" },
-    async (username, password, done) => {
-      try {
-        const findUser = await User.findOne({ username });
-        if (!findUser) throw new Error("User not found");
+  new Strategy({ usernameField: "email" }, async (email, password, done) => {
+    try {
+      const findUser = await User.findOne({ email });
+      if (!findUser) throw new Error("User not found");
 
-        const isAuthorized = verifyPassword(password, findUser.password);
-        if (!isAuthorized) throw new Error("Wrong password");
+      const isAuthorized = verifyPassword(password, findUser.password);
+      if (!isAuthorized) throw new Error("Wrong password");
 
-        done(null, findUser);
-      } catch (err) {
-        done(err, undefined);
-      }
+      done(null, findUser);
+    } catch (err) {
+      done(err, undefined);
     }
-  )
+  })
 );
