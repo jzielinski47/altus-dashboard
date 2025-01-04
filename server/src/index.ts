@@ -17,8 +17,8 @@ app.use(
   })
 );
 
-console.log("Mongo URI:", process.env.MONGO_URI);
-console.log("Frontend URI:", process.env.FRONTEND_URI);
+console.log("Mongo URI (env):", process.env.MONGO_URI || "Not set");
+console.log("Frontend URI (env):", process.env.FRONTEND_URI || "Not set");
 console.log("Frontend URI:", process.env);
 
 mongoose
