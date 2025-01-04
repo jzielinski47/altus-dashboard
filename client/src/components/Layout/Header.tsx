@@ -7,10 +7,17 @@ import { Dropdown } from "../Dropdown/Dropdown";
 import ArrowButton from "../Buttons/ArrowButton";
 import { motion } from "framer-motion";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
+import { useEffect } from "react";
 
 const Header = () => {
   const nav = useNavigate();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div className="text-white/60">Loading...</div>;
+  }
+
+  console.log(user, loading, "aas");
 
   return (
     <header className="relative px-4 sm:px-6">
@@ -34,7 +41,6 @@ const Header = () => {
           {user ? (
             <>
               <Avatar className="hover:bg-primary-a30 cursor-pointer" alt={user.username} src={user.avatarUrl} />
-
               <div className="hidden sm:block flex flex-col gap-0.5">
                 <h2 className="text-sm font-semibold">{user.username}</h2>
                 <p className="text-sm text-white/60">{user.email}</p>

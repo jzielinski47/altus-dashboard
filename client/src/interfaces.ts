@@ -33,4 +33,5 @@ export interface AuthContextType {
   logout: () => void;
   isCookiesSet: boolean;
   setIsCookiesSet: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
 }

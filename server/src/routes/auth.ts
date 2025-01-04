@@ -55,21 +55,20 @@ router.post("/api/auth", (req, res, next) => {
       }
 
       try {
-        await User.updateOne({ _id: user.id }, { $set: { lastLogin: Date.now() } });
+        const currentLoginTime = Date.now();
+
+        await User.updateOne({ _id: user.id }, { $set: { lastLogin: currentLoginTime } });
 
         return res.status(200).send({
           msg: "Authenticated successfully",
-          user: {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            lastLogin: Date.now(),
-          },
+          user: req.user,
         });
       } catch (updateErr) {
         console.error("Error updating lastLogin:", updateErr);
         return res.status(500).json({ error: "Failed to update lastLogin" });
       }
+
+      // return res.status(200).send({ msg: "Authenticated successfully", user: req.user });
     });
   })(req, res, next);
 });
