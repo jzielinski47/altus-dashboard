@@ -17,8 +17,6 @@ const Header = () => {
     return <div className="text-white/60">Loading...</div>;
   }
 
-  console.log(user, loading, "aas");
-
   return (
     <header className="relative px-4 sm:px-6">
       <motion.div
