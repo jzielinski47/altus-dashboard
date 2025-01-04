@@ -12,7 +12,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URI || `${setup.client.url}:${setup.client.port}`,
+    origin: process.env.FRONTEND_URI,
     credentials: true,
   })
 );
@@ -22,7 +22,7 @@ console.log("Frontend URI (env):", process.env.FRONTEND_URI || "Not set");
 console.log("Frontend URI:", process.env);
 
 mongoose
-  .connect(process.env.MONGO_URI || setup.db.url)
+  .connect(process.env.MONGO_URI as string)
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
