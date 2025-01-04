@@ -12,13 +12,13 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: `${setup.client.url}:${setup.client.port}`,
+    origin: process.env.FRONTEND_URI || `${setup.client.url}:${setup.client.port}`,
     credentials: true,
   })
 );
 
 mongoose
-  .connect(setup.db.url)
+  .connect(process.env.MONGO_URI || setup.db.url)
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
@@ -26,7 +26,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 app.use(
   session({
-    secret: "secret_cypher_key",
+    secret: process.env.SECRET_KEY as string,
     saveUninitialized: false,
     resave: false,
     cookie: {
