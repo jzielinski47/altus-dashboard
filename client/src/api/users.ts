@@ -1,8 +1,16 @@
 import { iError } from "../interfaces";
 import { serverIP, serverPort } from "./setup";
 
-const patchOptions: RequestInit = {
+const patch: RequestInit = {
   method: "PATCH",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: "include",
+};
+
+const get: RequestInit = {
+  method: "GET",
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,8 +19,22 @@ const patchOptions: RequestInit = {
 
 export const updateUsername = async (username: string, patchedUsername: string) => {
   try {
-    patchOptions.body = JSON.stringify({ username: patchedUsername });
-    const res = await fetch(`${serverIP}:${serverPort}/api/users/patch/${username}`, patchOptions);
+    patch.body = JSON.stringify({ username: patchedUsername });
+    const res = await fetch(`${serverIP}:${serverPort}/api/users/patch/${username}`, patch);
+    if (res.ok) {
+      return res.json();
+    } else {
+      const err = await res.json();
+      throw new Error(err.error);
+    }
+  } catch (err: iError | any) {
+    throw new Error(err.message);
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const res = await fetch(`${serverIP}:${serverPort}/api/users/`, get);
     if (res.ok) {
       return res.json();
     } else {
