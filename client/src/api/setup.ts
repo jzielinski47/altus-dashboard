@@ -1,2 +1,2 @@
-export const serverIP: string = "altus-dashboard-production.up.railway.app";
+export const serverIP: string = import.meta.env.VITE_SERVER_URI || "http://localhost";
 export const serverPort: number = 8080;
