@@ -1,5 +1,5 @@
 import { iError } from "../interfaces";
-import { serverIP, serverPort } from "./setup";
+import { serverIP } from "./setup";
 
 const patch: RequestInit = {
   method: "PATCH",

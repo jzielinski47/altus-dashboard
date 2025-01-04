@@ -1,5 +1,5 @@
 import { iLoginData, iSignupData } from "../interfaces";
-import { serverIP, serverPort } from "./setup";
+import { serverIP } from "./setup";
 import { iError } from "../interfaces";
 
 const options: RequestInit = {
