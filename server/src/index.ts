@@ -5,20 +5,19 @@ import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
-import { setup } from "./setup";
 
 const app = express();
 const cors = require("cors");
 
 app.use(
   cors({
-    origin: `${setup.client.url}:${setup.client.port}`,
+    origin: process.env.FRONTEND_URI,
     credentials: true,
   })
 );
 
 mongoose
-  .connect(setup.db.url)
+  .connect(process.env.MONGO_URI as string)
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
@@ -26,11 +25,11 @@ app.use(express.json());
 app.disable("x-powered-by");
 app.use(
   session({
-    secret: "secret_cypher_key",
+    secret: process.env.SECRET_KEY as string,
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 4, // 4 hours
+      maxAge: 1000 * 60 * 60 * 4,
       httpOnly: true,
       secure: false,
       sameSite: "lax",
@@ -50,7 +49,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "welcome to /" });
 });
 
-const port: number = parseInt(process.env.PORT || setup.server.port.toString(), 10);
+const port: number = parseInt(process.env.PORT as string);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
