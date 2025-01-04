@@ -22,9 +22,9 @@ const App = () => {
 
   return (
     <div className="app min-h-screen flex flex-col" ref={constraintsRef}>
-      {!isCookiesSet ? <CookieDialog con={constraintsRef} /> : null}
       <Router>
         <Header />
+        {!isCookiesSet ? <CookieDialog con={constraintsRef} /> : null}
         <main className="flex-grow w-full flex flex-col items-center">
           <Routes>
             <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <Home />} />

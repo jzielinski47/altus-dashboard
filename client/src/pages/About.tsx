@@ -5,12 +5,13 @@ const About = () => {
         Altus Dashboard is my personal approach to dashboard websites combining all my skills in one app
       </h2>
       <p className="text-justify text-white/60">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque, nibh id hendrerit ultricies, leo
-        ipsum bibendum sapien, a bibendum lacus nibh in eros. Donec pulvinar ante id tempus sodales. Nulla aliquam erat
-        eget felis rhoncus, eu maximus nunc volutpat. Cras molestie aliquet risus. Nullam magna arcu, posuere eleifend
-        volutpat non, venenatis non felis. Aenean in felis dignissim, congue tortor ac, commodo arcu. Maecenas posuere
-        tellus at ultrices tristique. In hac habitasse platea dictumst. Proin sed dui tellus. Etiam faucibus finibus mi
-        ut imperdiet. Quisque nunc nulla, ullamcorper ac malesuada sed, ornare sit amet nisi.
+        Altus is a fully functional dashboard that embodies my long-standing vision of a clean and intuitive web
+        application. For several years, I aspired to create such a project but lacked the time while working as a
+        barista at Krakow International Airport. By the last quarter of 2024, I successfully delivered it in its Minimum
+        Viable Product (MVP) state. The app steadily progressed as I developed it alongside my primary university tasks,
+        working on it in my spare time, driven by a passion to create something unique and truly my own in a field I was
+        deeply passionate about. Inspired by the quote Non omnis moriar, Altus stands as a reflection of my journey and
+        growth as a web developer.
       </p>
     </div>
   );

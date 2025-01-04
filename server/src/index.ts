@@ -5,7 +5,6 @@ import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
-import { setup } from "./setup";
 
 const app = express();
 const cors = require("cors");
@@ -37,7 +36,7 @@ app.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 4, // 4 hours
+      maxAge: 1000 * 60 * 60 * 4,
       httpOnly: true,
       secure: false,
       sameSite: "lax",
@@ -57,7 +56,8 @@ app.get("/", (req, res) => {
   res.send({ msg: "welcome to /" });
 });
 
-const port: number = parseInt(process.env.PORT as string, 10);
+
+const port: number = parseInt(process.env.PORT as string);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

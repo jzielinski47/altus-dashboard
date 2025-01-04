@@ -3,6 +3,7 @@ import { useState } from "react";
 import HUIButton from "./Buttons/Button";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -21,7 +22,15 @@ const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con 
             </DialogTitle>
             <p className="mt-2 text-sm/6 text-white/50">
               This site uses cookies to improve your experience and store essential account information. By continuing,
-              you agree to our Privacy Policy and Terms of Service.
+              you agree to our{" "}
+              <Link to="/privacy" className="underline">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link to="/privacy" className="underline">
+                Terms of Service
+              </Link>
+              .
             </p>
             <div className="mt-4">
               <HUIButton
