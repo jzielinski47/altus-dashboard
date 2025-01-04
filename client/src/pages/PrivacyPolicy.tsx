@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
         Privacy Policy
       </h2>
 
-      <p>Effective Date: January 1, 2025</p>
+      <p>Effective Date: January 5, 2025</p>
 
       <p className="text-justify text-white/60">
         At Altus Dashboard, we are committed to protecting your privacy. This Privacy Policy outlines how we collect,
@@ -34,6 +34,18 @@ const PrivacyPolicy = () => {
         <li>
           <strong>avatarUrl:</strong> The URL of your profile avatar.
         </li>
+        <li>
+          <strong>creationDate:</strong> The timestamp indicating when your account was created.
+        </li>
+        <li>
+          <strong>lastLogin:</strong> The timestamp of your most recent login to the application.
+        </li>
+        <li>
+          <strong>gender:</strong> Your gender, if provided.
+        </li>
+        <li>
+          <strong>disabled:</strong> A flag indicating if your account has been disabled.
+        </li>
       </ul>
 
       <h2 className="text-white/60">Cookies</h2>
@@ -51,6 +63,7 @@ const PrivacyPolicy = () => {
         <li>Authenticate and manage user accounts.</li>
         <li>Provide personalized experiences within the application.</li>
         <li>Communicate important updates or information related to your account.</li>
+        <li>Track account creation and login activity to improve security and user experience.</li>
       </ul>
 
       <h2 className="text-white/60">Data Security</h2>
