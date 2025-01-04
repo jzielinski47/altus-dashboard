@@ -49,7 +49,10 @@ export default function Hero() {
           </div>
         </div>
         <div className="hidden xl:flex-1 w-full h-full justify-center items-center xl:flex">
-          <img className="border-0 placeholder rounded-xl w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-none xl:h-auto aspect-[1/1]" />
+          <img
+            src="https://images.unsplash.com/photo-1560837616-fee1f3d8753a?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className="object-cover border-0 placeholder rounded-xl w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-none xl:h-auto aspect-[1/1]"
+          />
         </div>
       </div>
     </section>
