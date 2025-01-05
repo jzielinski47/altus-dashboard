@@ -19,6 +19,11 @@ Altus is a fully functional dashboard that embodies my long-standing vision of a
 
 - [@jzielinski47](https://www.github.com/jzielinski47)
 
+## License
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).  
+You may use, share, and adapt this project for non-commercial purposes only.  
+For commercial use, please contact me at jzielinski47dev@gmail.com.
+
 ## API Reference
 
 ### Authentication Endpoints
