@@ -53,9 +53,8 @@ app.use(router);
 app.get("/", (req, res) => {
   req.session.visited = true;
 
-  res.send({ msg: "welcome to /" });
+  res.send({ msg: "/ - server's running" });
 });
-
 
 const port: number = parseInt(process.env.PORT as string);
 app.listen(port, () => {
