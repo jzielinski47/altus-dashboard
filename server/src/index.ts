@@ -8,7 +8,7 @@ import "./strategies/local-strategy";
 
 const app = express();
 const cors = require("cors");
-const isLocalEnabled: boolean = true;
+const isLocalEnabled: boolean = false;
 
 app.use(
   cors({
