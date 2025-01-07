@@ -8,23 +8,19 @@ import "./strategies/local-strategy";
 
 const app = express();
 const cors = require("cors");
+const isLocalEnabled: boolean = true;
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URI,
+    origin: isLocalEnabled ? "http://localhost:5173" : process.env.FRONTEND_URI,
     credentials: true,
   })
 );
 
-console.log("Mongo URI (env):", process.env.MONGO_URI || "Not set");
-console.log("Frontend URI (env):", process.env.FRONTEND_URI || "Not set");
-console.log("Frontend URI:", process.env);
-
-console.log("MONGO_PUBLIC_URL:", process.env.MONGO_PUBLIC_URL);
-console.log("MONGO_URL:", process.env.MONGO_URL);
-
 mongoose
-  .connect(process.env.MONGO_PUBLIC_URL || (process.env.MONGO_URL as string))
+  .connect(
+    isLocalEnabled ? "mongodb://localhost:27017" : process.env.MONGO_PUBLIC_URL || (process.env.MONGO_URL as string)
+  )
   .then(() => console.log("Connected to MongoDb Database"))
   .catch((err) => console.log(err));
 
@@ -32,7 +28,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 app.use(
   session({
-    secret: process.env.SECRET_KEY as string,
+    secret: isLocalEnabled ? "testsecretkey" : (process.env.SECRET_KEY as string),
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -56,7 +52,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "/ - server's running" });
 });
 
-const port: number = parseInt(process.env.PORT as string);
+const port: number = parseInt(isLocalEnabled ? "8080" : (process.env.PORT as string));
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
