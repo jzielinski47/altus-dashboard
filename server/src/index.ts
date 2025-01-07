@@ -4,31 +4,35 @@ import session from "express-session";
 import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
+import dotenv from "dotenv";
 import "./strategies/local-strategy";
+import { getRandomArbitrary } from "./utils/encryption";
+
+dotenv.config({ path: "./local.env" });
 
 const app = express();
 const cors = require("cors");
-const isLocalEnabled: boolean = false;
 
 app.use(
   cors({
-    origin: isLocalEnabled ? "http://localhost:5173" : process.env.FRONTEND_URI,
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
 
-mongoose
-  .connect(
-    isLocalEnabled ? "mongodb://localhost:27017" : process.env.MONGO_PUBLIC_URL || (process.env.MONGO_URL as string)
-  )
-  .then(() => console.log("Connected to MongoDb Database"))
-  .catch((err) => console.log(err));
-
+try {
+  mongoose
+    .connect(process.env.MONGO_PUBLIC_URL || process.env.MONGO_URL || "")
+    .then(() => console.log("Connected to MongoDb Database"))
+    .catch((err) => console.log(err));
+} catch (err) {
+  console.log("err");
+}
 app.use(express.json());
 app.disable("x-powered-by");
 app.use(
   session({
-    secret: isLocalEnabled ? "testsecretkey" : (process.env.SECRET_KEY as string),
+    secret: process.env.SECRET_KEY || "anotherTestSecretKeyJustInCaseFirstOneIsNotRecognized",
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -48,11 +52,10 @@ app.use(router);
 
 app.get("/", (req, res) => {
   req.session.visited = true;
-
-  res.send({ msg: "/ - server's running" });
+  res.send({ msg: "/ - server's running correctly" });
 });
 
-const port: number = parseInt(isLocalEnabled ? "8080" : (process.env.PORT as string));
+const port: number = parseInt(process.env.PORT as string) || getRandomArbitrary(49152, 65535);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
