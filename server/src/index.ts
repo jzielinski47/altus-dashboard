@@ -26,24 +26,28 @@ try {
     .then(() => console.log("Connected to MongoDb Database"))
     .catch((err) => console.log(err));
 } catch (err) {
-  console.log("err");
+  console.log("DB error: ", err);
 }
 app.use(express.json());
 app.disable("x-powered-by");
-app.use(
-  session({
-    secret: process.env.SECRET_KEY || "anotherTestSecretKeyJustInCaseFirstOneIsNotRecognized",
-    saveUninitialized: false,
-    resave: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 4,
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    },
-    store: MongoStore.create({ client: mongoose.connection.getClient() }),
-  })
-);
+try {
+  app.use(
+    session({
+      secret: process.env.SECRET_KEY as string,
+      saveUninitialized: false,
+      resave: false,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 4,
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+      },
+      store: MongoStore.create({ client: mongoose.connection.getClient() }),
+    })
+  );
+} catch (err) {
+  console.error("Session creation error: ", err);
+}
 
 app.use(passport.initialize());
 app.use(passport.session());
