@@ -87,7 +87,7 @@ Deletes a user. Administrator rights required.
 
 #### Update a User's Username
 ```http
-PATCH /api/users/patch/:username
+PATCH /api/users/patch/username/:username
 ```
 Updates the username of an existing user.
 
