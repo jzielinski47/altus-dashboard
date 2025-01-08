@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextType, iError, iUser } from "../interfaces";
-import { serverIP, serverPort } from "../api/setup";
+import { serverIP } from "../api/setup";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -12,7 +12,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`${serverIP}:${serverPort}/api/auth/status`, { credentials: "include" });
+        const res = await fetch(`${serverIP}/api/auth/status`, { credentials: "include" });
         const data = await res.json();
         if (res.ok && data.user) setUser(data.user);
       } catch (err: iError | any) {
@@ -21,6 +21,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setLoading(false);
       }
     };
+
+    console.log(`${serverIP}/api/auth/status`);
 
     fetchUser();
   }, []);
