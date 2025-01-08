@@ -20,7 +20,7 @@ const get: RequestInit = {
 export const updateUsername = async (username: string, patchedUsername: string) => {
   try {
     patch.body = JSON.stringify({ username: patchedUsername });
-    const res = await fetch(`${serverIP}/api/users/patch/${username}`, patch);
+    const res = await fetch(`${serverIP}/api/users/patch/username/${username}`, patch);
     if (res.ok) {
       return res.json();
     } else {

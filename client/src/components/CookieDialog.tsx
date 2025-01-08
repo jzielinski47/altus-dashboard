@@ -34,12 +34,13 @@ const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con 
             </p>
             <div className="mt-4">
               <HUIButton
-                content="Accept"
                 onClick={() => {
                   setIsOpen(false);
                   setIsCookiesSet(true);
                 }}
-              />
+              >
+                Accept
+              </HUIButton>
             </div>
           </DialogPanel>
         </div>

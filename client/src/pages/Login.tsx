@@ -75,7 +75,7 @@ const Login = () => {
               {isRegistration ? "Sign in" : "Sign up"}
             </a>
           </p>
-          <HUIButton onClick={sendCredentials} content={isRegistration ? "Sign up" : "Sign in"} />
+          <HUIButton onClick={sendCredentials}>{isRegistration ? "Sign up" : "Sign in"} </HUIButton>
         </div>
       </div>
     </div>
