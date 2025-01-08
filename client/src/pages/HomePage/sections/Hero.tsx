@@ -18,7 +18,7 @@ export default function Hero() {
         <div className="flex-1 flex flex-col gap-1 justify-center items-center xl:items-start">
           <div className="mb-6 flex flex-col lg:flex-row items-center justify-left gap-x-6">
             <Badge name="What's new" color="primary-a0" />
-            <ArrowButton content="Just shipped v1.0" onClick={() => nav("/versions")} />
+            <ArrowButton onClick={() => nav("/versions")}>Just shipped v1.0</ArrowButton>
           </div>
           <h1 className="text-4xl max-w-[1000px] md:text-6xl font-bold text-balance xl:text-pretty text-center xl:text-left tracking-tight ">
             Connect, Track, and Grow—All in One Place.
@@ -37,8 +37,8 @@ export default function Hero() {
             {/* <NavButton name="Get started" path={"/auth"} variant={1} />
             <NavButton name="Learn more" path={"/about"} variant={2} /> */}
 
-            <HUIButton content="Get started" onClick={() => nav("/auth")} />
-            <HUIButton content="Learn more" onClick={() => nav("/about")} />
+            <HUIButton onClick={() => nav("/auth")}>Get started</HUIButton>
+            <HUIButton onClick={() => nav("/about")}>Learn more</HUIButton>
             <Button
               onClick={() => (window.location.href = "https://github.com/jzielinski47/altus-dashboard")}
               className="inline-flex items-center gap-2 rounded-lg py-1.5 px-3 text-sm/6 font-semibold text-white focus:outline-none data-[hover]:bg-level-4 data-[focus]:outline-1 data-[focus]:outline-white  transition duration-700 ease-in-out"

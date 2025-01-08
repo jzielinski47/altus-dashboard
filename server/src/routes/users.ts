@@ -42,7 +42,7 @@ router.post("/api/users/delete/:username", isAuthorized, (req: Request, res: Res
   }
 });
 
-router.patch("/api/users/patch/:username", async (req, res) => {
+router.patch("/api/users/patch/username/:username", async (req, res) => {
   console.log(req.params.username, "aaa", req.body.username);
 
   try {
