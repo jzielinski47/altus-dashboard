@@ -47,7 +47,7 @@ const Header = () => {
               </Dropdown>
             </>
           ) : (
-            <ArrowButton onClick={() => nav("/auth")}>"Log in"</ArrowButton>
+            <ArrowButton onClick={() => nav("/auth")}>Log in</ArrowButton>
           )}
         </div>
       </motion.div>

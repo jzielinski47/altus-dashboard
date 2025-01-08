@@ -6,7 +6,7 @@ import HUIButton from "../Buttons/Button";
 const SessionTimerPanel = () => {
   const { user } = useAuth();
   const [sessionTime, setSessionTime] = useState<string>("");
-  const [lastBreak, setLastBreak] = useState("");
+  // const [lastBreak, setLastBreak] = useState("");
 
   const [isTrackingAllowed, setIsTrackingAllowed] = useState(true);
 
