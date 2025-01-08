@@ -9,3 +9,7 @@ export const hashPassword = (password: string): string => {
 };
 
 export const verifyPassword = (pass: string, hashedPass: string): boolean => bcrypt.compareSync(pass, hashedPass);
+
+export function getRandomArbitrary(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
+}
