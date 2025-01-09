@@ -4,9 +4,11 @@ import { useAuth } from "../../context/AuthContext";
 import HUIButton from "../Buttons/Button";
 
 const SessionTimerPanel = () => {
+  /* This compontent requires a rewrite */
+
   const { user } = useAuth();
-  const [sessionTime, setSessionTime] = useState<string>("");
-  // const [lastBreak, setLastBreak] = useState("");
+  const [sessionTime, setSessionTime] = useState("");
+  // const [lastBreakTime, setLastBreakTime] = useState("");
 
   const [isTrackingAllowed, setIsTrackingAllowed] = useState(true);
 
@@ -17,7 +19,14 @@ const SessionTimerPanel = () => {
     const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    return [
+      days > 0 && `${days}d`,
+      hours > 0 && `${hours}h`,
+      minutes > 0 && `${minutes}m`,
+      seconds > 0 && `${seconds}s`,
+    ]
+      .filter(Boolean)
+      .join(" ");
   };
 
   useEffect(() => {
