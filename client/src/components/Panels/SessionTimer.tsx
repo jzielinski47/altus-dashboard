@@ -23,7 +23,9 @@ const SessionTimerPanel = () => {
   useEffect(() => {
     if (user && user.lastLogin && isTrackingAllowed) {
       const interval = setInterval(() => {
-        const timeSinceLastLogin = calculateTimeSinceLastLogin(user.lastLogin as number);
+        const timeSinceLastLogin = calculateTimeSinceLastLogin(
+          user.lastLogin as number
+        );
         setSessionTime(timeSinceLastLogin);
       }, 1000);
 
@@ -35,29 +37,41 @@ const SessionTimerPanel = () => {
     <PanelWrapper>
       <div className="rounded-lg border border-white/5 bg-white/5 p-6">
         <div className="flex-grow">
-          <h2 className="text-lg text-white/[87%] font-bold mb-2">Current session time</h2>
-          <div className="mb-2 flex-grow flex flex-col sm:flex-row justify-between gap-4">
+          <h2 className="text-lg text-white/[87%] font-bold mb-2">
+            Current session time
+          </h2>
+          <div className="mb-2 flex-grow flex flex-col justify-between gap-2">
             <div className="mb-2 flex flex-col">
               <p className="text-base text-white/60">Current session time</p>
               <p className="text-2xl font-medium text-white/[87%]">
-                {user && user.lastLogin ? sessionTime : "No last login data available"}
+                {user && user.lastLogin
+                  ? sessionTime
+                  : "No last login data available"}
               </p>
             </div>
             <div className="mb-2 flex flex-col">
               <p className="text-base text-white/60">Time since last break</p>
               <p className="text-2xl font-medium text-white/[87%]">
-                {user && user.lastLogin ? sessionTime : "No last login data available"}
+                {user && user.lastLogin
+                  ? sessionTime
+                  : "No last login data available"}
               </p>
             </div>
           </div>
 
           <div className="flex flex-row">
             <div className="flex-grow">
-              <p className="text-base text-white/60">Tracking: {isTrackingAllowed ? "On" : "Off"}</p>
-              <p className="text-base text-white/60">Tracking hours: 12:00 AM - 11:59 PM</p>
+              <p className="text-base text-white/60">
+                Tracking: {isTrackingAllowed ? "On" : "Off"}
+              </p>
+              <p className="text-base text-white/60">
+                Tracking hours: 12:00 AM - 11:59 PM
+              </p>
             </div>
             <div className="flex-grow flex justify-end items-end">
-              <HUIButton onClick={() => setIsTrackingAllowed(!isTrackingAllowed)}>
+              <HUIButton
+                onClick={() => setIsTrackingAllowed(!isTrackingAllowed)}
+              >
                 {(isTrackingAllowed ? "Disable" : "Enable") + " tracking"}
               </HUIButton>
             </div>
