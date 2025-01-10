@@ -29,7 +29,7 @@ const UserProfile = () => {
       <div className="flex flex-row gap-8 justify-center items-center">
         <div className="flex flex-col gap-4">
           <PanelWrapper>
-            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem]">
+            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60 ">Username</p>
 
@@ -54,7 +54,7 @@ const UserProfile = () => {
             </div>
           </PanelWrapper>
           <PanelWrapper>
-            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem]">
+            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Password</p>
                 <p className="text-base font-medium text-white/[87%]">{user?.password.substring(0, 10)}</p>
@@ -65,7 +65,7 @@ const UserProfile = () => {
             </div>
           </PanelWrapper>
           <PanelWrapper>
-            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem]">
+            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Email</p>
                 <p className="text-base font-medium text-white/[87%]">{user?.email}</p>
@@ -73,7 +73,7 @@ const UserProfile = () => {
             </div>
           </PanelWrapper>
           <PanelWrapper>
-            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem]">
+            <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Role</p>
                 <p className="text-base font-medium text-white/[87%]">{user?.role}</p>
