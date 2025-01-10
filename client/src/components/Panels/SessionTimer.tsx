@@ -1,66 +1,97 @@
 import { useEffect, useState } from "react";
 import PanelWrapper from "./PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
-import HUIButton from "../Buttons/Button";
+import Button from "../Buttons/Button";
+
+const formatTimeDuration = (milliseconds: number) => {
+  const seconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(months / 12);
+
+  const s = seconds % 60;
+  const m = minutes % 60;
+  const h = hours % 24;
+  const d = days % 30;
+  const mo = months % 12;
+
+  if (years > 0) {
+    return `${years}y ${mo}mo ${d}d`;
+  }
+  if (months > 0) {
+    return `${months}mo ${d}d ${h}h`;
+  }
+  if (days > 0) {
+    return `${days}d ${h}h ${m}m`;
+  }
+  if (hours > 0) {
+    return `${h}h ${m}m ${s}s`;
+  }
+  return `${m}m ${s}s`;
+};
 
 const SessionTimerPanel = () => {
   const { user } = useAuth();
-  const [sessionTime, setSessionTime] = useState<string>("");
-  // const [lastBreak, setLastBreak] = useState("");
+  const [isTracking, setIsTracking] = useState(true);
+  const [sessionDuration, setSessionDuration] = useState("");
+  const [breakDuration, setBreakDuration] = useState("");
+  const [lastBreakTimestamp, setLastBreakTimestamp] = useState(Date.now());
 
-  const [isTrackingAllowed, setIsTrackingAllowed] = useState(true);
+  const calculateDuration = (startTime: number) => {
+    return Date.now() - startTime;
+  };
 
-  const calculateTimeSinceLastLogin = (lastLogin: number) => {
-    const timeDifference = Date.now() - lastLogin;
-    const seconds = Math.floor((timeDifference / 1000) % 60);
-    const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-    const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  const handleTrackingToggle = () => {
+    if (!isTracking) {
+      setLastBreakTimestamp(Date.now());
+    }
+    setIsTracking(!isTracking);
   };
 
   useEffect(() => {
-    if (user && user.lastLogin && isTrackingAllowed) {
-      const interval = setInterval(() => {
-        const timeSinceLastLogin = calculateTimeSinceLastLogin(user.lastLogin as number);
-        setSessionTime(timeSinceLastLogin);
+    if (user?.lastLogin && isTracking) {
+      const timerInterval = setInterval(() => {
+        const sessionTime = calculateDuration(user.lastLogin as number);
+        const breakTime = calculateDuration(lastBreakTimestamp);
+
+        setSessionDuration(formatTimeDuration(sessionTime));
+        setBreakDuration(formatTimeDuration(breakTime));
       }, 1000);
 
-      return () => clearInterval(interval);
+      return () => clearInterval(timerInterval);
     }
-  }, [user, isTrackingAllowed]);
+  }, [user, isTracking, lastBreakTimestamp]);
 
   return (
     <PanelWrapper>
       <div className="rounded-lg border border-white/5 bg-white/5 p-6">
         <div className="flex-grow">
-          <h2 className="text-lg text-white/[87%] font-bold mb-2">Current session time</h2>
-          <div className="mb-2 flex-grow flex flex-col sm:flex-row justify-between gap-4">
-            <div className="mb-2 flex flex-col">
-              <p className="text-base text-white/60">Current session time</p>
+          <h2 className="text-lg text-white/[87%] font-bold mb-2">Session Timer</h2>
+
+          <div className="mb-2 flex flex-col gap-2">
+            <div className="mb-2">
+              <p className="text-base text-white/60">Overall session duration</p>
               <p className="text-2xl font-medium text-white/[87%]">
-                {user && user.lastLogin ? sessionTime : "No last login data available"}
+                {user?.lastLogin ? sessionDuration : "No session data"}
               </p>
             </div>
-            <div className="mb-2 flex flex-col">
-              <p className="text-base text-white/60">Time since last break</p>
+
+            <div className="mb-2">
+              <p className="text-base text-white/60">Current session</p>
               <p className="text-2xl font-medium text-white/[87%]">
-                {user && user.lastLogin ? sessionTime : "No last login data available"}
+                {user?.lastLogin ? breakDuration : "No break data"}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-row">
-            <div className="flex-grow">
-              <p className="text-base text-white/60">Tracking: {isTrackingAllowed ? "On" : "Off"}</p>
-              <p className="text-base text-white/60">Tracking hours: 12:00 AM - 11:59 PM</p>
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="text-base text-white/60">Status: {isTracking ? "Tracking" : "Paused"}</p>
+              <p className="text-base text-white/60">Hours: 12:00 AM - 11:59 PM</p>
             </div>
-            <div className="flex-grow flex justify-end items-end">
-              <HUIButton onClick={() => setIsTrackingAllowed(!isTrackingAllowed)}>
-                {(isTrackingAllowed ? "Disable" : "Enable") + " tracking"}
-              </HUIButton>
-            </div>
+            <Button onClick={handleTrackingToggle}>{isTracking ? "Pause Tracking" : "Resume Tracking"}</Button>
           </div>
         </div>
       </div>
