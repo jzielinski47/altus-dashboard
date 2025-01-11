@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PanelWrapper from "./PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
-import Button from "../Buttons/Button";
+import Button from "../Buttons/HUIButton";
 
 const formatTimeDuration = (milliseconds: number) => {
   const seconds = Math.floor(milliseconds / 1000);

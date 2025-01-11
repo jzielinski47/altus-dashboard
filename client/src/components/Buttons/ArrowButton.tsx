@@ -1,5 +1,5 @@
 import { Button } from "@headlessui/react";
-import { iHuiButton } from "./Button";
+import { iHuiButton } from "./HUIButton";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
 
 const ArrowButton = ({ children, onClick }: iHuiButton) => {

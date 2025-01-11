@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@headlessui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HUIButton from "../../../components/Buttons/Button";
+import HUIButton from "../../../components/Buttons/HUIButton";
 import ArrowButton from "../../../components/Buttons/ArrowButton";
 import Badge from "../../../components/Badge";
 import { gradientText } from "../../../tailwind-prefabs";

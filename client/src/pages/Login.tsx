@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
 import { login, signup } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
-import HUIButton from "../components/Buttons/Button";
+import HUIButton from "../components/Buttons/HUIButton";
 
 const Login = () => {
   const nav = useNavigate();
