@@ -11,10 +11,6 @@ Altus is a fully functional dashboard that embodies my long-standing vision of a
 
 **Other features:** Session-based authentication with RBAC, Rest API
 
-![image](https://github.com/user-attachments/assets/b5d6436f-3653-4526-b3e3-836e6c408a70)
-![image](https://github.com/user-attachments/assets/77a33560-3640-416c-a9ba-68f6896436f7)
-
-
 ## Authors
 
 - [@jzielinski47](https://www.github.com/jzielinski47)
