@@ -8,7 +8,7 @@ const StatPanel = () => {
     <PanelWrapper>
       <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full">
         <div>
-          <p className="text-sm text-white/60">Profit</p>
+          <p className="text-sm text-white/60">Your net worth</p>
 
           <p className="text-2xl font-medium text-white/[87%]">${mockedData.profit}</p>
         </div>

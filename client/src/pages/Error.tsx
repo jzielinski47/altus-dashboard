@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import HUIButton from "../components/Buttons/Button";
+import HUIButton from "../components/Buttons/HUIButton";
 
 const Error = () => {
   const nav = useNavigate();

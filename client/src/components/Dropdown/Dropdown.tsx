@@ -3,7 +3,7 @@ import React from "react";
 import {
   PencilIcon,
   ArrowLeftEndOnRectangleIcon,
-  ArchiveBoxXMarkIcon,
+  // ArchiveBoxXMarkIcon,
   UserGroupIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/16/solid";
@@ -46,11 +46,11 @@ export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
             />
           )}
           <div className="my-1 h-px bg-white/5" />
-          <DropdownButton
+          {/* <DropdownButton
             icon={<ArchiveBoxXMarkIcon className="size-4 fill-white/30" />}
             label="Archive"
             shortcut="⌘A"
-          />
+          /> */}
           <DropdownButton
             icon={<ArrowLeftEndOnRectangleIcon className="size-4 fill-white/30" />}
             label="Log out"
