@@ -2,10 +2,10 @@ import { ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/sol
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
 import HUICButton from "../../components/Buttons/HUICButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@headlessui/react";
 import clsx from "clsx";
-import { updateUsername } from "../../api/users";
+import { updateAvatar, updateUsername } from "../../api/users";
 import { motion } from "framer-motion";
 
 import { createAvatar } from "@dicebear/core";
@@ -34,11 +34,17 @@ const seeds: string[] = [
 ];
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, fetchUser } = useAuth();
 
   const [username, setUsername] = useState("");
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const [isAvatarSelectorToggled, setIsAvatarSelectorToggled] = useState(false);
+  const [selectedSeed, setSelectedSeed] = useState("");
+
+  useEffect(() => {
+    const updateUser = async () => await fetchUser();
+    updateUser();
+  }, [selectedSeed, username]);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => setUsername(e.target.value);
 
@@ -47,11 +53,27 @@ const UserProfile = () => {
     console.log(isUsernameEditable);
     if (user && isUsernameEditable && username.length > 0 && username.length < 32) {
       await updateUsername(user?.username, username);
-      location.reload();
+      await setUsername(user.username);
     }
   };
 
-  const renderAvatar = (seed: string): React.ReactNode => {
+  const changeAvatar = async (seed: string) => {
+    if (user) {
+      await updateAvatar(user.username, seed);
+      await setSelectedSeed(seed);
+      await setIsAvatarSelectorToggled(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log("on load", user?.avatarUrl);
+  }, []);
+
+  useEffect(() => {
+    console.log("on change", user?.avatarUrl);
+  }, [user]);
+
+  const renderAvatar = (seed: string, isSelector: boolean): React.ReactNode => {
     const avatar = createAvatar(lorelei, {
       seed,
       flip: true,
@@ -62,6 +84,7 @@ const UserProfile = () => {
         key={seed}
         dangerouslySetInnerHTML={{ __html: avatar }}
         className="size-64 rounded-lg transition duration-700 ease-in-out hover:opacity-60 cursor-pointer overflow-hidden"
+        onClick={() => (isSelector ? changeAvatar(seed) : null)}
       />
     );
   };
@@ -74,7 +97,7 @@ const UserProfile = () => {
           <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
               <div key={seed + "-d"} className="flex flex-col gap-2">
-                {renderAvatar(seed)}{" "}
+                {renderAvatar(seed, true)}{" "}
                 <p key={seed + "-1"} className="text-base text-white/60 hidden 2xl:block">
                   {seed}
                 </p>
@@ -154,12 +177,8 @@ const UserProfile = () => {
         </div>
         <div className="h-full flex flex-col gap-4">
           <div className="flex-grow" onClick={() => setIsAvatarSelectorToggled(!isAvatarSelectorToggled)}>
-            {user?.avatarUrl ? (
-              <img
-                src={user?.avatarUrl}
-                alt={user?.username}
-                className="min-w-64 w-full size-full rounded-lg transition duration-700 ease-in-out hover:opacity-40 cursor-pointer"
-              />
+            {user && user?.avatarUrl ? (
+              renderAvatar(user.avatarUrl, false)
             ) : (
               <img
                 src={

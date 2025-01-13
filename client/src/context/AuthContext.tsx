@@ -10,22 +10,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch(`${serverIP}/api/auth/status`, { credentials: "include" });
-        const data = await res.json();
-        if (res.ok && data.user) setUser(data.user);
-      } catch (err: iError | any) {
-        console.error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     console.log(`${serverIP}/api/auth/status`);
 
     fetchUser();
   }, []);
+
+  const fetchUser = async () => {
+    try {
+      const res = await fetch(`${serverIP}/api/auth/status`, { credentials: "include" });
+      const data = await res.json();
+      if (res.ok && data.user) setUser(data.user);
+    } catch (err: iError | any) {
+      console.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const logout = async () => {
     await fetch(`${serverIP}/api/auth/logout`, { method: "POST", credentials: "include" })
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout, isCookiesSet, setIsCookiesSet, loading }}>
+    <AuthContext.Provider value={{ user, setUser, logout, isCookiesSet, setIsCookiesSet, loading, fetchUser }}>
       {children}
     </AuthContext.Provider>
   );

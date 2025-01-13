@@ -17,10 +17,34 @@ const get: RequestInit = {
   credentials: "include",
 };
 
-export const updateUsername = async (username: string, patchedUsername: string) => {
+export const updateUsername = async (
+  username: string,
+  patchedUsername: string
+) => {
   try {
     patch.body = JSON.stringify({ username: patchedUsername });
-    const res = await fetch(`${serverIP}/api/users/patch/username/${username}`, patch);
+    const res = await fetch(
+      `${serverIP}/api/users/patch/username/${username}`,
+      patch
+    );
+    if (res.ok) {
+      return res.json();
+    } else {
+      const err = await res.json();
+      throw new Error(err.error);
+    }
+  } catch (err: iError | any) {
+    throw new Error(err.message);
+  }
+};
+
+export const updateAvatar = async (username: string, avatarUrl: string) => {
+  try {
+    patch.body = JSON.stringify({ avatarUrl });
+    const res = await fetch(
+      `${serverIP}/api/users/patch/avatar/${username}`,
+      patch
+    );
     if (res.ok) {
       return res.json();
     } else {
