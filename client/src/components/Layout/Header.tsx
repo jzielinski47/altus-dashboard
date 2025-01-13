@@ -7,6 +7,8 @@ import { Dropdown } from "../Dropdown/Dropdown";
 import ArrowButton from "../Buttons/ArrowButton";
 import { motion } from "framer-motion";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
+import { lorelei } from "@dicebear/collection";
+import { createAvatar } from "@dicebear/core";
 
 const Header = () => {
   const nav = useNavigate();
@@ -15,6 +17,21 @@ const Header = () => {
   if (loading) {
     return <div className="text-white/60">Loading...</div>;
   }
+
+  const renderAvatar = (seed: string): React.ReactNode => {
+    const avatar = createAvatar(lorelei, {
+      seed,
+      flip: true,
+      backgroundColor: ["c0aede"],
+    });
+    return (
+      <div
+        key={seed}
+        dangerouslySetInnerHTML={{ __html: avatar }}
+        className="size-10 rounded-full transition duration-700 ease-in-out hover:opacity-60 cursor-pointer overflow-hidden"
+      />
+    );
+  };
 
   return (
     <header className="relative px-4 sm:px-6">
@@ -28,11 +45,7 @@ const Header = () => {
           className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
           onClick={() => nav(user ? "/dashboard" : "/")}
         >
-          <FontAwesomeIcon
-            icon={faCloud}
-            bounce
-            className="size-6 text-white"
-          />
+          <FontAwesomeIcon icon={faCloud} bounce className="size-6 text-white" />
           <h2 className="text-base font-semibold text-white">
             {"Altus"} <span className="text-primary-a0">Dashboard</span>
           </h2>
@@ -41,11 +54,12 @@ const Header = () => {
         <div className="flex flex-row gap-3 items-center justify-center">
           {user ? (
             <>
-              <Avatar
-                className="hover:bg-primary-a30 cursor-pointer"
-                alt={user.username}
-                src={user.avatarUrl}
-              />
+              {user && user.avatarUrl ? (
+                renderAvatar(user.avatarUrl)
+              ) : (
+                <Avatar className="hover:bg-primary-a30 cursor-pointer" alt={user.username} src={user.avatarUrl} />
+              )}
+
               <div className="hidden sm:block flex flex-col gap-0.5">
                 <h2 className="text-sm font-semibold">{user.username}</h2>
                 <p className="text-sm text-white/60">{user.email}</p>
