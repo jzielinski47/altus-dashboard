@@ -38,4 +38,5 @@ export interface AuthContextType {
   isCookiesSet: boolean;
   setIsCookiesSet: React.Dispatch<React.SetStateAction<boolean>>;
   loading: boolean;
+  fetchUser: () => Promise<void>;
 }
