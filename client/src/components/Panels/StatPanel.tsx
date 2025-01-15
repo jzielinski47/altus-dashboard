@@ -1,5 +1,5 @@
-import PanelWrapper from "./PanelWrapper";
 import { ArrowTrendingDownIcon, ArrowTrendingUpIcon } from "@heroicons/react/16/solid";
+import PanelWrapper from "./PanelWrapper";
 
 const mockedData = { profit: 245.41, percent: -0.6781, display: "week" };
 

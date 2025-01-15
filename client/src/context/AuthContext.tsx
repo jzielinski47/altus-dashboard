@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { AuthContextType, iError, iUser } from "../interfaces";
 import { serverIP } from "../api/setup";
+import { AuthContextType, iError, iUser } from "../interfaces";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

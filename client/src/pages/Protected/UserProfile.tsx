@@ -1,15 +1,15 @@
+import { Input } from "@headlessui/react";
 import { ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import clsx from "clsx";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { updateAvatar, updateUsername } from "../../api/users";
+import HUICButton from "../../components/Buttons/HUICButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
-import HUICButton from "../../components/Buttons/HUICButton";
-import { useEffect, useState } from "react";
-import { Input } from "@headlessui/react";
-import clsx from "clsx";
-import { updateAvatar, updateUsername } from "../../api/users";
-import { motion } from "framer-motion";
 
-import { createAvatar } from "@dicebear/core";
 import { lorelei } from "@dicebear/collection";
+import { createAvatar } from "@dicebear/core";
 
 const seeds: string[] = [
   "Sophia",

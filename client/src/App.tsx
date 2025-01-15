@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/HomePage/Home";
-import Login from "./pages/Login";
-import Error from "./pages/Error";
-import Header from "./components/Layout/Header";
-import Footer from "./components/Layout/Footer";
-import About from "./pages/About";
-import { useAuth } from "./context/AuthContext";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import CookieDialog from "./components/CookieDialog";
 import { useRef } from "react";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import CookieDialog from "./components/CookieDialog";
+import Footer from "./components/Layout/Footer";
+import Header from "./components/Layout/Header";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import AdminPanelWrapper from "./components/Routes/RouteWrappers/AdminPanelWrapper";
 import DashboardRoute from "./components/Routes/RouteWrappers/DashboardWrapper";
-import ProtectedRoute from "./components/Routes/ProtectedRoute";
+import { useAuth } from "./context/AuthContext";
+import About from "./pages/About";
+import Error from "./pages/Error";
+import Home from "./pages/HomePage/Home";
+import Login from "./pages/Login";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Settings from "./pages/Protected/Settings";
 import UserProfile from "./pages/Protected/UserProfile";
 
