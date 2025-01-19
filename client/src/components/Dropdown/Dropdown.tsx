@@ -1,15 +1,15 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
-import React from "react";
 import {
-  PencilIcon,
   ArrowLeftEndOnRectangleIcon,
+  Cog6ToothIcon,
+  PencilIcon,
   // ArchiveBoxXMarkIcon,
   UserGroupIcon,
-  Cog6ToothIcon,
 } from "@heroicons/react/16/solid";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import DropdownButton from "./DropdownButton";
-import { useNavigate } from "react-router-dom";
 
 export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user, logout } = useAuth();

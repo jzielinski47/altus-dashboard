@@ -1,14 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloud } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import Avatar from "@mui/material/Avatar";
-import { Dropdown } from "../Dropdown/Dropdown";
-import ArrowButton from "../Buttons/ArrowButton";
-import { motion } from "framer-motion";
-import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { lorelei } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
+import { faCloud } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
+import Avatar from "@mui/material/Avatar";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import ArrowButton from "../Buttons/ArrowButton";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 const Header = () => {
   const nav = useNavigate();

@@ -1,6 +1,6 @@
 import PlanSelectionPanel from "../components/Panels/PlanSelectionPanel";
-import StatPanel from "../components/Panels/StatPanel";
 import SessionTimerPanel from "../components/Panels/SessionTimer";
+import StatPanel from "../components/Panels/StatPanel";
 
 const Dashboard = () => {
   return (
