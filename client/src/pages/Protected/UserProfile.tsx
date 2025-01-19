@@ -66,6 +66,11 @@ const UserProfile = () => {
     }
   };
 
+  const deleteAccount = async () => {
+    console.log("delete account placeholder");
+    confirm("are you sure to delete your account?");
+  };
+
   useEffect(() => {
     console.log("on load", user?.avatarUrl);
   }, []);
@@ -193,7 +198,9 @@ const UserProfile = () => {
 
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
 
-          <HUICButton variant="error">Delete account</HUICButton>
+          <HUICButton variant="error" onClick={() => deleteAccount()}>
+            Delete account
+          </HUICButton>
         </div>
       </div>
     </div>
