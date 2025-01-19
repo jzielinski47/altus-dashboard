@@ -40,6 +40,7 @@ const UserProfile = () => {
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const [isAvatarSelectorToggled, setIsAvatarSelectorToggled] = useState(false);
   const [selectedSeed, setSelectedSeed] = useState("");
+  const passwordPalceholder = Array(10).fill("*");
 
   useEffect(() => {
     const updateUser = async () => await fetchUser();
@@ -142,8 +143,8 @@ const UserProfile = () => {
                   <p className="py-1.5 px-3 text-base font-medium text-white/[87%]">{user?.username}</p>
                 )}
               </div>
-              <HUICButton onClick={changeUsername}>
-                Edit <PencilIcon className="size-4" />
+              <HUICButton onClick={changeUsername} variant="secondary">
+                <PencilIcon className="size-4" /> Edit
               </HUICButton>
             </div>
           </PanelWrapper>
@@ -151,10 +152,10 @@ const UserProfile = () => {
             <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Password</p>
-                <p className="text-base font-medium text-white/[87%]">{user?.password.substring(0, 10)}</p>
+                <p className="text-base font-medium text-white/[87%]">{passwordPalceholder}</p>
               </div>
-              <HUICButton onClick={() => null}>
-                Edit <PencilIcon className="size-4" />
+              <HUICButton variant="secondary">
+                <PencilIcon className="size-4" /> Edit
               </HUICButton>
             </div>
           </PanelWrapper>

@@ -12,9 +12,9 @@ export interface iHuiButton {
 const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiButton) => {
   const variantClasses = {
     primary: "bg-primary-a30 data-[hover]:bg-primary-a0 data-[open]:bg-primary-a0",
-    secondary: "bg-white",
-    error2: "bg-error data-[hover]:bg-errorHover text-white",
+    secondary: "text-white border-2 border-primary-a30 hover:text-black/[87%] hover:bg-primary-a30",
     error: "text-white border-2 border-error data-[hover]:bg-error",
+    error2: "bg-error data-[hover]:bg-errorHover text-white",
   };
 
   const [isHovered, setIsHovered] = useState(false);
