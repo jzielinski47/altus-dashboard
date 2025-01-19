@@ -191,6 +191,8 @@ const UserProfile = () => {
           </div>
 
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
+
+          <HUICButton variant="error">Delete account</HUICButton>
         </div>
       </div>
     </div>

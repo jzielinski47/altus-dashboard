@@ -1,17 +1,38 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { Button } from "@headlessui/react";
+import { MinusCircleIcon } from "@heroicons/react/16/solid";
 
 export interface iHuiButton {
   children: string | React.ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  className?: string | undefined;
+  variant?: "primary" | "secondary" | "error";
 }
 
-const HUICButton = ({ children, onClick }: iHuiButton) => {
+const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiButton) => {
+  const variantClasses = {
+    primary: "bg-primary-a30 data-[hover]:bg-primary-a0 data-[open]:bg-primary-a0",
+    secondary: "bg-white",
+    error2: "bg-error data-[hover]:bg-errorHover text-white",
+    error: "text-white border-2 border-error data-[hover]:bg-error",
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <Button
       onClick={onClick}
-      className="inline-flex items-center justify-center min-w-4 gap-2 rounded-lg bg-primary-a30 py-1.5 px-3 max-h-10 text-sm/6 font-semibold text-black font-medium shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-primary-a0 data-[open]:bg-primary-a0 data-[focus]:outline-1 data-[focus]:outline-white  transition duration-700 ease-in-out"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`inline-flex items-center justify-center min-w-4 gap-2 rounded-lg py-1.5 px-3 max-h-10 text-sm/6 font-semibold text-black font-medium shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white  transition duration-700 ease-in-out ${
+        variantClasses[variant]
+      } ${className || ""}`}
     >
+      {variant === "error" ? (
+        <MinusCircleIcon
+          className={`size-4 text-error transition-colors duration-300 ${isHovered ? "text-white" : "text-error"}`}
+        />
+      ) : null}
       {children}
     </Button>
   );

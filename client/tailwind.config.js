@@ -20,6 +20,7 @@ export default {
       white: "#f5f5f7",
       success: "#80F242",
       error: "#F24242",
+      errorHover: "#a1000b",
 
       level: {
         0: "#121212",
