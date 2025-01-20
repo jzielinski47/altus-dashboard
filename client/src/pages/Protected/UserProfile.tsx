@@ -99,7 +99,11 @@ const UserProfile = () => {
   return (
     <div className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8">
       {isAvatarSelectorToggled ? (
-        <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60">
+        <motion.div
+          className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60"
+          drag
+          dragElastic={0.5}
+        >
           <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">Choose your avatar</h3>
           <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
@@ -131,7 +135,9 @@ const UserProfile = () => {
           <div className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center">
             <div className="flex flex-col gap-2 justify-center items-center">
               <h2 className="font-bold text-lg text-white/[87%]">Are you sure you want to delete your account?</h2>
-              <p className="text-sm text-white/60">This action is pernament, and you can't undo it.</p>
+              <p className="text-sm text-white/60">
+                This action is <span className="text-error">permanent</span>, and you can't undo it.
+              </p>
             </div>
             <div className="flex flex-row gap-4">
               <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="error">
