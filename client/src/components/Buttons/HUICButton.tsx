@@ -6,7 +6,7 @@ export interface iHuiButton {
   children: string | React.ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   className?: string | undefined;
-  variant?: "primary" | "secondary" | "error";
+  variant?: "primary" | "secondary" | "error" | "success";
 }
 
 const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiButton) => {
@@ -14,7 +14,8 @@ const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiB
     primary: "bg-primary-a30 data-[hover]:bg-primary-a0 data-[open]:bg-primary-a0",
     secondary: "text-white border-2 border-primary-a30 hover:text-black/[87%] hover:bg-primary-a30",
     error: "text-white border-2 border-error data-[hover]:bg-error",
-    error2: "bg-error data-[hover]:bg-errorHover text-white",
+    success: "text-white border-2 border-success data-[hover]:bg-success data-[hover]:text-black",
+    error2: "bg-error data-[hover]:bg-errorHover text-white ",
   };
 
   const [isHovered, setIsHovered] = useState(false);
