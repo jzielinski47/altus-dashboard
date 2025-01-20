@@ -1,5 +1,5 @@
 import { Input } from "@headlessui/react";
-import { ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import { ArrowPathRoundedSquareIcon, ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -39,6 +39,7 @@ const UserProfile = () => {
   const [username, setUsername] = useState("");
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const [isAvatarSelectorToggled, setIsAvatarSelectorToggled] = useState(false);
+  const [isDelAccConfirmationToggled, setIsDelAccConfirmationToggled] = useState(false);
   const [selectedSeed, setSelectedSeed] = useState("");
   const passwordPalceholder = Array(10).fill("*");
 
@@ -64,6 +65,11 @@ const UserProfile = () => {
       await setSelectedSeed(seed);
       await setIsAvatarSelectorToggled(false);
     }
+  };
+
+  const deleteAccount = async () => {
+    console.log("delete account placeholder");
+    setIsDelAccConfirmationToggled(true);
   };
 
   useEffect(() => {
@@ -93,7 +99,11 @@ const UserProfile = () => {
   return (
     <div className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8">
       {isAvatarSelectorToggled ? (
-        <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60">
+        <motion.div
+          className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60"
+          drag
+          dragElastic={0.5}
+        >
           <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">Choose your avatar</h3>
           <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
@@ -113,9 +123,31 @@ const UserProfile = () => {
             This avatar style is a remix of: Lorelei by Lisa Wischofsky provided by DiceBear API.
           </p>
           <div className="mb-24">
-            <HUICButton onClick={() => setIsAvatarSelectorToggled(false)}>
+            <HUICButton onClick={() => setIsAvatarSelectorToggled(false)} variant="secondary">
               Go back <XMarkIcon className="size-4" />
             </HUICButton>
+          </div>
+        </motion.div>
+      ) : null}
+
+      {isDelAccConfirmationToggled ? (
+        <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-center bg-black/60">
+          <div className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center">
+            <div className="flex flex-col gap-2 justify-center items-center">
+              <h2 className="font-bold text-lg text-white/[87%]">Are you sure you want to delete your account?</h2>
+              <p className="text-sm text-white/60">
+                This action is <span className="text-error">permanent</span>, and you can't undo it.
+              </p>
+            </div>
+            <div className="flex flex-row gap-4">
+              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="error">
+                Delete
+              </HUICButton>
+
+              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="success">
+                Restore <ArrowPathRoundedSquareIcon className="size-4" />
+              </HUICButton>
+            </div>
           </div>
         </motion.div>
       ) : null}
@@ -193,7 +225,9 @@ const UserProfile = () => {
 
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
 
-          <HUICButton variant="error">Delete account</HUICButton>
+          <HUICButton variant="error" onClick={() => deleteAccount()}>
+            Delete account
+          </HUICButton>
         </div>
       </div>
     </div>
