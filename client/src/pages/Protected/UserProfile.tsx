@@ -161,7 +161,7 @@ const UserProfile = () => {
       ) : null}
 
       <h2 className="text-2xl font-medium">My account</h2>
-      <div className="flex flex-row gap-8 justify-center items-center">
+      <div className="flex flex-col-reverse lg:flex-row gap-8 justify-center items-center">
         <div className="flex flex-col gap-4">
           <PanelWrapper>
             <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
