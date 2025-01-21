@@ -29,13 +29,11 @@ router.get("/api/users/count"),
 router.post(
   "/api/users/delete/:username",
   isAuthorized,
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const { username } = req.params;
 
     try {
-      const deletedUser = User.findOneAndDelete({
-        username,
-      });
+      const deletedUser = await User.findOneAndDelete({ username });
 
       if (!deletedUser) {
         res.status(404).send({ msg: `User ${req.params.username} not found` });
@@ -44,6 +42,34 @@ router.post(
       res
         .status(200)
         .send({ msg: `User ${req.params.username} has been deleted` });
+    } catch (err) {
+      console.error(err);
+      res
+        .status(500)
+        .send({ msg: "An error occurred while deleting the user" });
+    }
+  }
+);
+
+router.post(
+  "/api/users/delete",
+  isAuthenticated,
+  async (req: Request, res: Response) => {
+    if (!req.user || !req.user.username) {
+      throw new Error("User doesn't exist or username is undefined.");
+    }
+    const { username } = req.user;
+
+    try {
+      const deletedUser = await User.findOneAndDelete({ username });
+
+      if (!deletedUser) {
+        res.status(404).send({ msg: `User ${username} not found` });
+        return;
+      }
+
+      res.status(200).send({ msg: `User ${username} has been deleted` });
+      return;
     } catch (err) {
       console.error(err);
       res

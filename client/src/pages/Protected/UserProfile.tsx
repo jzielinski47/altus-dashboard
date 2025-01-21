@@ -1,9 +1,14 @@
 import { Input } from "@headlessui/react";
-import { ArrowPathRoundedSquareIcon, ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import {
+  ArrowPathRoundedSquareIcon,
+  ArrowUpRightIcon,
+  PencilIcon,
+  XMarkIcon,
+} from "@heroicons/react/16/solid";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { updateAvatar, updateUsername } from "../../api/users";
+import { useEffect, useRef, useState } from "react";
+import { deleteSelf, updateAvatar, updateUsername } from "../../api/users";
 import HUICButton from "../../components/Buttons/HUICButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
@@ -39,21 +44,29 @@ const UserProfile = () => {
   const [username, setUsername] = useState("");
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const [isAvatarSelectorToggled, setIsAvatarSelectorToggled] = useState(false);
-  const [isDelAccConfirmationToggled, setIsDelAccConfirmationToggled] = useState(false);
+  const [isDelAccConfirmationToggled, setIsDelAccConfirmationToggled] =
+    useState(false);
   const [selectedSeed, setSelectedSeed] = useState("");
   const passwordPalceholder = Array(10).fill("*");
+  const constraintsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateUser = async () => await fetchUser();
     updateUser();
   }, [selectedSeed, username]);
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void => setUsername(e.target.value);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setUsername(e.target.value);
 
   const changeUsername = async () => {
     await setIsUsernameEditable(!isUsernameEditable);
     console.log(isUsernameEditable);
-    if (user && isUsernameEditable && username.length > 0 && username.length < 32) {
+    if (
+      user &&
+      isUsernameEditable &&
+      username.length > 0 &&
+      username.length < 32
+    ) {
       await updateUsername(user?.username, username);
       await setUsername(user.username);
     }
@@ -69,7 +82,10 @@ const UserProfile = () => {
 
   const deleteAccount = async () => {
     console.log("delete account placeholder");
-    setIsDelAccConfirmationToggled(true);
+    if (user) {
+      await deleteSelf();
+      await fetchUser();
+    }
   };
 
   useEffect(() => {
@@ -97,19 +113,23 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8">
+    <div
+      className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8"
+      ref={constraintsRef}
+    >
       {isAvatarSelectorToggled ? (
-        <motion.div
-          className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60"
-          drag
-          dragElastic={0.5}
-        >
-          <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">Choose your avatar</h3>
+        <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60">
+          <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">
+            Choose your avatar
+          </h3>
           <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
               <div key={seed + "-d"} className="flex flex-col gap-2">
                 {renderAvatar(seed, true)}{" "}
-                <p key={seed + "-1"} className="text-base text-white/60 hidden 2xl:block">
+                <p
+                  key={seed + "-1"}
+                  className="text-base text-white/60 hidden 2xl:block"
+                >
                   {seed}
                 </p>
               </div>
@@ -117,13 +137,20 @@ const UserProfile = () => {
           </div>
           <p className="m-4 text-sm text-white/60">
             All avatars design style is licensed under{" "}
-            <a href="https://creativecommons.org/publicdomain/zero/1.0/" className="underline inline-flex gap-1">
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              className="underline inline-flex gap-1"
+            >
               CC0 1.0 <ArrowUpRightIcon className="size-4" />
             </a>
-            This avatar style is a remix of: Lorelei by Lisa Wischofsky provided by DiceBear API.
+            This avatar style is a remix of: Lorelei by Lisa Wischofsky provided
+            by DiceBear API.
           </p>
           <div className="mb-24">
-            <HUICButton onClick={() => setIsAvatarSelectorToggled(false)} variant="secondary">
+            <HUICButton
+              onClick={() => setIsAvatarSelectorToggled(false)}
+              variant="secondary"
+            >
               Go back <XMarkIcon className="size-4" />
             </HUICButton>
           </div>
@@ -132,23 +159,34 @@ const UserProfile = () => {
 
       {isDelAccConfirmationToggled ? (
         <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-center bg-black/60">
-          <div className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center">
+          <motion.div
+            className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center"
+            drag
+            dragElastic={0.5}
+            dragConstraints={constraintsRef}
+          >
             <div className="flex flex-col gap-2 justify-center items-center">
-              <h2 className="font-bold text-lg text-white/[87%]">Are you sure you want to delete your account?</h2>
+              <h2 className="font-bold text-lg text-white/[87%]">
+                Are you sure you want to delete your account?
+              </h2>
               <p className="text-sm text-white/60">
-                This action is <span className="text-error">permanent</span>, and you can't undo it.
+                This action is <span className="text-error">permanent</span>,
+                and you can't undo it.
               </p>
             </div>
             <div className="flex flex-row gap-4">
-              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="error">
+              <HUICButton onClick={() => deleteAccount()} variant="error">
                 Delete
               </HUICButton>
 
-              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="success">
+              <HUICButton
+                onClick={() => setIsDelAccConfirmationToggled(false)}
+                variant="success"
+              >
                 Restore <ArrowPathRoundedSquareIcon className="size-4" />
               </HUICButton>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       ) : null}
 
@@ -172,7 +210,9 @@ const UserProfile = () => {
                     onChange={handleUsernameChange}
                   />
                 ) : (
-                  <p className="py-1.5 px-3 text-base font-medium text-white/[87%]">{user?.username}</p>
+                  <p className="py-1.5 px-3 text-base font-medium text-white/[87%]">
+                    {user?.username}
+                  </p>
                 )}
               </div>
               <HUICButton onClick={changeUsername} variant="secondary">
@@ -184,7 +224,9 @@ const UserProfile = () => {
             <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Password</p>
-                <p className="text-base font-medium text-white/[87%]">{passwordPalceholder}</p>
+                <p className="text-base font-medium text-white/[87%]">
+                  {passwordPalceholder}
+                </p>
               </div>
               <HUICButton variant="secondary">
                 <PencilIcon className="size-4" /> Edit
@@ -195,7 +237,9 @@ const UserProfile = () => {
             <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Email</p>
-                <p className="text-base font-medium text-white/[87%]">{user?.email}</p>
+                <p className="text-base font-medium text-white/[87%]">
+                  {user?.email}
+                </p>
               </div>
             </div>
           </PanelWrapper>
@@ -203,13 +247,18 @@ const UserProfile = () => {
             <div className="rounded-lg border border-white/5 bg-white/5 p-6 h-full flex flex-row justify-between min-w-[32rem] max-w-[50rem] items-center">
               <div className="flex flex-col gap-1">
                 <p className="text-sm text-white/60">Role</p>
-                <p className="text-base font-medium text-white/[87%]">{user?.role}</p>
+                <p className="text-base font-medium text-white/[87%]">
+                  {user?.role}
+                </p>
               </div>
             </div>
           </PanelWrapper>
         </div>
         <div className="h-full flex flex-col gap-4">
-          <div className="flex-grow" onClick={() => setIsAvatarSelectorToggled(!isAvatarSelectorToggled)}>
+          <div
+            className="flex-grow"
+            onClick={() => setIsAvatarSelectorToggled(!isAvatarSelectorToggled)}
+          >
             {user && user?.avatarUrl ? (
               renderAvatar(user.avatarUrl, false)
             ) : (
@@ -223,9 +272,14 @@ const UserProfile = () => {
             )}
           </div>
 
-          <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
+          <p className="text-base/7 text-white/60">
+            Hover over your avatar to change it.
+          </p>
 
-          <HUICButton variant="error" onClick={() => deleteAccount()}>
+          <HUICButton
+            variant="error"
+            onClick={() => setIsDelAccConfirmationToggled(true)}
+          >
             Delete account
           </HUICButton>
         </div>

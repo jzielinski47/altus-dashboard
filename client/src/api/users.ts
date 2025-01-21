@@ -1,21 +1,5 @@
 import { iError } from "../interfaces";
-import { serverIP } from "./setup";
-
-const patch: RequestInit = {
-  method: "PATCH",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  credentials: "include",
-};
-
-const get: RequestInit = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  credentials: "include",
-};
+import { get, patch, post, serverIP } from "./setup";
 
 export const updateUsername = async (
   username: string,
@@ -59,6 +43,20 @@ export const updateAvatar = async (username: string, avatarUrl: string) => {
 export const getAllUsers = async () => {
   try {
     const res = await fetch(`${serverIP}/api/users/`, get);
+    if (res.ok) {
+      return res.json();
+    } else {
+      const err = await res.json();
+      throw new Error(err.error);
+    }
+  } catch (err: iError | any) {
+    throw new Error(err.message);
+  }
+};
+
+export const deleteSelf = async () => {
+  try {
+    const res = await fetch(`${serverIP}/api/users/delete/`, post);
     if (res.ok) {
       return res.json();
     } else {
