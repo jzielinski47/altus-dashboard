@@ -2,8 +2,8 @@ import { Input } from "@headlessui/react";
 import { ArrowPathRoundedSquareIcon, ArrowUpRightIcon, PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { updateAvatar, updateUsername } from "../../api/users";
+import { useEffect, useRef, useState } from "react";
+import { deleteSelf, updateAvatar, updateUsername } from "../../api/users";
 import HUICButton from "../../components/Buttons/HUICButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
@@ -42,6 +42,7 @@ const UserProfile = () => {
   const [isDelAccConfirmationToggled, setIsDelAccConfirmationToggled] = useState(false);
   const [selectedSeed, setSelectedSeed] = useState("");
   const passwordPalceholder = Array(10).fill("*");
+  const constraintsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateUser = async () => await fetchUser();
@@ -69,7 +70,10 @@ const UserProfile = () => {
 
   const deleteAccount = async () => {
     console.log("delete account placeholder");
-    setIsDelAccConfirmationToggled(true);
+    if (user) {
+      await deleteSelf();
+      location.reload();
+    }
   };
 
   useEffect(() => {
@@ -97,13 +101,12 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8">
+    <div
+      className="relative flex-grow p-4 2xl:p-10 h-full w-full flex justify-center items-center max-w-7xl flex-col gap-8"
+      ref={constraintsRef}
+    >
       {isAvatarSelectorToggled ? (
-        <motion.div
-          className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60"
-          drag
-          dragElastic={0.5}
-        >
+        <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-start bg-black/60">
           <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">Choose your avatar</h3>
           <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
@@ -132,7 +135,12 @@ const UserProfile = () => {
 
       {isDelAccConfirmationToggled ? (
         <motion.div className="flex-grow z-10 fixed inset-0 w-screen overflow-y-auto flex flex-col items-center justify-center bg-black/60">
-          <div className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center">
+          <motion.div
+            className="bg-black/[87%] px-8 py-4 rounded-lg flex flex-col gap-4 justify-center items-center"
+            drag
+            dragElastic={0.5}
+            dragConstraints={constraintsRef}
+          >
             <div className="flex flex-col gap-2 justify-center items-center">
               <h2 className="font-bold text-lg text-white/[87%]">Are you sure you want to delete your account?</h2>
               <p className="text-sm text-white/60">
@@ -140,7 +148,7 @@ const UserProfile = () => {
               </p>
             </div>
             <div className="flex flex-row gap-4">
-              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="error">
+              <HUICButton onClick={() => deleteAccount()} variant="error">
                 Delete
               </HUICButton>
 
@@ -148,7 +156,7 @@ const UserProfile = () => {
                 Restore <ArrowPathRoundedSquareIcon className="size-4" />
               </HUICButton>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       ) : null}
 
@@ -225,7 +233,7 @@ const UserProfile = () => {
 
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
 
-          <HUICButton variant="error" onClick={() => deleteAccount()}>
+          <HUICButton variant="error" onClick={() => setIsDelAccConfirmationToggled(true)}>
             Delete account
           </HUICButton>
         </div>

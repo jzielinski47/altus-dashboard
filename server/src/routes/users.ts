@@ -15,10 +15,7 @@ router.get("/api/users/count"),
   async (req: Request, res: Response) => {
     try {
       const client = mongoose.connection.getClient();
-      const activeUsersCount = await client
-        .db()
-        .collection("sessions")
-        .countDocuments();
+      const activeUsersCount = await client.db().collection("sessions").countDocuments();
       res.json({ activeUsersCount });
     } catch (error) {
       console.error("Error fetching active users count:", error);
@@ -26,32 +23,38 @@ router.get("/api/users/count"),
     }
   };
 
-router.post(
-  "/api/users/delete/:username",
-  isAuthorized,
-  (req: Request, res: Response) => {
-    const { username } = req.params;
+router.post("/api/users/delete/:username", isAuthorized, async (req: Request, res: Response) => {
+  const { username } = req.params;
 
-    try {
-      const deletedUser = User.findOneAndDelete({
-        username,
-      });
+  try {
+    const deletedUser = await User.findOneAndDelete({ username });
 
-      if (!deletedUser) {
-        res.status(404).send({ msg: `User ${req.params.username} not found` });
-      }
-
-      res
-        .status(200)
-        .send({ msg: `User ${req.params.username} has been deleted` });
-    } catch (err) {
-      console.error(err);
-      res
-        .status(500)
-        .send({ msg: "An error occurred while deleting the user" });
+    if (!deletedUser) {
+      res.status(404).send({ msg: `User ${req.params.username} not found` });
     }
+
+    res.status(200).send({ msg: `User ${req.params.username} has been deleted` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ msg: "An error occurred while deleting the user" });
   }
-);
+});
+
+router.post("/api/users/delete", isAuthenticated, async (req: Request, res: Response): Promise<any> => {
+  if (!req.user) return res.status(404).send("Unauthorized");
+  const { username, id } = req.user;
+  console.log(username, id);
+  try {
+    const deletedUser = await User.findOneAndDelete({ username });
+    if (!deletedUser) return res.status(404).send({ msg: `User ${username} not found` });
+    req.logout((err) => (err ? console.error("delete logout init: ", err) : null));
+
+    return res.status(200).send({ msg: `User ${username} has been deleted` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ msg: "An error occurred while deleting the user" });
+  }
+});
 
 router.patch("/api/users/patch/username/:username", async (req, res) => {
   console.log(req.params.username, "aaa", req.body.username);
@@ -59,10 +62,7 @@ router.patch("/api/users/patch/username/:username", async (req, res) => {
   try {
     const existingUser = await User.findOne({ username: req.body.username });
 
-    if (existingUser)
-      res
-        .status(404)
-        .send({ msg: `User ${req.body.username} already exists.` });
+    if (existingUser) res.status(404).send({ msg: `User ${req.body.username} already exists.` });
 
     const updatedUser = await User.findOneAndUpdate(
       { username: req.params.username },
@@ -80,9 +80,7 @@ router.patch("/api/users/patch/username/:username", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .send({ msg: "An error occurred while updating the username" });
+    res.status(500).send({ msg: "An error occurred while updating the username" });
   }
 });
 
@@ -105,9 +103,7 @@ router.patch("/api/users/patch/avatar/:username", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .send({ msg: "An error occurred while updating the user avatar." });
+    res.status(500).send({ msg: "An error occurred while updating the user avatar." });
   }
 });
 
@@ -130,9 +126,7 @@ router.patch("/api/users/grant/:username", isAuthorized, async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res
-      .status(500)
-      .send({ msg: "An error occurred while updating the user role" });
+    res.status(500).send({ msg: "An error occurred while updating the user role" });
   }
 });
 
@@ -143,9 +137,7 @@ router.get("/api/admin", isAuthorized, async (req, res) => {
 
 router.get("/api/users/me", isAuthenticated, async (req, res) => {
   const client = req.session.user as iUser;
-  client
-    ? res.status(200).send(client)
-    : res.status(401).send({ msg: "User not authenticated" });
+  client ? res.status(200).send(client) : res.status(401).send({ msg: "User not authenticated" });
 });
 
 export default router;
