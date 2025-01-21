@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { deleteSelf, updateAvatar, updateUsername } from "../../api/users";
-import HUICButton from "../../components/Buttons/HUICButton";
+import HButton from "../../components/Buttons/HButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
 
@@ -126,9 +126,9 @@ const UserProfile = () => {
             This avatar style is a remix of: Lorelei by Lisa Wischofsky provided by DiceBear API.
           </p>
           <div className="mb-24">
-            <HUICButton onClick={() => setIsAvatarSelectorToggled(false)} variant="secondary">
+            <HButton onClick={() => setIsAvatarSelectorToggled(false)} variant="secondary">
               Go back <XMarkIcon className="size-4" />
-            </HUICButton>
+            </HButton>
           </div>
         </motion.div>
       ) : null}
@@ -148,13 +148,13 @@ const UserProfile = () => {
               </p>
             </div>
             <div className="flex flex-row gap-4">
-              <HUICButton onClick={() => deleteAccount()} variant="error">
+              <HButton onClick={() => deleteAccount()} variant="error">
                 Delete
-              </HUICButton>
+              </HButton>
 
-              <HUICButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="success">
+              <HButton onClick={() => setIsDelAccConfirmationToggled(false)} variant="success">
                 Restore <ArrowPathRoundedSquareIcon className="size-4" />
-              </HUICButton>
+              </HButton>
             </div>
           </motion.div>
         </motion.div>
@@ -183,9 +183,9 @@ const UserProfile = () => {
                   <p className="py-1.5 px-3 text-base font-medium text-white/[87%]">{user?.username}</p>
                 )}
               </div>
-              <HUICButton onClick={changeUsername} variant="secondary">
+              <HButton onClick={changeUsername} variant="secondary">
                 <PencilIcon className="size-4" /> Edit
-              </HUICButton>
+              </HButton>
             </div>
           </PanelWrapper>
           <PanelWrapper>
@@ -194,9 +194,9 @@ const UserProfile = () => {
                 <p className="text-sm text-white/60">Password</p>
                 <p className="text-base font-medium text-white/[87%]">{passwordPalceholder}</p>
               </div>
-              <HUICButton variant="secondary">
+              <HButton variant="secondary">
                 <PencilIcon className="size-4" /> Edit
-              </HUICButton>
+              </HButton>
             </div>
           </PanelWrapper>
           <PanelWrapper>
@@ -233,9 +233,9 @@ const UserProfile = () => {
 
           <p className="text-base/7 text-white/60">Hover over your avatar to change it.</p>
 
-          <HUICButton variant="error" onClick={() => setIsDelAccConfirmationToggled(true)}>
+          <HButton variant="error" onClick={() => setIsDelAccConfirmationToggled(true)}>
             Delete account
-          </HUICButton>
+          </HButton>
         </div>
       </div>
     </div>

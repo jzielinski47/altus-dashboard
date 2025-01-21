@@ -65,34 +65,30 @@ const SessionTimerPanel = () => {
   }, [user, isTracking, lastBreakTimestamp]);
 
   return (
-    <PanelWrapper>
-      <div className="rounded-lg border border-white/5 bg-white/5 p-6">
-        <div className="flex-grow">
-          <h2 className="text-lg text-white/[87%] font-bold mb-2">Session Timer</h2>
+    <PanelWrapper variant="filled">
+      <div className="flex-grow">
+        <h2 className="text-lg text-white/[87%] font-bold mb-2">Session Timer</h2>
 
-          <div className="mb-2 flex flex-col gap-2">
-            <div className="mb-2">
-              <p className="text-base text-white/60">Overall session duration</p>
-              <p className="text-2xl font-medium text-white/[87%]">
-                {user?.lastLogin ? sessionDuration : "No session data"}
-              </p>
-            </div>
-
-            <div className="mb-2">
-              <p className="text-base text-white/60">Current session</p>
-              <p className="text-2xl font-medium text-white/[87%]">
-                {user?.lastLogin ? breakDuration : "No break data"}
-              </p>
-            </div>
+        <div className="mb-2 flex flex-col gap-2">
+          <div className="mb-2">
+            <p className="text-base text-white/60">Overall session duration</p>
+            <p className="text-2xl font-medium text-white/[87%]">
+              {user?.lastLogin ? sessionDuration : "No session data"}
+            </p>
           </div>
 
-          <div className="flex justify-between items-end">
-            <div>
-              <p className="text-base text-white/60">Status: {isTracking ? "Tracking" : "Paused"}</p>
-              <p className="text-base text-white/60">Hours: 12:00 AM - 11:59 PM</p>
-            </div>
-            <Button onClick={handleTrackingToggle}>{isTracking ? "Pause Tracking" : "Resume Tracking"}</Button>
+          <div className="mb-2">
+            <p className="text-base text-white/60">Current session</p>
+            <p className="text-2xl font-medium text-white/[87%]">{user?.lastLogin ? breakDuration : "No break data"}</p>
           </div>
+        </div>
+
+        <div className="flex justify-between items-end">
+          <div>
+            <p className="text-base text-white/60">Status: {isTracking ? "Tracking" : "Paused"}</p>
+            <p className="text-base text-white/60">Hours: 12:00 AM - 11:59 PM</p>
+          </div>
+          <Button onClick={handleTrackingToggle}>{isTracking ? "Pause Tracking" : "Resume Tracking"}</Button>
         </div>
       </div>
     </PanelWrapper>
