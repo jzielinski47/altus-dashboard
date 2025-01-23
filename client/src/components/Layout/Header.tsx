@@ -1,14 +1,13 @@
-import { lorelei } from "@dicebear/collection";
-import { createAvatar } from "@dicebear/core";
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
-import Avatar from "@mui/material/Avatar";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import ArrowButton from "../Buttons/ArrowButton";
 import { Dropdown } from "../Dropdown/Dropdown";
+import Avatar from "../Avatar";
+import { Avatar as MUIA } from "@mui/material";
 
 const Header = () => {
   const nav = useNavigate();
@@ -17,21 +16,6 @@ const Header = () => {
   if (loading) {
     return <div className="text-white/60">Loading...</div>;
   }
-
-  const renderAvatar = (seed: string): React.ReactNode => {
-    const avatar = createAvatar(lorelei, {
-      seed,
-      flip: true,
-      backgroundColor: ["c0aede"],
-    });
-    return (
-      <div
-        key={seed}
-        dangerouslySetInnerHTML={{ __html: avatar }}
-        className="size-10 rounded-full transition duration-700 ease-in-out hover:opacity-60 cursor-pointer overflow-hidden"
-      />
-    );
-  };
 
   return (
     <header className="relative px-4 sm:px-6">
@@ -45,7 +29,11 @@ const Header = () => {
           className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
           onClick={() => nav(user ? "/dashboard" : "/")}
         >
-          <FontAwesomeIcon icon={faCloud} bounce className="size-6 text-white" />
+          <FontAwesomeIcon
+            icon={faCloud}
+            bounce
+            className="size-6 text-white"
+          />
           <h2 className="text-base font-semibold text-white">
             {"Altus"} <span className="text-primary-a0">Dashboard</span>
           </h2>
@@ -55,9 +43,9 @@ const Header = () => {
           {user ? (
             <>
               {user && user.avatarUrl ? (
-                renderAvatar(user.avatarUrl)
+                <Avatar seed={user.avatarUrl} size={10} variant="rounded" />
               ) : (
-                <Avatar className="hover:bg-primary-a30 cursor-pointer" alt={user.username} src={user.avatarUrl} />
+                <MUIA className="size-10" />
               )}
 
               <div className="hidden sm:block flex flex-col gap-0.5">

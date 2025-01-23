@@ -9,7 +9,7 @@ export interface iHuiButton {
   variant?: "primary" | "secondary" | "error" | "success";
 }
 
-const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiButton) => {
+const HButton = ({ children, onClick, className, variant = "primary" }: iHuiButton) => {
   const variantClasses = {
     primary: "bg-primary-a30 data-[hover]:bg-primary-a0 data-[open]:bg-primary-a0",
     secondary: "text-white border-2 border-primary-a30 hover:text-black/[87%] hover:bg-primary-a30",
@@ -39,4 +39,4 @@ const HUICButton = ({ children, onClick, className, variant = "primary" }: iHuiB
   );
 };
 
-export default HUICButton;
+export default HButton;
