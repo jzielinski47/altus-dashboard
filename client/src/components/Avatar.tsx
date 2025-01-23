@@ -8,12 +8,7 @@ interface iAvatarProps {
   variant?: "default" | "rounded";
 }
 
-const Avatar = ({
-  seed,
-  onClick,
-  size = 4,
-  variant = "default",
-}: iAvatarProps) => {
+const Avatar = ({ seed, onClick, size = 16, variant = "default" }: iAvatarProps) => {
   const avatarSeed = createAvatar(lorelei, {
     seed,
     flip: true,
@@ -23,7 +18,7 @@ const Avatar = ({
   return (
     <div
       dangerouslySetInnerHTML={{ __html: avatarSeed }}
-      className={`size-${size} rounded-${
+      className={`size-${size.toString()} rounded-${
         variant === "rounded" ? "full" : "lg"
       } transition duration-700 ease-in-out hover:opacity-60 cursor-pointer overflow-hidden `}
       onClick={onClick}
