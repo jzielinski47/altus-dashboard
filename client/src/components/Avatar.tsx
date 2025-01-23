@@ -8,12 +8,7 @@ interface iAvatarProps {
   variant?: "default" | "rounded";
 }
 
-const Avatar = ({
-  seed,
-  onClick,
-  size = 4,
-  variant = "default",
-}: iAvatarProps) => {
+const Avatar = ({ seed, onClick, size = 4, variant = "default" }: iAvatarProps) => {
   const avatarSeed = createAvatar(lorelei, {
     seed,
     flip: true,
