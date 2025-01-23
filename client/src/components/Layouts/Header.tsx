@@ -29,11 +29,7 @@ const Header = () => {
           className="flex flex-row justify-center items-center gap-3 cursor-pointer px-8"
           onClick={() => nav(user ? "/dashboard" : "/")}
         >
-          <FontAwesomeIcon
-            icon={faCloud}
-            bounce
-            className="size-6 text-white"
-          />
+          <FontAwesomeIcon icon={faCloud} bounce className="size-6 text-white" />
           <h2 className="text-base font-semibold text-white">
             {"Altus"} <span className="text-primary-a0">Dashboard</span>
           </h2>
@@ -43,7 +39,7 @@ const Header = () => {
           {user ? (
             <>
               {user && user.avatarUrl ? (
-                <Avatar seed={user.avatarUrl} size={10} variant="rounded" />
+                <Avatar seed={user.avatarUrl} variant="rounded" className="size-10" />
               ) : (
                 <MUIA className="size-10" />
               )}
