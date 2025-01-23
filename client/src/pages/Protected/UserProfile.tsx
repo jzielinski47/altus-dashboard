@@ -108,14 +108,14 @@ const UserProfile = () => {
           <h3 className="text-2xl text-white/[87%] font-bold fixed top-5">
             Choose your avatar
           </h3>
-          <div className="flex-grow py-24 px-32 flex flex-row flex-wrap gap-8 justify-center ">
+          <div className="flex-grow pt-24 pb-8 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
               <div key={seed + "-d"} className="flex flex-col gap-2">
                 <Avatar
                   key={seed}
                   seed={seed}
                   onClick={() => changeAvatar(seed)}
-                  size={64}
+                  size={32}
                 />
 
                 <p

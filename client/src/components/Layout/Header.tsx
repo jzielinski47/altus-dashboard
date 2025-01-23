@@ -7,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import ArrowButton from "../Buttons/ArrowButton";
 import { Dropdown } from "../Dropdown/Dropdown";
 import Avatar from "../Avatar";
+import { Avatar as MUIA } from "@mui/material";
 
 const Header = () => {
   const nav = useNavigate();
@@ -44,7 +45,7 @@ const Header = () => {
               {user && user.avatarUrl ? (
                 <Avatar seed={user.avatarUrl} size={10} variant="rounded" />
               ) : (
-                <Avatar seed="Adrian" size={10} />
+                <MUIA className="size-10" />
               )}
 
               <div className="hidden sm:block flex flex-col gap-0.5">
