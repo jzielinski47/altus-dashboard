@@ -97,7 +97,7 @@ const UserProfile = () => {
           <div className="flex-grow pt-24 pb-8 px-32 flex flex-row flex-wrap gap-8 justify-center ">
             {seeds.map((seed) => (
               <div key={seed + "-d"} className="flex flex-col gap-2">
-                <Avatar key={seed} seed={seed} onClick={() => changeAvatar(seed)} size={64} />
+                <Avatar key={seed} seed={seed} onClick={() => changeAvatar(seed)} className="size-64" />
 
                 <p key={seed + "-1"} className="text-base text-white/60 hidden 2xl:block">
                   {" "}
@@ -207,7 +207,7 @@ const UserProfile = () => {
         <div className="h-full flex flex-col gap-4">
           <div className="flex-grow" onClick={() => setIsAvatarSelectorToggled(!isAvatarSelectorToggled)}>
             {user && user?.avatarUrl ? (
-              <Avatar seed={user.avatarUrl} size={128} />
+              <Avatar seed={user.avatarUrl} className="size-128" />
             ) : (
               <img
                 src={

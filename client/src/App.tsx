@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CookieDialog from "./components/CookieDialog";
-import Footer from "./components/Layout/Footer";
-import Header from "./components/Layout/Header";
+import Footer from "./components/Layouts/Footer";
+import Header from "./components/Layouts/Header";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import AdminPanelWrapper from "./components/Routes/RouteWrappers/AdminPanelWrapper";
 import DashboardRoute from "./components/Routes/RouteWrappers/DashboardWrapper";
