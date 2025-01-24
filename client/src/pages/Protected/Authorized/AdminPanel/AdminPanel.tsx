@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../../api/users";
-import HButton from "../../../../components/Buttons/HButton";
-import HUIButton from "../../../../components/Buttons/HUIButton";
 import UserRow from "./UserRow";
-import { iUser } from "../../../../interfaces";
 
 const AdminPanel = () => {
   const [users, setUsers] = useState([]);
