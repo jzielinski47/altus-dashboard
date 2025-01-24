@@ -8,32 +8,7 @@ import HButton from "../../components/Buttons/HButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
 import Avatar from "../../components/Avatar";
-
-const seeds: string[] = [
-  "Sophia",
-  "Desitny",
-  "Sadie",
-  "Ryker",
-  "Jessica",
-  "Mason",
-  "Sarah",
-  "Kimberly",
-  "Adrian",
-  "Wyatt",
-  "Oliver",
-  "Nolan",
-  "Jameson",
-  "Riley",
-  "George",
-  "Sara",
-  "Jude",
-  "Aidan",
-  "Leo",
-  "Avery",
-  "Eden",
-  "Luis",
-  "Robert",
-];
+import { seeds } from "../../utlis";
 
 const UserProfile = () => {
   const { user, fetchUser } = useAuth();

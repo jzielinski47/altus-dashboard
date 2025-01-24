@@ -1,4 +1,4 @@
-import AdminPanel from "../../../pages/Protected/Authorized/AdminPanel";
+import AdminPanel from "../../../pages/Protected/Authorized/AdminPanel/AdminPanel";
 import AuthorizedRoute from "../AuthorizedRoute";
 
 const AdminPanelWrapper = () => {
