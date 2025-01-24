@@ -1,4 +1,3 @@
-import React from "react";
 import HButton from "../../../../components/Buttons/HButton";
 import { iUser } from "../../../../interfaces";
 import { HandRaisedIcon, UserPlusIcon } from "@heroicons/react/16/solid";
