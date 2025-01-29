@@ -1,3 +1,4 @@
+import MapPanel from "../components/Panels/MapPanel";
 import PlanSelectionPanel from "../components/Panels/PlanSelectionPanel";
 import SessionTimerPanel from "../components/Panels/SessionTimer";
 import StatPanel from "../components/Panels/StatPanel";
@@ -10,11 +11,11 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-4 lg:gap-8">
           <SessionTimerPanel />
           <StatPanel />
-          <PlanSelectionPanel />
+          <StatPanel />
           <PlanSelectionPanel />
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-          <PlanSelectionPanel />
+          <MapPanel />
           <PlanSelectionPanel />
           <PlanSelectionPanel />
           <PlanSelectionPanel />
