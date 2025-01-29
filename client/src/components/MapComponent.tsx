@@ -26,7 +26,7 @@ const MapComponent = () => {
       navigator.geolocation.watchPosition((pos) => {
         setCoords([pos.coords.latitude, pos.coords.longitude]);
       });
-      console.log(coords);
+      // console.log(coords);
     } else {
       setIsLocationPermited(false);
     }

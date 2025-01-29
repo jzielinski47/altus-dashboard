@@ -20,7 +20,8 @@ async function fetchAndStoreEVC() {
   }
 }
 
-router.get("/api/dashboard", isAuthenticated, (req: Request, res: Response) => {
+router.get("/api/dashboard", isAuthenticated, async (req: Request, res: Response) => {
+  // await fetchAndStoreEVC();
   res.send({ msg: "dashboard" });
 });
 
