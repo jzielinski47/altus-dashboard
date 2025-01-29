@@ -1,7 +1,8 @@
-import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon, LatLngExpression } from "leaflet";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
+import { getEVCs } from "../api/dashboard";
 
 const UpdateMapCenter = ({ coords }: { coords: LatLngExpression }) => {
   const map = useMap();
@@ -19,6 +20,19 @@ const EVChargerIcon = new Icon({
 const MapComponent = () => {
   const [isLocationPermited, setIsLocationPermited] = useState(true);
   const [coords, setCoords] = useState<LatLngExpression>([50, 0]);
+  const [evcList, setEvcList] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchEVCS = async () => {
+      try {
+        const res = await getEVCs();
+        setEvcList(res);
+      } catch (error) {
+        console.error("Error fetching evcs:", error);
+      }
+    };
+    fetchEVCS();
+  }, []);
 
   const aquireGeolocation = () => {
     if ("geolocation" in navigator) {
@@ -26,7 +40,7 @@ const MapComponent = () => {
       navigator.geolocation.watchPosition((pos) => {
         setCoords([pos.coords.latitude, pos.coords.longitude]);
       });
-      console.log(coords);
+      // console.log(coords);
     } else {
       setIsLocationPermited(false);
     }
@@ -51,7 +65,13 @@ const MapComponent = () => {
         />
       </div>
       <UpdateMapCenter coords={coords} />
-      <Marker position={[50.0185, 19.9745]} icon={EVChargerIcon}></Marker>
+      {evcList.map((evc: { id: Key | null | undefined; addressInfo: { latitude: number; longitude: number } }) => (
+        <Marker
+          key={evc.id}
+          position={[evc.addressInfo.latitude, evc.addressInfo.longitude] as LatLngExpression}
+          icon={EVChargerIcon}
+        ></Marker>
+      ))}
     </MapContainer>
   );
 };

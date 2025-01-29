@@ -2,6 +2,11 @@ export interface iError {
   message?: string;
 }
 
+export interface iComponent {
+  className?: string;
+  children?: React.ReactNode;
+}
+
 export interface iSignupData {
   username: string;
   email: string;

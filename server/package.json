@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
+    "agenda": "^5.0.0",
     "bcrypt": "^5.1.1",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.6",
