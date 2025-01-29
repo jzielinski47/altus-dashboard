@@ -9,7 +9,7 @@ const UserRow = ({ user }: { user: iUser }) => {
     return temp.toDateString();
   };
 
-  const className = "whitespace-nowrap px-4 py-2 font-medium";
+  const className: string = "whitespace-nowrap px-4 py-2 font-medium";
 
   return (
     <tr className="hover:bg-level-1 hover:cursor-pointer text-white/60 hover:text-white/[87%]">

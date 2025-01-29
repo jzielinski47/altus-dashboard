@@ -18,7 +18,7 @@ const AdminPanel = () => {
     fetchUsers();
   }, []);
 
-  const headerStyle =
+  const className: string =
     "whitespace-nowrap px-4 py-2 font-normal text-white/60 hover:text-white/[87%] hover:bg-level-2 hover:cursor-pointer";
 
   return (
@@ -29,12 +29,12 @@ const AdminPanel = () => {
           <thead className="text-left">
             <tr>
               <th className="whitespace-nowrap px-4 py-2"></th>
-              <th className={headerStyle}>Username</th>
-              <th className={headerStyle}>Email address</th>
-              <th className={headerStyle}>Role</th>
-              <th className={headerStyle}>Created</th>
-              <th className={headerStyle}>Last login</th>
-              <th className={headerStyle}>Status</th>
+              <th className={className}>Username</th>
+              <th className={className}>Email address</th>
+              <th className={className}>Role</th>
+              <th className={className}>Created</th>
+              <th className={className}>Last login</th>
+              <th className={className}>Status</th>
               <th className="whitespace-nowrap px-4 py-2"></th>
               <th className="whitespace-nowrap px-4 py-2"></th>
             </tr>
