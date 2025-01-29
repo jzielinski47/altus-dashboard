@@ -7,6 +7,7 @@ import MongoStore from "connect-mongo";
 import dotenv from "dotenv";
 import "./strategies/local-strategy";
 import { getRandomArbitrary } from "./utils/encryption";
+import { startAgenda } from "./mongodb/schedule/agenda";
 
 dotenv.config({ path: "./local.env" });
 
@@ -23,7 +24,10 @@ app.use(
 try {
   mongoose
     .connect(process.env.MONGO_PUBLIC_URL || process.env.MONGO_URL || "")
-    .then(() => console.log("Connected to MongoDb Database"))
+    .then(() => {
+      console.log("Connected to MongoDb Database");
+      startAgenda("4 hours");
+    })
     .catch((err) => console.log(err));
 } catch (err) {
   console.log("DB error: ", err);
