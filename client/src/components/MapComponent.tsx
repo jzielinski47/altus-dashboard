@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon, LatLngExpression } from "leaflet";
 import { useEffect, useState } from "react";
@@ -51,7 +51,11 @@ const MapComponent = () => {
         />
       </div>
       <UpdateMapCenter coords={coords} />
-      <Marker position={[50.0185, 19.9745]} icon={EVChargerIcon}></Marker>
+      <Marker position={[50.0185, 19.9745]} icon={EVChargerIcon}>
+        <Popup>
+          <h2>Włoska 3</h2>
+        </Popup>
+      </Marker>
     </MapContainer>
   );
 };

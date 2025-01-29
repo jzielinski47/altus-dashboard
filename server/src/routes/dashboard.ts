@@ -9,7 +9,7 @@ const router = Router();
 */
 
 async function fetchAndStoreEVC() {
-  const url = `https://api.openchargemap.io/v3/poi?key=${process.env.OPEN_CHARGE_MAP_API_KEY}`;
+  const url = `https://api.openchargemap.io/v3/poi?countryid=PL&maxresults=100?key=${process.env.OPEN_CHARGE_MAP_API_KEY}`;
   const options = { method: "GET", headers: { Accept: "application/json" } };
   try {
     const res = await fetch(url, options);
@@ -21,7 +21,7 @@ async function fetchAndStoreEVC() {
 }
 
 router.get("/api/dashboard", isAuthenticated, async (req: Request, res: Response) => {
-  // await fetchAndStoreEVC();
+  await fetchAndStoreEVC();
   res.send({ msg: "dashboard" });
 });
 
