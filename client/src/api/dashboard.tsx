@@ -1,4 +1,3 @@
-import { iError } from "../interfaces";
 import { serverIP } from "./setup";
 
 export const getEVCs = async () => {
