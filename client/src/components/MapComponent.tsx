@@ -19,7 +19,7 @@ const EVChargerIcon = new Icon({
 
 const MapComponent = () => {
   const [isLocationPermited, setIsLocationPermited] = useState(true);
-  const [coords, setCoords] = useState<LatLngExpression>([50, 0]);
+  const [coords, setCoords] = useState<LatLngExpression>([52.2297, 21.0122]);
   const [evcList, setEvcList] = useState<any>([]);
 
   useEffect(() => {
