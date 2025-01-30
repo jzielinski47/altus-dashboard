@@ -1,9 +1,9 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
-import HUIButton from "./Buttons/HUIButton";
 import { motion } from "framer-motion";
-import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import HUIButton from "./Buttons/HUIButton";
 
 const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con }) => {
   const [isOpen, setIsOpen] = useState(true);

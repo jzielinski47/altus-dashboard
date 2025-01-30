@@ -1,7 +1,6 @@
 import { Request, Response, Router } from "express";
-import { isAuthenticated } from "../utils/middlewares";
-import { EVCModel } from "../mongodb/schemas/evc";
 import fetchAndStoreEVC from "../mongodb/schedule/fetchAndStoreEVC";
+import { EVCModel } from "../mongodb/schemas/evc";
 
 const router = Router();
 

@@ -1,13 +1,13 @@
-import express, { Request, Response, NextFunction } from "express";
-import router from "./routes/router";
-import session from "express-session";
-import passport from "passport";
-import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import dotenv from "dotenv";
+import express from "express";
+import session from "express-session";
+import mongoose from "mongoose";
+import passport from "passport";
+import { startAgenda } from "./mongodb/schedule/agenda";
+import router from "./routes/router";
 import "./strategies/local-strategy";
 import { getRandomArbitrary } from "./utils/encryption";
-import { startAgenda } from "./mongodb/schedule/agenda";
 
 dotenv.config({ path: "./local.env" });
 

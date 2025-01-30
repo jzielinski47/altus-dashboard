@@ -1,7 +1,7 @@
-import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Icon, LatLngExpression } from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { Key, useEffect, useState } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { getEVCs } from "../api/dashboard";
 
 const UpdateMapCenter = ({ coords }: { coords: LatLngExpression }) => {
