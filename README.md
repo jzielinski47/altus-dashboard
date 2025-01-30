@@ -11,6 +11,8 @@ Altus is a fully functional dashboard that embodies my long-standing vision of a
 
 **Other features:** Session-based authentication with RBAC, Rest API
 
+**Referenced external APIs:** Open Charge Map
+
 ![image](https://github.com/user-attachments/assets/9dd154e2-baef-4528-bcb3-d59e2032ba33)
 ![image](https://github.com/user-attachments/assets/1122220d-b315-45c7-bde9-15e4cc76cc20)
 ![image](https://github.com/user-attachments/assets/b5622a9d-fe86-4baf-9e13-badf108cff0b)
@@ -127,6 +129,8 @@ Returns detailed data for all users. Administrator rights required.
 - Various features, including:
   - Session timer
   - Admin panel
+      - User management
   - User remembered settings
   - User statistics collection
   - User profile customization
+  - Finding closest EV Charges based on location
