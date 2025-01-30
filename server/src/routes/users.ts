@@ -1,8 +1,8 @@
 import { Request, Response, Router } from "express";
-import { isAuthenticated, isAuthorized } from "../utils/middlewares";
-import { User } from "../mongodb/schemas/user";
 import mongoose from "mongoose";
+import { User } from "../mongodb/schemas/user";
 import { iUser } from "../utils/interfaces";
+import { isAuthenticated, isAuthorized } from "../utils/middlewares";
 
 const router = Router();
 

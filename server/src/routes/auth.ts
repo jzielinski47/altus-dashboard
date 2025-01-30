@@ -1,10 +1,10 @@
 import { Request, Response, Router } from "express";
 import { checkSchema, matchedData, validationResult } from "express-validator";
-import { signupDataValidationSchema } from "../utils/validationSchemas";
 import passport from "passport";
 import { User } from "../mongodb/schemas/user";
 import { hashPassword } from "../utils/encryption";
 import { iUser } from "../utils/interfaces";
+import { signupDataValidationSchema } from "../utils/validationSchemas";
 
 const router = Router();
 

@@ -49,7 +49,7 @@ const Header = () => {
                 <p className="text-sm text-white/60">{user.email}</p>
               </div>
               <Dropdown>
-                <EllipsisVerticalIcon className="size-5 text-white/60" />
+                <EllipsisVerticalIcon className="size-5 text-white/60 hover:text-white/75 transition-colors" />
               </Dropdown>
             </>
           ) : (

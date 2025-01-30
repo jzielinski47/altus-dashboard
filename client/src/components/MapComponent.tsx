@@ -1,7 +1,7 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Icon, LatLngExpression } from "leaflet";
-import { Key, useEffect, useState } from "react";
+import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { getEVCs } from "../api/dashboard";
 
 const UpdateMapCenter = ({ coords }: { coords: LatLngExpression }) => {
@@ -19,7 +19,7 @@ const EVChargerIcon = new Icon({
 
 const MapComponent = () => {
   const [isLocationPermited, setIsLocationPermited] = useState(true);
-  const [coords, setCoords] = useState<LatLngExpression>([50, 0]);
+  const [coords, setCoords] = useState<LatLngExpression>([52.2297, 21.0122]);
   const [evcList, setEvcList] = useState<any>([]);
 
   useEffect(() => {
@@ -65,9 +65,9 @@ const MapComponent = () => {
         />
       </div>
       <UpdateMapCenter coords={coords} />
-      {evcList.map((evc: { id: Key | null | undefined; addressInfo: { latitude: number; longitude: number } }) => (
+      {evcList.map((evc: { stationId: number; addressInfo: { latitude: number; longitude: number } }) => (
         <Marker
-          key={evc.id}
+          key={evc.stationId}
           position={[evc.addressInfo.latitude, evc.addressInfo.longitude] as LatLngExpression}
           icon={EVChargerIcon}
         ></Marker>

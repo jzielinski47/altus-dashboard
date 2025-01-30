@@ -1,5 +1,4 @@
 import Agenda from "agenda";
-import { EVCModel } from "../schemas/evc";
 import mongoose from "mongoose";
 import fetchAndStoreEVC from "./fetchAndStoreEVC";
 
@@ -17,4 +16,5 @@ async function startAgenda(period: string) {
   console.log("Agenda job scheduled: Update EVC every " + period + ".");
 }
 
-export { startAgenda, fetchAndStoreEVC };
+export { fetchAndStoreEVC, startAgenda };
+

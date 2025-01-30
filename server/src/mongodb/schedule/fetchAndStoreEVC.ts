@@ -2,7 +2,7 @@ import { EVCModel } from "../schemas/evc";
 
 async function fetchAndStoreEVC() {
   console.log(`[${new Date().toISOString()}] Fetching EVC data...`);
-  const url = `https://api.openchargemap.io/v3/poi?countryid=PL&maxresults=1000&key=${process.env.OPEN_CHARGE_MAP_API_KEY}`;
+  const url = `https://api.openchargemap.io/v3/poi?latitude=52.2297&longitude=21.0122&distance=510&maxresults=1000&key=${process.env.OPEN_CHARGE_MAP_API_KEY}`;
   const options = { method: "GET", headers: { Accept: "application/json" } };
 
   try {
