@@ -1,6 +1,6 @@
 import { Icon, LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Key, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { getEVCs } from "../api/dashboard";
 
@@ -65,9 +65,9 @@ const MapComponent = () => {
         />
       </div>
       <UpdateMapCenter coords={coords} />
-      {evcList.map((evc: { id: Key | null | undefined; addressInfo: { latitude: number; longitude: number } }) => (
+      {evcList.map((evc: { stationId: number; addressInfo: { latitude: number; longitude: number } }) => (
         <Marker
-          key={evc.id}
+          key={evc.stationId}
           position={[evc.addressInfo.latitude, evc.addressInfo.longitude] as LatLngExpression}
           icon={EVChargerIcon}
         ></Marker>
