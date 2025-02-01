@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import {
   ArrowLeftEndOnRectangleIcon,
+  BanknotesIcon,
   Cog6ToothIcon,
   PencilIcon,
   // ArchiveBoxXMarkIcon,
@@ -45,12 +46,19 @@ export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
               onClick={() => nav("/admin")}
             />
           )}
+          <DropdownButton
+            icon={<BanknotesIcon className="size-4 fill-white/30" />}
+            label="Account balance"
+            shortcut="⌘F"
+            onClick={() => nav("/accbalance")}
+          />
           <div className="my-1 h-px bg-white/5" />
           {/* <DropdownButton
             icon={<ArchiveBoxXMarkIcon className="size-4 fill-white/30" />}
             label="Archive"
             shortcut="⌘A"
           /> */}
+
           <DropdownButton
             icon={<ArrowLeftEndOnRectangleIcon className="size-4 fill-white/30" />}
             label="Log out"
