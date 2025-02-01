@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import Button from "../Buttons/HUIButton";
+import HButton from "../Buttons/HButton";
 import PanelWrapper from "./PanelWrapper";
+import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/16/solid";
 
 const formatTimeDuration = (milliseconds: number) => {
   const seconds = Math.floor(milliseconds / 1000);
@@ -88,7 +89,19 @@ const SessionTimerPanel = () => {
             <p className="text-base text-white/60">Status: {isTracking ? "Tracking" : "Paused"}</p>
             <p className="text-base text-white/60">Hours: 12:00 AM - 11:59 PM</p>
           </div>
-          <Button onClick={handleTrackingToggle}>{isTracking ? "Pause Tracking" : "Resume Tracking"}</Button>
+          <HButton onClick={handleTrackingToggle} variant="secondary">
+            {isTracking ? (
+              <>
+                {"Pause Tracking"}
+                <PauseCircleIcon className="size-4" />
+              </>
+            ) : (
+              <>
+                {"Resume Tracking"}
+                <PlayCircleIcon className="size-4" />
+              </>
+            )}
+          </HButton>
         </div>
       </div>
     </PanelWrapper>
