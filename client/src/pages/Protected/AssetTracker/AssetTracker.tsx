@@ -1,13 +1,8 @@
-import { Field, Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import { CreditCardIcon, PlusIcon } from "@heroicons/react/16/solid";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import HButton from "../../../components/Buttons/HButton";
-import HInput from "../../../components/HInput";
-import HListBox from "../../../components/HListBox";
 import { iAsset } from "../../../interfaces";
-import AssetTable from "./AssetTable/AssetTable";
-import { currencyList } from "../../../utils/currencyData";
 import AssetForm from "./AssetForm";
+import AssetTable from "./AssetTable/AssetTable";
 
 const AssetTracker = () => {
   const [assetList, setAssetList] = useState<iAsset[]>([]);
@@ -16,8 +11,8 @@ const AssetTracker = () => {
   useEffect(() => {
     setAssetList([
       { id: 0, name: "Cash", balance: 0.2, currency: "PLN" },
-      { id: 0, name: "Cash", balance: 0.2, currency: "PLN" },
-      { id: 0, name: "Cash", balance: 0.2, currency: "PLN" },
+      { id: 1, name: "Cash", balance: 0.2, currency: "PLN" },
+      { id: 2, name: "Cash", balance: 0.2, currency: "PLN" },
     ]);
 
     const date = new Date(Date.now());
@@ -32,6 +27,10 @@ const AssetTracker = () => {
         id: prev.length + 1,
       } as iAsset,
     ]);
+  };
+
+  const deleteById = (id: number) => {
+    setAssetList(assetList.filter((asset) => asset.id !== id));
   };
 
   const removeAllAssets = () => setAssetList([]);
@@ -53,7 +52,7 @@ const AssetTracker = () => {
         </TabList>
         <TabPanels className="mt-4">
           <TabPanel className="flex-grow block h-full w-full flex flex-col gap-4">
-            <AssetTable assetList={assetList} />
+            <AssetTable assetList={assetList} deleteById={deleteById} />
             <AssetForm addAsset={addNewAsset} removeAssets={removeAllAssets} />
           </TabPanel>
           <TabPanel>Content 2</TabPanel>

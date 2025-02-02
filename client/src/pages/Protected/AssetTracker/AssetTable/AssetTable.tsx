@@ -4,10 +4,10 @@ import AssetTableHeader from "./AssetTableHeader";
 
 interface iAssetTable {
   assetList: iAsset[];
+  deleteById: (id: number) => void;
 }
 
-
-const AssetTable = ({ assetList }: iAssetTable) => {
+const AssetTable = ({ assetList, deleteById }: iAssetTable) => {
   return (
     <div>
       <div className="flex-grow w-full h-full overflow-y-auto border border-white/[38%] p-2 rounded-lg max-h-[40rem]">
@@ -15,7 +15,7 @@ const AssetTable = ({ assetList }: iAssetTable) => {
           <AssetTableHeader />
           <tbody className="divide-y divide-border-black">
             {assetList.map((acc: iAsset) => (
-              <AssetRow key={acc.id} acc={acc} />
+              <AssetRow key={acc.id} acc={acc} deleteById={deleteById} />
             ))}
           </tbody>
         </table>

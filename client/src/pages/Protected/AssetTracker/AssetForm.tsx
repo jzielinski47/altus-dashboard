@@ -17,7 +17,8 @@ const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
   const [assetValue, setAssetValue] = useState(0);
   const [currency, setCurrency] = useState(currencyList[0]);
 
-  const handleSubmit = () => {
+  const addNewAsset = () => {
+    if ((assetName.length <= 0 && assetValue <= 0, currency.name.length <= 0)) return;
     addAsset({
       name: assetName,
       balance: assetValue,
@@ -48,7 +49,7 @@ const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
         <HListBox name="Currency" list={currencyList} onChange={setCurrency} />
       </div>
       <div className="flex gap-4">
-        <HButton variant="success" onClick={handleSubmit}>
+        <HButton variant="success" onClick={addNewAsset}>
           <PlusIcon className="size-4" /> Add asset
         </HButton>
         <HButton variant="error" onClick={removeAssets}>
