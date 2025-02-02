@@ -3,37 +3,26 @@ import { useEffect, useState } from "react";
 import { iAsset } from "../../../interfaces";
 import AssetForm from "./AssetForm";
 import AssetTable from "./AssetTable/AssetTable";
+import TabComponent from "../../../components/TabComponent";
 
 const AssetTracker = () => {
   const [assetList, setAssetList] = useState<iAsset[]>([]);
   const [todaysDate, setTodaysDate] = useState("");
 
   useEffect(() => {
-    setAssetList([
-      { id: 0, name: "Cash", balance: 0.2, currency: "PLN" },
-      { id: 1, name: "Cash", balance: 0.2, currency: "PLN" },
-      { id: 2, name: "Cash", balance: 0.2, currency: "PLN" },
-    ]);
-
     const date = new Date(Date.now());
     setTodaysDate(date.toString());
   }, []);
 
-  const addNewAsset = (asset: Partial<iAsset>) => {
-    setAssetList((prev) => [
-      ...prev,
-      {
-        ...asset,
-        id: prev.length + 1,
-      } as iAsset,
-    ]);
+  const appendAsset = (asset: Partial<iAsset>) => {
+    setAssetList((prev) => [...prev, { ...asset, id: prev.length + 1 } as iAsset]);
   };
 
-  const deleteById = (id: number) => {
+  const deleteOne = (id: number) => {
     setAssetList(assetList.filter((asset) => asset.id !== id));
   };
 
-  const removeAllAssets = () => setAssetList([]);
+  const deleteAll = () => setAssetList([]);
 
   return (
     <div className="flex flex-grow items-center justify-start flex-col gap-5 h-full">
@@ -43,17 +32,13 @@ const AssetTracker = () => {
       </div>
       <TabGroup>
         <TabList className="flex gap-4 justify-center">
-          <Tab className="rounded-full py-1 px-3 text-sm/6 font-semibold text-white focus:outline-none data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white">
-            Assets
-          </Tab>
-          <Tab className="rounded-full py-1 px-3 text-sm/6 font-semibold text-white focus:outline-none data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/10 data-[focus]:outline-1 data-[focus]:outline-white">
-            Libalitlies
-          </Tab>
+          <TabComponent>Assets</TabComponent>
+          <TabComponent>Liabilites</TabComponent>
         </TabList>
         <TabPanels className="mt-4">
           <TabPanel className="flex-grow block h-full w-full flex flex-col gap-4">
-            <AssetTable assetList={assetList} deleteById={deleteById} />
-            <AssetForm addAsset={addNewAsset} removeAssets={removeAllAssets} />
+            <AssetTable assetList={assetList} deleteById={deleteOne} />
+            <AssetForm appendAsset={appendAsset} deleteAll={deleteAll} />
           </TabPanel>
           <TabPanel>Content 2</TabPanel>
         </TabPanels>

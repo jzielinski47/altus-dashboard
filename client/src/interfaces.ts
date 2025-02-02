@@ -49,6 +49,6 @@ export interface AuthContextType {
 export interface iAsset {
   id: number;
   name: string;
-  balance: number;
+  balance: number | string;
   currency: "EUR" | "PLN" | "USD" | string;
 }

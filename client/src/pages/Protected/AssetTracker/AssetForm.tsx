@@ -8,24 +8,23 @@ import { iAsset } from "../../../interfaces";
 import { currencyList } from "../../../utils/currencyData";
 
 interface iAssetFormProps {
-  addAsset: (asset: Partial<iAsset>) => void;
-  removeAssets: () => void;
+  appendAsset: (asset: Partial<iAsset>) => void;
+  deleteAll: () => void;
 }
 
-const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
+const AssetForm = ({ appendAsset, deleteAll }: iAssetFormProps) => {
   const [assetName, setAssetName] = useState("");
   const [assetValue, setAssetValue] = useState(0);
   const [currency, setCurrency] = useState(currencyList[0]);
 
   const addNewAsset = () => {
-    if ((assetName.length <= 0 && assetValue <= 0, currency.name.length <= 0)) return;
-    addAsset({
-      name: assetName,
-      balance: assetValue,
-      currency: currency.name,
-    });
-    setAssetName("");
-    setAssetValue(0);
+    if (assetName.length > 0 && assetName.length < 32 && assetValue > 0 && currency.name.length > 0) {
+      appendAsset({
+        name: assetName,
+        balance: assetValue,
+        currency: currency.name,
+      });
+    }
   };
 
   return (
@@ -43,8 +42,10 @@ const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
         <HInput
           name="Value"
           placeholder="20.4"
-          value={assetValue}
-          onChange={({ target: { value } }) => setAssetValue(Number(value))}
+          //   value={assetValue}
+          onChange={({ target: { value } }) => {
+            setAssetValue(value);
+          }}
         />
         <HListBox name="Currency" list={currencyList} onChange={setCurrency} />
       </div>
@@ -52,7 +53,7 @@ const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
         <HButton variant="success" onClick={addNewAsset}>
           <PlusIcon className="size-4" /> Add asset
         </HButton>
-        <HButton variant="error" onClick={removeAssets}>
+        <HButton variant="error" onClick={deleteAll}>
           Remove all
         </HButton>
       </div>
