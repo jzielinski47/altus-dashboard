@@ -46,6 +46,10 @@ const PrivacyPolicy = () => {
         <li>
           <strong>disabled:</strong> A flag indicating if your account has been disabled.
         </li>
+        <li>
+          <strong>location:</strong> Your location is necessary to point your location on the map, however you can also
+          navigate the map yourself.
+        </li>
       </ul>
 
       <h2 className="text-white/60">Cookies</h2>

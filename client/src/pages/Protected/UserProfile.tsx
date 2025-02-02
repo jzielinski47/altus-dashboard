@@ -8,7 +8,7 @@ import HButton from "../../components/Buttons/HButton";
 import PanelWrapper from "../../components/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
 import Avatar from "../../components/Avatar";
-import { seeds } from "../../utlis";
+import { seeds } from "../../utils/seeds";
 
 const UserProfile = () => {
   const { user, fetchUser } = useAuth();

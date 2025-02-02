@@ -1,9 +1,10 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { CheckCircleIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import HUIButton from "./Buttons/HUIButton";
+import HButton from "./Buttons/HButton";
 
 const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -33,14 +34,16 @@ const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con 
               .
             </p>
             <div className="mt-4">
-              <HUIButton
+              <HButton
+                variant="secondary"
                 onClick={() => {
                   setIsOpen(false);
                   setIsCookiesSet(true);
                 }}
               >
                 Accept
-              </HUIButton>
+                <CheckCircleIcon className="size-4" />
+              </HButton>
             </div>
           </DialogPanel>
         </div>
