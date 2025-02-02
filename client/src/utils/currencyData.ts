@@ -1071,3 +1071,8 @@ export const currencies = {
     name_plural: "Zimbabwean Dollar",
   },
 };
+
+export const currencyList = Object.keys(currencies).map((code, index) => ({
+  id: index,
+  name: code,
+}));

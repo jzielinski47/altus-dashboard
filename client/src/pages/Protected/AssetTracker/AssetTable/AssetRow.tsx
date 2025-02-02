@@ -1,8 +1,8 @@
 import { CreditCardIcon, PencilIcon } from "@heroicons/react/16/solid";
-import HButton from "../../../components/Buttons/HButton";
-import { iAccount } from "../../../interfaces";
+import HButton from "../../../../components/Buttons/HButton";
+import { iAsset } from "../../../../interfaces";
 
-const AssetRow = ({ acc }: { acc: iAccount }) => {
+const AssetRow = ({ acc }: { acc: iAsset }) => {
   const tdStyle: string = "text-white/[87%] text-left text-base p-1";
 
   return (

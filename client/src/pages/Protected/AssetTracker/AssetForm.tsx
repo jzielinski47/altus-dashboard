@@ -1,0 +1,62 @@
+import { Field } from "@headlessui/react";
+import { CreditCardIcon, PlusIcon } from "@heroicons/react/16/solid";
+import { useState } from "react";
+import HButton from "../../../components/Buttons/HButton";
+import HInput from "../../../components/HInput";
+import HListBox from "../../../components/HListBox";
+import { iAsset } from "../../../interfaces";
+import { currencyList } from "../../../utils/currencyData";
+
+interface iAssetFormProps {
+  addAsset: (asset: Partial<iAsset>) => void;
+  removeAssets: () => void;
+}
+
+const AssetForm = ({ addAsset, removeAssets }: iAssetFormProps) => {
+  const [assetName, setAssetName] = useState("");
+  const [assetValue, setAssetValue] = useState(0);
+  const [currency, setCurrency] = useState(currencyList[0]);
+
+  const handleSubmit = () => {
+    addAsset({
+      name: assetName,
+      balance: assetValue,
+      currency: currency.name,
+    });
+    setAssetName("");
+    setAssetValue(0);
+  };
+
+  return (
+    <>
+      <div className="flex gap-6 items-end">
+        <Field className="p-1">
+          <CreditCardIcon className="size-8 text-white/60 hover:text-white/70 cursor-pointer mt-1" />
+        </Field>
+        <HInput
+          name="Asset name"
+          placeholder="Bank | Cash"
+          value={assetName}
+          onChange={({ target: { value } }) => setAssetName(value)}
+        />
+        <HInput
+          name="Value"
+          placeholder="20.4"
+          value={assetValue}
+          onChange={({ target: { value } }) => setAssetValue(Number(value))}
+        />
+        <HListBox name="Currency" list={currencyList} onChange={setCurrency} />
+      </div>
+      <div className="flex gap-4">
+        <HButton variant="success" onClick={handleSubmit}>
+          <PlusIcon className="size-4" /> Add asset
+        </HButton>
+        <HButton variant="error" onClick={removeAssets}>
+          Remove all
+        </HButton>
+      </div>
+    </>
+  );
+};
+
+export default AssetForm;
