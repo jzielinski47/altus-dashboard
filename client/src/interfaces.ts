@@ -45,3 +45,10 @@ export interface AuthContextType {
   loading: boolean;
   fetchUser: () => Promise<void>;
 }
+
+export interface iAccount {
+  id: number;
+  name: string;
+  balance: number;
+  currency: "EUR" | "PLN" | "USD" | string;
+}

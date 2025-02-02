@@ -48,7 +48,7 @@ export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {
           )}
           <DropdownButton
             icon={<BanknotesIcon className="size-4 fill-white/30" />}
-            label="Account balance"
+            label="Assets Tracker"
             shortcut="⌘F"
             onClick={() => nav("/accbalance")}
           />

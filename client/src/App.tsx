@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Settings from "./pages/Protected/Settings";
 import UserProfile from "./pages/Protected/UserProfile";
-import AccountBalanceTracker from "./pages/Protected/AccountBalanceTracker";
+import AssetTracker from "./pages/Protected/AssetTracker/AssetTracker";
 
 const App = () => {
   const { isCookiesSet, user } = useAuth();
@@ -52,7 +52,7 @@ const App = () => {
               path="/accbalance"
               element={
                 <ProtectedRoute>
-                  <AccountBalanceTracker />
+                  <AssetTracker />
                 </ProtectedRoute>
               }
             />
