@@ -1,12 +1,12 @@
+import { Field } from "@headlessui/react";
 import { CreditCardIcon, PlusIcon } from "@heroicons/react/16/solid";
 import { useEffect, useState } from "react";
 import HButton from "../../../components/Buttons/HButton";
-import { iAccount } from "../../../interfaces";
-import AssetRow from "./AssetRow";
 import HInput from "../../../components/HInput";
 import HListBox from "../../../components/HListBox";
+import { iAccount } from "../../../interfaces";
 import { currencies } from "../../../utils/currencyData";
-import { Field, Label } from "@headlessui/react";
+import AssetRow from "./AssetRow";
 
 const currencyList = Object.keys(currencies).map((code, index) => ({
   id: index,
@@ -24,7 +24,7 @@ const AssetTracker = () => {
     setTodaysDate(date.toString());
   }, []);
 
-  const addNewAsset = () => {};
+  // const addNewAsset = () => {};
 
   return (
     <div className="flex flex-grow items-center justify-start flex-col gap-5 h-full">
