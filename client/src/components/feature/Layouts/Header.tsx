@@ -1,13 +1,13 @@
 import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
+import { Avatar as MUIA } from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import ArrowButton from "../common/Buttons/ArrowButton";
-import { Dropdown } from "../feature/Dropdown/Dropdown";
-import Avatar from "../Avatar";
-import { Avatar as MUIA } from "@mui/material";
+import { useAuth } from "../../../context/AuthContext";
+import Avatar from "../../common/Avatar";
+import ArrowButton from "../../common/Buttons/ArrowButton";
+import { Dropdown } from "../Dropdown/Dropdown";
 
 const Header = () => {
   const nav = useNavigate();

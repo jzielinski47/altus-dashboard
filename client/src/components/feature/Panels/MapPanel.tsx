@@ -1,5 +1,5 @@
 import PanelWrapper from "./PanelWrapper";
-import MapComponent from "../../MapComponent";
+import MapComponent from "../MapComponent";
 import { BoltIcon } from "@heroicons/react/16/solid";
 import { iComponent } from "../../../interfaces";
 

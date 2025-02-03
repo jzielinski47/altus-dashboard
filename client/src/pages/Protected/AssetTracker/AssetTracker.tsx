@@ -37,7 +37,7 @@ const AssetTracker = () => {
         </TabList>
         <TabPanels className="mt-4">
           <TabPanel className="flex-grow block h-full w-full flex flex-col gap-4">
-            <AssetTable assetList={assetList} deleteById={deleteOne} />
+            <AssetTable list={assetList} deleteById={deleteOne} />
             <AssetForm appendAsset={appendAsset} deleteAll={deleteAll} />
           </TabPanel>
           <TabPanel>Content 2</TabPanel>

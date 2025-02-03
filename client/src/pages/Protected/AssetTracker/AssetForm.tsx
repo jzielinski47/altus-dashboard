@@ -42,7 +42,8 @@ const AssetForm = ({ appendAsset, deleteAll }: iAssetFormProps) => {
         <HInput
           name="Value"
           placeholder="20.4"
-          //   value={assetValue}
+          value={assetValue}
+          type="number"
           onChange={({ target: { value } }) => {
             setAssetValue(value);
           }}

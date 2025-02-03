@@ -1,4 +1,4 @@
-import InputField from "../components/InputField";
+import InputField from "../components/feature/InputField";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
