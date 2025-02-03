@@ -20,6 +20,7 @@ Altus is a fully functional dashboard that embodies my long-standing vision of a
 ![image](https://github.com/user-attachments/assets/c03ce614-7ac2-44d9-9326-487af62d3344)
 
 ![www](https://github.com/user-attachments/assets/cb2a1d68-f035-44cd-9e29-f91151b38ccd)
+![image](https://github.com/user-attachments/assets/620a456f-1b77-4986-9e1f-17d0c0f8130e)
 
 
 
