@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { serverIP } from "../api/setup";
+import { serverIP } from "../services/setup";
 import { AuthContextType, iError, iUser } from "../interfaces";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

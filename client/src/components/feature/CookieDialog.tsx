@@ -3,8 +3,8 @@ import { CheckCircleIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import HButton from "./Buttons/HButton";
+import { useAuth } from "../../context/AuthContext";
+import HButton from "../common/Buttons/HButton";
 
 const CookieDialog: React.FC<{ con: React.RefObject<HTMLDivElement> }> = ({ con }) => {
   const [isOpen, setIsOpen] = useState(true);

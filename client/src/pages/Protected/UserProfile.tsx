@@ -3,12 +3,12 @@ import { ArrowPathRoundedSquareIcon, ArrowUpRightIcon, PencilIcon, XMarkIcon } f
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { deleteSelf, updateAvatar, updateUsername } from "../../api/users";
-import HButton from "../../components/Buttons/HButton";
-import PanelWrapper from "../../components/Panels/PanelWrapper";
+import { deleteSelf, updateAvatar, updateUsername } from "../../services/users";
+import HButton from "../../components/common/Buttons/HButton";
+import PanelWrapper from "../../components/feature/Panels/PanelWrapper";
 import { useAuth } from "../../context/AuthContext";
-import Avatar from "../../components/Avatar";
-import { seeds } from "../../utils/seeds";
+import Avatar from "../../components/common/Avatar";
+import { seeds } from "../../constants/seeds";
 
 const UserProfile = () => {
   const { user, fetchUser } = useAuth();

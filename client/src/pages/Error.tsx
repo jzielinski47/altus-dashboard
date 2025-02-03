@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import HButton from "../components/Buttons/HButton";
+import HButton from "../components/common/Buttons/HButton";
 
 const Error = () => {
   const nav = useNavigate();

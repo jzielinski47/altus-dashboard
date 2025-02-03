@@ -4,8 +4,8 @@ import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import ArrowButton from "../Buttons/ArrowButton";
-import { Dropdown } from "../Dropdown/Dropdown";
+import ArrowButton from "../common/Buttons/ArrowButton";
+import { Dropdown } from "../feature/Dropdown/Dropdown";
 import Avatar from "../Avatar";
 import { Avatar as MUIA } from "@mui/material";
 

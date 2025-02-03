@@ -1,8 +1,8 @@
 import React, { ChangeEventHandler, useState } from "react";
 
-import EmailIcon from "./icons/EmailIcon";
-import EyeIcon from "./icons/EyeIcon";
-import EyeOffIcon from "./icons/EyeOffIcon";
+import EmailIcon from "./feature/icons/EmailIcon";
+import EyeIcon from "./feature/icons/EyeIcon";
+import EyeOffIcon from "./feature/icons/EyeOffIcon";
 
 interface InputFieldProps {
   type?: "text" | "email" | "password";

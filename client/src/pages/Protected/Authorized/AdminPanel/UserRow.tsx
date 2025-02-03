@@ -1,7 +1,7 @@
-import HButton from "../../../../components/Buttons/HButton";
+import HButton from "../../../../components/common/Buttons/HButton";
 import { iUser } from "../../../../interfaces";
 import { HandRaisedIcon, UserPlusIcon } from "@heroicons/react/16/solid";
-import Avatar from "../../../../components/Avatar";
+import Avatar from "../../../../components/common/Avatar";
 
 const UserRow = ({ user }: { user: iUser }) => {
   const convertDateFormat = (date: number): string => {

@@ -1,5 +1,5 @@
 import { CreditCardIcon, PencilIcon } from "@heroicons/react/16/solid";
-import HButton from "../../../../components/Buttons/HButton";
+import HButton from "../../../../components/common/Buttons/HButton";
 import { iAsset } from "../../../../interfaces";
 
 const AssetRow = ({ acc, deleteById }: { acc: iAsset; deleteById: (id: number) => void }) => {

@@ -1,11 +1,11 @@
 import { Field } from "@headlessui/react";
 import { CreditCardIcon, PlusIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
-import HButton from "../../../components/Buttons/HButton";
-import HInput from "../../../components/HInput";
-import HListBox from "../../../components/HListBox";
+import HButton from "../../../components/common/Buttons/HButton";
+import HInput from "../../../components/common/HInput";
+import HListBox from "../../../components/common/HListBox";
 import { iAsset } from "../../../interfaces";
-import { currencyList } from "../../../utils/currencyData";
+import { currencyList } from "../../../constants/currencyData";
 
 interface iAssetFormProps {
   appendAsset: (asset: Partial<iAsset>) => void;

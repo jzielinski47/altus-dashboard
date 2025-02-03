@@ -1,9 +1,9 @@
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import TabComponent from "../../../components/common/TabComponent";
 import { iAsset } from "../../../interfaces";
 import AssetForm from "./AssetForm";
 import AssetTable from "./AssetTable/AssetTable";
-import TabComponent from "../../../components/TabComponent";
 
 const AssetTracker = () => {
   const [assetList, setAssetList] = useState<iAsset[]>([]);
