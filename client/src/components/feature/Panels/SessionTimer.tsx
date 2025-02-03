@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import HButton from "../Buttons/HButton";
+import { useAuth } from "../../../context/AuthContext";
+import HButton from "../../common/Buttons/HButton";
 import PanelWrapper from "./PanelWrapper";
 import { PauseCircleIcon, PlayCircleIcon } from "@heroicons/react/16/solid";
 

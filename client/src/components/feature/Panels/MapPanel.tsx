@@ -1,7 +1,7 @@
 import PanelWrapper from "./PanelWrapper";
 import MapComponent from "../MapComponent";
 import { BoltIcon } from "@heroicons/react/16/solid";
-import { iComponent } from "../../interfaces";
+import { iComponent } from "../../../interfaces";
 
 const MapPanel = ({ className }: iComponent) => {
   return (

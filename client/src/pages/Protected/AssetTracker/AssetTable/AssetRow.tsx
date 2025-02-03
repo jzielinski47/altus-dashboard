@@ -1,8 +1,8 @@
 import { CreditCardIcon, PencilIcon } from "@heroicons/react/16/solid";
-import HButton from "../../../components/Buttons/HButton";
-import { iAccount } from "../../../interfaces";
+import HButton from "../../../../components/common/Buttons/HButton";
+import { iAsset } from "../../../../interfaces";
 
-const AssetRow = ({ acc }: { acc: iAccount }) => {
+const AssetRow = ({ acc, deleteById }: { acc: iAsset; deleteById: (id: number) => void }) => {
   const tdStyle: string = "text-white/[87%] text-left text-base p-1";
 
   return (
@@ -25,7 +25,9 @@ const AssetRow = ({ acc }: { acc: iAccount }) => {
         </HButton>
       </td>
       <td className={"text-center " + tdStyle}>
-        <HButton variant="error">Delete</HButton>
+        <HButton variant="error" onClick={() => deleteById(acc.id)}>
+          Delete
+        </HButton>
       </td>
     </tr>
   );

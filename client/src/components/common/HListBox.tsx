@@ -1,20 +1,43 @@
 import { Field, Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface iList {
   id: number;
   name: string;
 }
 
-const HListBox = ({ name, list }: { name: string; list: iList[] }) => {
-  const [selected, setSelected] = useState(list[1]);
+interface iHListbox {
+  name: string;
+  list: iList[];
+  value?: iList;
+  onChange?: Dispatch<SetStateAction<{ id: number; name: string }>>;
+}
+
+const HListBox = ({ name, list, value, onChange }: iHListbox) => {
+  const [selected, setSelected] = useState(value || list[0]);
+
+  const handleChange = (newValue: iList) => {
+    setSelected(newValue);
+    onChange?.(newValue);
+  };
+
+  useEffect(() => {
+    setSelected(list[0]);
+    onChange?.(list[0]);
+  }, []);
+
+  useEffect(() => {
+    if (value) {
+      setSelected(value);
+    }
+  }, [value]);
 
   return (
     <Field>
       <Label className="text-sm/6 font-medium text-white/[87%]">{name}</Label>
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={selected} onChange={handleChange}>
         <ListboxButton
           className={clsx(
             "relative block w-full rounded-lg bg-white/5 py-1.5 pr-8 pl-3 text-left text-sm/6 text-white/[87%] mt-1",
@@ -31,7 +54,7 @@ const HListBox = ({ name, list }: { name: string; list: iList[] }) => {
           anchor="bottom"
           transition
           className={clsx(
-            " rounded-xl border border-white/5 bg-white/5 p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none h-32",
+            " rounded-xl border border-white/5 bg-white/5 p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none h-64",
             "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
           )}
         >

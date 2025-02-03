@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../../api/users";
+import { getAllUsers } from "../../../../services/users";
 import UserRow from "./UserRow";
 
 const AdminPanel = () => {

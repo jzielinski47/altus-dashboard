@@ -1,10 +1,10 @@
-import InputField from "../components/InputField";
+import InputField from "../components/feature/InputField";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { iError } from "../interfaces";
-import { login, signup } from "../api/auth";
+import { login, signup } from "../services/auth";
 import { useAuth } from "../context/AuthContext";
-import HUIButton from "../components/Buttons/HUIButton";
+import HUIButton from "../components/common/Buttons/HUIButton";
 
 const Login = () => {
   const nav = useNavigate();

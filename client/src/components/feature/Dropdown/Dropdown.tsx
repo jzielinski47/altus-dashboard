@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/16/solid";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import DropdownButton from "./DropdownButton";
 
 export const Dropdown: React.FC<{ children: JSX.Element }> = ({ children }) => {

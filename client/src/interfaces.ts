@@ -46,9 +46,9 @@ export interface AuthContextType {
   fetchUser: () => Promise<void>;
 }
 
-export interface iAccount {
+export interface iAsset {
   id: number;
   name: string;
-  balance: number;
+  balance: number | string;
   currency: "EUR" | "PLN" | "USD" | string;
 }

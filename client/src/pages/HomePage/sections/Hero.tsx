@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@headlessui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HUIButton from "../../../components/Buttons/HUIButton";
-import ArrowButton from "../../../components/Buttons/ArrowButton";
-import Badge from "../../../components/Badge";
+import HUIButton from "../../../components/common/Buttons/HUIButton";
+import ArrowButton from "../../../components/common/Buttons/ArrowButton";
+import Badge from "../../../components/common/Badge";
 import { gradientText } from "../../../tailwind-prefabs";
 
 export default function Hero() {

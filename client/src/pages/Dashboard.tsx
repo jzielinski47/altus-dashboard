@@ -1,9 +1,9 @@
-import CarPlaceholderPanel from "../components/Panels/CarPlaceholderPanel";
-import MapPanel from "../components/Panels/MapPanel";
-import PlanSelectionPanel from "../components/Panels/PlanSelectionPanel";
-import SessionTimerPanel from "../components/Panels/SessionTimer";
-import StatPanel from "../components/Panels/StatPanel";
-import SidePanel from "../components/SidePanel";
+import CarPlaceholderPanel from "../components/feature/Panels/CarPlaceholderPanel";
+import MapPanel from "../components/feature/Panels/MapPanel";
+import PlanSelectionPanel from "../components/feature/Panels/PlanSelectionPanel";
+import SessionTimerPanel from "../components/feature/Panels/SessionTimer";
+import StatPanel from "../components/feature/Panels/StatPanel";
+import SidePanel from "../components/feature/SidePanel";
 
 const Dashboard = () => {
   return (
