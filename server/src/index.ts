@@ -23,7 +23,7 @@ app.use(
 
 try {
   mongoose
-    .connect(process.env.MONGO_PUBLIC_URL || process.env.MONGO_URL || "")
+    .connect(process.env.MONGO_URL || "")
     .then(() => {
       console.log("Connected to MongoDb Database");
       startAgenda("4 hours");
