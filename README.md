@@ -14,7 +14,9 @@ Altus is a fully functional dashboard that embodies my long-standing vision of a
 **Referenced external APIs:** Open Charge Map
 
 ## Demo
-To test the app features, please create an account even with a fictional email. The server validates just the syntax.
+// To test the app features, please create an account even with a fictional email. The server validates just the syntax. 
+
+!!! **Currently the app is down due to operational costs of hosting. The only way to test it is on a local machine.** !!!
 
 ![image](https://github.com/user-attachments/assets/9dd154e2-baef-4528-bcb3-d59e2032ba33)
 ![image](https://github.com/user-attachments/assets/6e744b6d-d39e-4f89-88ed-061e50de4f44)
@@ -39,7 +41,7 @@ To test the app features, please create an account even with a fictional email. 
 ## License
 This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).  
 You may use, share, and adapt this project for non-commercial purposes only.  
-For commercial use, please contact me at jzielinski47dev@gmail.com.
+For commercial use, please contact me via email.
 
 ## API Reference
 
